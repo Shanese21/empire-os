@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanese AI Empire — Build Order Framework</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg2: #111116;
+    --bg3: #18181f;
+    --bg4: #1e1e28;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --gold: #c9a84c;
+    --gold2: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.12);
+    --gold-border: rgba(201,168,76,0.25);
+    --text: #f0ede8;
+    --text2: #9895a0;
+    --text3: #4a4858;
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.1);
+    --green-border: rgba(74,222,128,0.2);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.1);
+    --blue: #818cf8;
+    --blue-dim: rgba(129,140,248,0.1);
+    --blue-border: rgba(129,140,248,0.2);
+    --amber: #fb923c;
+    --amber-dim: rgba(251,146,60,0.1);
+    --amber-border: rgba(251,146,60,0.2);
+    --pink: #f472b6;
+    --pink-dim: rgba(244,114,182,0.1);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE + GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 24px; height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero p {
+    font-size: 15px;
+    color: var(--text2);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .hero-stats {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .hero-stat { }
+  .hero-stat-val {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px; color: var(--gold); line-height: 1;
+  }
+  .hero-stat-label {
+    font-size: 11px; color: var(--text3);
+    text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px;
+  }
+
+  /* ── TIMELINE CONNECTOR ── */
+  .phases { position: relative; }
+  .phases::before {
+    content: '';
+    position: absolute;
+    left: 21px; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border2) 5%, var(--border2) 95%, transparent);
+  }
+
+  /* ── PHASE CARD ── */
+  .phase {
+    display: flex; gap: 20px;
+    margin-bottom: 4px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .phase:nth-child(1) { animation-delay: 0.05s; }
+  .phase:nth-child(2) { animation-delay: 0.1s; }
+  .phase:nth-child(3) { animation-delay: 0.15s; }
+  .phase:nth-child(4) { animation-delay: 0.2s; }
+  .phase:nth-child(5) { animation-delay: 0.25s; }
+  .phase:nth-child(6) { animation-delay: 0.3s; }
+
+  /* dot on the timeline */
+  .phase-dot-wrap {
+    display: flex; flex-direction: column; align-items: center;
+    flex-shrink: 0; padding-top: 18px;
+  }
+  .phase-dot {
+    width: 42px; height: 42px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    border: 1px solid;
+    flex-shrink: 0;
+    position: relative; z-index: 1;
+    transition: transform 0.2s;
+  }
+  .phase:hover .phase-dot { transform: scale(1.08); }
+  .phase-connector { flex: 1; width: 1px; background: transparent; }
+
+  /* card */
+  .phase-card {
+    flex: 1;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .phase-card:hover { border-color: var(--border2); }
+
+  .phase-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 22px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+  .phase-head::after {
+    content: '';
+    position: absolute; bottom: 0; left: 22px; right: 22px;
+    height: 1px; background: transparent;
+    transition: background 0.2s;
+  }
+  .phase-card.open .phase-head::after { background: var(--border); }
+
+  .phase-head-text { flex: 1; }
+  .phase-title {
+    font-size: 16px; font-weight: 700; color: var(--text);
+    margin-bottom: 3px;
+  }
+  .phase-sub { font-size: 12px; color: var(--text2); }
+
+  .phase-timeline-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 20px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .phase-chevron {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3); font-size: 11px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .phase-card.open .phase-chevron { transform: rotate(180deg); }
+
+  /* body */
+  .phase-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .phase-card.open .phase-body { max-height: 1200px; }
+  .phase-body-inner { padding: 20px 22px 24px; }
+
+  /* steps */
+  .steps { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .step {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 12px 14px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .step:hover { border-color: var(--border2); background: var(--bg4); }
+  .step-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .step-content { flex: 1; }
+  .step-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .step-detail { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 6px; }
+  .step-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.04em;
+    padding: 3px 8px; border-radius: 6px;
+    border: 1px solid;
+  }
+
+  /* milestone row */
+  .milestones {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px; margin-top: 16px;
+  }
+  .milestone {
+    padding: 14px 16px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .milestone-title {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 6px;
+  }
+  .milestone-val {
+    font-size: 13px; color: var(--text2); line-height: 1.5;
+  }
+  .milestone-val strong { color: var(--text); font-weight: 700; }
+  .milestone-val .gold { color: var(--gold); }
+
+  /* MRR bars */
+  .mrr-section { margin-top: 16px; }
+  .mrr-header {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 12px;
+  }
+  .mrr-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .mrr-label { font-size: 11px; color: var(--text2); width: 110px; flex-shrink: 0; }
+  .mrr-bar { flex: 1; height: 5px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+  .mrr-fill { height: 100%; border-radius: 3px; }
+  .mrr-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold); width: 52px; text-align: right;
+  }
+  .mrr-total .mrr-label { color: var(--text); font-weight: 700; }
+  .mrr-total .mrr-val { font-size: 13px; }
+  .mrr-total .mrr-fill { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
+
+  /* service chips */
+  .service-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .chip {
+    font-size: 11px; padding: 4px 10px; border-radius: 20px;
+    border: 1px solid var(--border2); color: var(--text2);
+    background: var(--bg3);
+  }
+  .chip.new {
+    border-color: var(--gold-border); color: var(--gold); background: var(--gold-dim);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 64px; padding-top: 32px;
+    border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px; color: var(--gold);
+  }
+  .footer-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text3);
+  }
+
+  /* PROGRESS BAR at top */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--bg3);
+    z-index: 100;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold2));
+    width: 0%;
+    transition: width 0.1s;
+  }
+
+  /* PHASE COLORS */
+  .p1 .phase-dot { background: rgba(129,140,248,0.15); border-color: rgba(129,140,248,0.4); color: var(--blue); }
+  .p1 .phase-timeline-badge { background: var(--blue-dim); border-color: var(--blue-border); color: var(--blue); }
+  .p1 .phase-card:hover { border-color: rgba(129,140,248,0.2); }
+
+  .p2 .phase-dot { background: var(--green-dim); border-color: var(--green-border); color: var(--green); }
+  .p2 .phase-timeline-badge { background: var(--green-dim); border-color: var(--green-border); color: var(--green); }
+  .p2 .phase-card:hover { border-color: rgba(74,222,128,0.15); }
+
+  .p3 .phase-dot { background: var(--amber-dim); border-color: var(--amber-border); color: var(--amber); }
+  .p3 .phase-timeline-badge { background: var(--amber-dim); border-color: var(--amber-border); color: var(--amber); }
+
+  .p4 .phase-dot { background: var(--red-dim); border-color: rgba(248,113,113,0.3); color: var(--red); }
+  .p4 .phase-timeline-badge { background: var(--red-dim); border-color: rgba(248,113,113,0.3); color: var(--red); }
+
+  .p5 .phase-dot { background: var(--bg3); border-color: var(--border2); color: var(--text2); }
+  .p5 .phase-timeline-badge { background: var(--bg3); border-color: var(--border2); color: var(--text2); }
+
+  .p6 .phase-dot { background: var(--gold-dim); border-color: var(--gold-border); color: var(--gold); font-size: 16px; }
+  .p6 .phase-timeline-badge { background: var(--gold-dim); border-color: var(--gold-border); color: var(--gold); }
+  .p6 .phase-card { border-color: var(--gold-border); }
+  .p6 .phase-card:hover { border-color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .phases::before { display: none; }
+    .phase-dot-wrap { display: none; }
+    .hero-stats { gap: 20px; }
+    .milestones { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">AI Business Portfolio</div>
+    <h1>The <em>Build Order</em><br>Framework</h1>
+    <p>A phased roadmap for building 7 AI income streams — structured so each phase supports the next, and everything eventually runs without you.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">6</div>
+        <div class="hero-stat-label">Phases</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">7</div>
+        <div class="hero-stat-label">AI Services</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">$28K</div>
+        <div class="hero-stat-label">Target MRR</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">9 mo</div>
+        <div class="hero-stat-label">To Full Portfolio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="phases">
+
+    <!-- PHASE 1 -->
+    <div class="phase p1">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">1</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card open" id="card1">
+          <div class="phase-head" onclick="togglePhase('card1')">
+            <div class="phase-head-text">
+              <div class="phase-title">Foundation</div>
+              <div class="phase-sub">Month 1 — Business infrastructure, self-serve funnel, client database</div>
+            </div>
+            <div class="phase-timeline-badge">Weeks 1–4</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">🏛️</div>
+                  <div class="step-content">
+                    <div class="step-title">Register your business</div>
+                    <div class="step-detail">Sole proprietorship in Ontario via ServiceOntario. Pick a name broad enough to cover all future services — not service-specific.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 1 · ~$60 · 1 hr</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">💳</div>
+                  <div class="step-content">
+                    <div class="step-title">Stripe + business bank account</div>
+                    <div class="step-detail">One Stripe account handles billing for all 7 services. Separate bank account keeps finances clean for taxes. Stripe handles recurring billing, failed payments, and cancellations automatically.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 1 · Free (2.9% per txn) · 2 hrs</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📋</div>
+                  <div class="step-content">
+                    <div class="step-title">One-page service contract</div>
+                    <div class="step-detail">Covers scope, monthly fee, cancellation terms, and that you own the underlying system. Protects you especially for the chatbot agency where you're building on client sites.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 1 · $0–150 · 2 hrs</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📊</div>
+                  <div class="step-content">
+                    <div class="step-title">Build client database (Google Sheets → Airtable)</div>
+                    <div class="step-detail">Start with Google Sheets (free). Track clients, pipeline, services, and revenue. Upgrade to Airtable when you hit 20+ clients. The OS spreadsheet you have is your template.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 2 · Free to start · 4–6 hrs</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">⚡</div>
+                  <div class="step-content">
+                    <div class="step-title">Make.com automations (set and forget)</div>
+                    <div class="step-detail">Stripe payment → client record auto-created. Failed payment → alert to you. New client → welcome email auto-sent. 2-week check-in → auto-email. Weekly MRR digest every Monday. Built once, runs forever.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 3 · Free tier · 3–4 hrs</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">🌐</div>
+                  <div class="step-content">
+                    <div class="step-title">Self-serve funnel — no discovery calls</div>
+                    <div class="step-detail">Domain + Carrd one-page site per service. Clear pricing page does the selling. Stripe checkout handles payment. Typeform intake form replaces the discovery call. Professional Gmail (yourname@yourbusiness.com). Client goes: website → pays → fills form → you deliver. Zero calls needed.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 4 · ~$40/yr · 6–8 hrs</span>
+                  </div>
+                </div>
+              </div>
+              <div class="milestones">
+                <div class="milestone">
+                  <div class="milestone-title">End of Phase 1</div>
+                  <div class="milestone-val">You can legally take money. Infrastructure runs itself. Self-serve funnel is ready. No AI service built yet — and that's the point.</div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-title">Total cost</div>
+                  <div class="milestone-val"><strong>$100–250</strong> one-time<br><strong>~$40/mo</strong> ongoing</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase p2">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">2</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card" id="card2">
+          <div class="phase-head" onclick="togglePhase('card2')">
+            <div class="phase-head-text">
+              <div class="phase-title">First two services live</div>
+              <div class="phase-sub">Months 1–2 — Airbnb Assistant + Chatbot Agency</div>
+            </div>
+            <div class="phase-timeline-badge">Weeks 2–8</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">🏠</div>
+                  <div class="step-content">
+                    <div class="step-title">Build Airbnb Assistant</div>
+                    <div class="step-detail">Claude API powers guest messaging templates, automated check-in/out flows, FAQ bot, and listing description generator. Client fills Typeform → you configure their account → deliver in 5 days. Fully self-serve at $199/mo.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Weeks 2–3 · $199/mo per client · No ongoing work</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">🤖</div>
+                  <div class="step-content">
+                    <div class="step-title">Build Chatbot Agency</div>
+                    <div class="step-detail">Voiceflow or Botpress as the builder. Create one master template, customize per client from their Typeform intake. Embed on their website. One-time setup fee $300–500 + $250/mo retainer. Hair/beauty niche first — you know this world.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Weeks 3–4 · $500 setup + $250/mo · 3–5 days build</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">🎯</div>
+                  <div class="step-content">
+                    <div class="step-title">Land first 3 clients per service</div>
+                    <div class="step-detail">Start with your existing network. Beauty/hair contacts for chatbot. Airbnb host Facebook groups and Reddit for STR assistant. Offer a launch discount for first 5 clients only — builds social proof fast and gives you real feedback to improve the product.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Weeks 4–8 · Goal: 6 paying clients total</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">✍️</div>
+                  <div class="step-content">
+                    <div class="step-title">Write all email templates once</div>
+                    <div class="step-detail">Welcome email, delivery confirmation, 2-week check-in, renewal reminder, failed payment notice, re-engagement email for at-risk clients. Written once, automated forever via Make.com. Never write a client email from scratch again.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 4 · Free · 3 hrs one-time</span>
+                  </div>
+                </div>
+              </div>
+              <div class="milestones">
+                <div class="milestone">
+                  <div class="milestone-title">MRR target</div>
+                  <div class="milestone-val">6 clients × ~$225 avg = <strong class="gold">~$1,350/mo</strong></div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-title">Hands-off level</div>
+                  <div class="milestone-val">90% automated. Your only active job is building each new client's service from their form answers — 3–5 hrs per client.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase p3">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">3</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card" id="card3">
+          <div class="phase-head" onclick="togglePhase('card3')">
+            <div class="phase-head-text">
+              <div class="phase-title">Command center OS</div>
+              <div class="phase-sub">Month 2–3 — Systematize before scaling. Do this before adding more services.</div>
+            </div>
+            <div class="phase-timeline-badge">Weeks 6–12</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">🗄️</div>
+                  <div class="step-content">
+                    <div class="step-title">Upgrade to Airtable</div>
+                    <div class="step-detail">Once you have 10+ clients the upgrade is worth it. Linked tables, richer views, better Make.com integration. Import your Google Sheets data in minutes. This becomes your single source of truth.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Month 2 · $20/mo · 2 hrs to migrate</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">⚡</div>
+                  <div class="step-content">
+                    <div class="step-title">Full automation suite</div>
+                    <div class="step-detail">Stripe → Airtable sync. Weekly MRR digest every Monday. At-risk client alerts (inactive 3+ weeks). Renewal reminders 14 days out. Pipeline follow-up sequences. Every trigger set once, fires automatically.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Month 2–3 · Make.com Core $11/mo</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📐</div>
+                  <div class="step-content">
+                    <div class="step-title">Document your SOPs</div>
+                    <div class="step-detail">Standard operating procedures for onboarding each service. This is what lets you eventually hire a VA or delegate. Use your onboarding checklist sheet as the base — it's already built.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Month 3 · Free · 4–5 hrs total</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📊</div>
+                  <div class="step-content">
+                    <div class="step-title">Live command center dashboard</div>
+                    <div class="step-detail">Connect your Airtable data to the OS dashboard. One screen shows total MRR, client health across all services, pipeline stage counts, and alerts. The full portfolio vision becomes real here.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Month 3 · Included in Airtable · 3 hrs setup</span>
+                  </div>
+                </div>
+              </div>
+              <div class="milestones">
+                <div class="milestone">
+                  <div class="milestone-title">Why this phase matters</div>
+                  <div class="milestone-val">Each new service slots into an existing system. Without Phase 3, 5 services = 5× chaos. With it, 5 services = 5× clean revenue.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase p4">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">4</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card" id="card4">
+          <div class="phase-head" onclick="togglePhase('card4')">
+            <div class="phase-head-text">
+              <div class="phase-title">Services 3, 4 + 5</div>
+              <div class="phase-sub">Months 3–6 — Content Generator, Niche Workflow Tool, Email Automation</div>
+            </div>
+            <div class="phase-timeline-badge">Weeks 10–24</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">📄</div>
+                  <div class="step-content">
+                    <div class="step-title">Content Generator (month 3)</div>
+                    <div class="step-detail">Simple web app — user logs in, answers a few questions, gets AI-generated captions, emails, and posts in their brand voice. Hair/beauty niche first. Claude API backend, Stripe paywall. Fully self-serve — no client work once built.</div>
+                    <span class="step-tag" style="background:var(--red-dim);border-color:rgba(248,113,113,0.3);color:var(--red)">$49/mo · Fully self-serve · Scale to 100+ users</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">🧠</div>
+                  <div class="step-content">
+                    <div class="step-title">Niche Workflow Tool (month 4)</div>
+                    <div class="step-detail">Hair consultation generator, care guide builder, or client onboarding packet tool for salons. Ties into Muse Hair Lab audience — you're the most credible seller because you live in this niche. Built once, sold to hundreds at $29/mo.</div>
+                    <span class="step-tag" style="background:var(--red-dim);border-color:rgba(248,113,113,0.3);color:var(--red)">$29/mo · SaaS · Pure passive income</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📧</div>
+                  <div class="step-content">
+                    <div class="step-title">Email Automation (month 5–6)</div>
+                    <div class="step-detail">AI-written newsletters and email flows for small businesses. Klaviyo or MailerLite for sending, Claude API writes copy, Make.com schedules it all. Light monthly check-in per client. Bundle with chatbot service for premium pricing.</div>
+                    <span class="step-tag" style="background:var(--red-dim);border-color:rgba(248,113,113,0.3);color:var(--red)">$400/mo · Highest per-client value · Bundle for $650/mo</span>
+                  </div>
+                </div>
+              </div>
+              <div class="mrr-section">
+                <div class="mrr-header">Projected MRR by end of Phase 4</div>
+                <div class="mrr-row"><span class="mrr-label">Chatbot Agency</span><div class="mrr-bar"><div class="mrr-fill" style="width:60%;background:#818cf8"></div></div><span class="mrr-val">$3,750</span></div>
+                <div class="mrr-row"><span class="mrr-label">Airbnb Asst.</span><div class="mrr-bar"><div class="mrr-fill" style="width:62%;background:#4ade80"></div></div><span class="mrr-val">$3,980</span></div>
+                <div class="mrr-row"><span class="mrr-label">Content Gen.</span><div class="mrr-bar"><div class="mrr-fill" style="width:48%;background:#639922"></div></div><span class="mrr-val">$3,120</span></div>
+                <div class="mrr-row"><span class="mrr-label">Workflow Tool</span><div class="mrr-bar"><div class="mrr-fill" style="width:42%;background:#ba7517"></div></div><span class="mrr-val">$2,900</span></div>
+                <div class="mrr-row"><span class="mrr-label">Email Auto.</span><div class="mrr-bar"><div class="mrr-fill" style="width:60%;background:#f87171"></div></div><span class="mrr-val">$4,000</span></div>
+                <div class="mrr-row mrr-total" style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)"><span class="mrr-label">Total MRR</span><div class="mrr-bar"><div class="mrr-fill" style="width:75%"></div></div><span class="mrr-val">~$17.7K</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase p5">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">5</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card" id="card5">
+          <div class="phase-head" onclick="togglePhase('card5')">
+            <div class="phase-head-text">
+              <div class="phase-title">Final two services</div>
+              <div class="phase-sub">Months 6–9 — Lead Gen / DM Automation + Trading Journal AI</div>
+            </div>
+            <div class="phase-timeline-badge">Weeks 24–36</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">💬</div>
+                  <div class="step-content">
+                    <div class="step-title">Lead Gen / DM Automation (month 6–7)</div>
+                    <div class="step-detail">ManyChat sequences for Instagram DM automation, AI-written personalized openers, lead qualification flows. Client only sees hot leads — AI handles everything before that. Needs light monthly monitoring — platform rules change. Highest per-client revenue at $500/mo.</div>
+                    <span class="step-tag" style="background:var(--bg3);border-color:var(--border2);color:var(--text2)">$500/mo · Medium-touch · 12 clients = $6K/mo</span>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-icon">📈</div>
+                  <div class="step-content">
+                    <div class="step-title">Trading Journal AI (month 8–9)</div>
+                    <div class="step-detail">Traders input their trades — entry, exit, setup type, emotional state. Claude API analyzes patterns and generates a personalized weekly debrief: what they did well, what broke their rules, psychological tendencies, performance trends over time. You live this — your unfair advantage.</div>
+                    <span class="step-tag" style="background:var(--bg3);border-color:var(--border2);color:var(--text2)">$29–39/mo · Fully automated · Scale to 500+ users</span>
+                  </div>
+                </div>
+              </div>
+              <div class="milestones">
+                <div class="milestone">
+                  <div class="milestone-title">Why last?</div>
+                  <div class="milestone-val">Lead Gen has compliance nuances worth understanding after experience. Trading Journal benefits from more trading history and a live community to launch to.</div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-title">Combined potential</div>
+                  <div class="milestone-val">Lead Gen 12 × $500 = <strong>$6,000</strong><br>Trading Journal 150 × $34 = <strong>$5,100</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase p6">
+      <div class="phase-dot-wrap">
+        <div class="phase-dot">✦</div>
+      </div>
+      <div style="flex:1">
+        <div class="phase-card" id="card6">
+          <div class="phase-head" onclick="togglePhase('card6')">
+            <div class="phase-head-text">
+              <div class="phase-title">AI Chief of Staff layer</div>
+              <div class="phase-sub">Month 9+ — Claude manages your AI empire so you don't have to</div>
+            </div>
+            <div class="phase-timeline-badge">Month 9+</div>
+            <div class="phase-chevron">▼</div>
+          </div>
+          <div class="phase-body">
+            <div class="phase-body-inner">
+              <div class="steps">
+                <div class="step" style="border-color:var(--gold-border)">
+                  <div class="step-icon">🧠</div>
+                  <div class="step-content">
+                    <div class="step-title">Claude-powered portfolio intelligence</div>
+                    <div class="step-detail">A Claude API layer sits on top of your Airtable data and generates a Monday morning briefing — new clients, MRR movement, churn risks, at-risk accounts, and what to focus on this week. You never go hunting for what needs attention.</div>
+                    <span class="step-tag" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)">Built once · Runs forever · &lt;15 min/week to review</span>
+                  </div>
+                </div>
+                <div class="step" style="border-color:var(--gold-border)">
+                  <div class="step-icon">✉️</div>
+                  <div class="step-content">
+                    <div class="step-title">Automated client health management</div>
+                    <div class="step-detail">System flags at-risk clients, drafts re-engagement emails for your approval, and sends renewal upsell messages automatically. You review and approve — never write from scratch. Churn prevention on autopilot.</div>
+                    <span class="step-tag" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)">Approve or skip — 5 min per client</span>
+                  </div>
+                </div>
+                <div class="step" style="border-color:var(--gold-border)">
+                  <div class="step-icon">📈</div>
+                  <div class="step-content">
+                    <div class="step-title">Automated cross-sell and expansion revenue</div>
+                    <div class="step-detail">Chatbot clients get offered Email Automation. Airbnb clients get offered Lead Gen. The OS identifies cross-sell opportunities based on client profile, usage patterns, and tenure. Revenue from existing clients — zero acquisition cost.</div>
+                    <span class="step-tag" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)">Expansion MRR — highest margin revenue you'll earn</span>
+                  </div>
+                </div>
+              </div>
+              <div class="milestones">
+                <div class="milestone" style="border-color:var(--gold-border)">
+                  <div class="milestone-title">Full portfolio MRR</div>
+                  <div class="milestone-val">All 7 services at target = <span class="gold" style="font-size:18px;font-family:'Instrument Serif',serif;font-weight:400">$28,100/mo</span></div>
+                </div>
+                <div class="milestone" style="border-color:var(--gold-border)">
+                  <div class="milestone-title">Your weekly time</div>
+                  <div class="milestone-val">~3–5 hrs reviewing AI briefings, approving emails, light client work. The business earns. Claude manages it. You check in.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /phases -->
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-logo">Shanese AI Empire ✦</div>
+    <div class="footer-note">Generated by Claude · Last updated March 2026</div>
+  </div>
+
+</div><!-- /wrap -->
+
+<script>
+  function togglePhase(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    document.getElementById('progressFill').style.width = progress + '%';
+  });
+</script>
+</body>
+</html>
