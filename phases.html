@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,10 +157,12 @@
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
     <div class="nav-links">
+      <a href="about.html" class="nav-link">✦ About</a>
       <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
       <a href="index.html" class="nav-link">🗺 Build Order</a>
       <a href="phases.html" class="nav-link active">✅ Phases</a>
       <a href="marketing.html" class="nav-link">📣 Marketing</a>
+      <a href="founder.html" class="nav-link">👤 Founder View</a>
     </div>
   </div>
 </nav>
@@ -294,6 +297,7 @@ const phases = [
           {id:'p2-15',title:'Close and onboard first 3 clients',detail:'When someone says yes: send Stripe payment link, then sit back. Typeform intake comes in automatically. You build from the form answers. Deliver in 5 days.',tags:['Weeks 5–7','$1,350+ MRR unlocked']},
           {id:'p2-16',title:'Add first clients to UptimeRobot monitoring',detail:'Once each client\'s service is live, add their URL to UptimeRobot. Takes 2 minutes. You\'ll know if something breaks before they do.',tags:['Per client','2 min each']},
           {id:'p2-17',title:'Collect first testimonials',detail:'At the 2-week check-in email, include a line: "Would you be willing to leave a quick testimonial?" One genuine result quote is your most powerful future marketing asset.',tags:['Week 7–8','Critical for Phase 4 ads']},
+          {id:'p2-18',title:'Build AI launch readiness score',detail:'Before each new service goes live, Claude checks 8 criteria: Carrd page live, Stripe product created, Typeform intake complete, welcome email written, delivery email written, Make.com flows wired, UptimeRobot monitoring set, SOP documented. Must score 8/8 before launch. Prevents half-baked launches.',tags:['Claude API','Make.com','2 hrs','Do once — reuse per service']},
         ]
       },
     ]
@@ -307,7 +311,8 @@ const phases = [
     timeline:'Weeks 6–12',
     milestones:[
       {label:'Why before Phase 4',val:'Each new service slots into a working system. Without this phase, 5 services = 5× chaos. With it, 5 services = 5× clean revenue.'},
-      {label:'Time investment',val:'~<strong>15–20 hrs</strong> total across the phase'},
+      {label:'Time investment',val:'~<strong>25–35 hrs</strong> total — most of it automated setup you do once'},
+      {label:'What you gain',val:'Live financials via Wave, tax tracking, AI-drafted content, client health scores, MRR forecast, and the full AI Chief of Staff intelligence layer'},
       {label:'Ongoing after',val:'~<strong>30 min/week</strong> reviewing dashboards and approving automated actions'},
     ],
     weeks:[
@@ -328,6 +333,21 @@ const phases = [
           {id:'p3-7',title:'Record Loom walkthroughs of each SOP',detail:'Screen record yourself doing each onboarding process once. These become training videos for your future VA. 15–20 min per service. Store in Google Drive.',tags:['Loom','Free tier','1 hr per service']},
           {id:'p3-8',title:'Build cross-sell trigger automations',detail:'When a Chatbot Agency client hits their 60-day mark, Make.com sends them an email about Email Automation. When an Airbnb client adds a second property, they get an upgrade offer.',tags:['Make.com','1–2 hrs','Expansion MRR']},
           {id:'p3-9',title:'Review and optimise all Claude API prompts',detail:'Look at the AI outputs from your first 6 clients. What worked perfectly? What needed manual fixing? Update your prompts. 1 hour now saves 10 hours over the next 6 months.',tags:['Claude API','1–2 hrs','Monthly recurring']},
+          {id:'p3-10',title:'Set up Wave accounting — connect bank + Stripe',detail:'Go to waveapps.com and create a free account. Connect your Starlite Group business bank account via Plaid and connect Stripe. Wave auto-imports every transaction. Categorise once, it remembers forever. Free, built for Canadian small businesses, no QuickBooks needed yet.',tags:['waveapps.com','Free','1–2 hrs','Canadian-friendly']},
+          {id:'p3-11',title:'Build Wave → command centre expense sync',detail:'Wave API pulls categorised expenses into your dashboard automatically. Every tool subscription, Stripe fee, and Claude API charge shows up without manual entry. True profit (not just MRR) visible at a glance.',tags:['Wave API','Make.com','2–3 hrs','Replaces manual entry']},
+          {id:'p3-12',title:'Add cashflow & profit panel to command centre',detail:'New dashboard panel showing: gross revenue, total expenses (auto from Wave), net profit, and profit margin per service. The number that actually matters — not MRR but what you keep.',tags:['Dashboard','Wave API','2 hrs']},
+          {id:'p3-13',title:'Build tax set-aside tracker',detail:'Auto-calculates 25–30% of every Stripe deposit and shows running total to transfer to a separate tax savings account. Prevents the end-of-year CRA shock. Simple formula on top of Wave data.',tags:['Wave API','Dashboard','1 hr','Critical for Canada']},
+          {id:'p3-14',title:'Set up CRA quarterly installment reminders',detail:'Once income exceeds ~$3K net, CRA requires quarterly tax installments (March, June, September, December). Make.com sends you a reminder 2 weeks before each deadline with estimated amount based on Wave data.',tags:['Make.com','CRA deadlines','30 min','Auto-reminder']},
+          {id:'p3-15',title:'Build MRR forecast + $28K goal tracker',detail:'Dashboard panel projecting MRR trajectory based on current growth rate. Shows a progress bar toward the $28K target with estimated month of arrival. Updates automatically as new clients come in.',tags:['Dashboard','Airtable','2 hrs','Auto-calculated']},
+          {id:'p3-16',title:'Build division funding milestone tracker',detail:'Tracks MRR against the threshold that unlocks each Starlite division. "Properties unlocks at $5K MRR consistently for 3 months — you\'re 62% there." Auto-triggers a briefing when each threshold is hit.',tags:['Dashboard','Claude API','2 hrs','Starlite Group vision']},
+          {id:'p3-17',title:'Build client LTV tracker per service',detail:'Average months a client stays × monthly rate = lifetime value. Tells you which service is actually most valuable beyond just MRR. Updates automatically from Airtable subscription data.',tags:['Airtable','Dashboard','1–2 hrs','Auto-calculated']},
+          {id:'p3-18',title:'Build referral tracking panel',detail:'Tracks who referred who, referral count per client, and which service drives the most organic referrals. Shows referral ROI. Auto-populated when Make.com captures referral source at signup.',tags:['Airtable','Make.com','2 hrs','Auto-tracked']},
+          {id:'p3-19',title:'Build client NPS collection + satisfaction panel',detail:'After each 90-day check-in email, auto-collect a single satisfaction score (1–10). Results feed a per-service satisfaction trend panel on the dashboard. Early warning before churn happens.',tags:['Typeform','Make.com','Airtable','2 hrs','Auto-collected']},
+          {id:'p3-20',title:'Set up AI client anniversary emails',detail:'At 3, 6, and 12 months with you, Claude drafts a personalised "thank you + here\'s what you\'ve achieved" email per client. Retention gold — most businesses never do this. Fully automated.',tags:['Claude API','Make.com','1–2 hrs','Auto-drafted']},
+          {id:'p3-21',title:'Build AI content brief generation',detail:'Every Monday, Claude generates a weekly content brief for each service brand: topic, hook, platform, format, CTA. Outputs a draft post ready for your review. Never stare at a blank content calendar again.',tags:['Claude API','Make.com','2 hrs','Weekly automation']},
+          {id:'p3-22',title:'Build client feedback synthesis — Voice of Client report',detail:'Claude pulls all 2-week check-in replies, NPS scores, and support emails monthly. Synthesises into a "Voice of the Client" report: what they love, what they\'d change, what they\'d pay more for. Auto-sent to you on the 1st.',tags:['Claude API','Make.com','2–3 hrs','Monthly auto-report']},
+          {id:'p3-23',title:'Build capacity alert per service',detail:'Each service has a max profitable client count. When you\'re approaching 80% capacity, AI alerts you to raise prices, pause acquisition, or hire help. Prevents overcommitting before you can deliver.',tags:['Airtable','Claude API','1 hr','Auto-alert']},
+          {id:'p3-24',title:'Build AI prompt performance tracker',detail:'Log which Claude API prompts across your services generate the most positive client outcomes vs. the ones requiring manual correction. Monthly review tells you exactly where to spend optimisation time.',tags:['Airtable','1–2 hrs','Manual review monthly']},
         ]
       },
     ]
@@ -420,6 +440,7 @@ const phases = [
     milestones:[
       {label:'Full portfolio MRR',val:'All 7 services at target = <span class="gold">$28,100/mo</span>'},
       {label:'Your weekly time',val:'~<strong>3–5 hrs</strong> reviewing briefings, approving emails, light decisions'},
+      {label:'AI Chief of Staff manages',val:'Briefings, churn prevention, upsells, price signals, seasonal trends, VA tasks, competitive monitoring, and division unlock triggers'},
       {label:'The goal',val:'The business earns. Claude manages it. You check in.'},
     ],
     weeks:[
@@ -430,6 +451,13 @@ const phases = [
           {id:'p6-2',title:'Build automated churn intervention system',detail:'When a client goes inactive (3+ weeks), Claude drafts a re-engagement email personalised to their service and usage pattern. You approve or skip in one click. Churn prevention on autopilot.',tags:['Claude API','Make.com','2–3 hrs']},
           {id:'p6-3',title:'Build automated upsell identification',detail:'System reviews each client\'s service, tenure, and usage monthly. Claude flags clients ready for an upsell and drafts the offer email. You approve. Expansion MRR with zero acquisition cost.',tags:['Claude API','Make.com','2 hrs']},
           {id:'p6-4',title:'Hire first VA using your Phase 3 SOPs',detail:'Post a part-time VA role ($500–800/mo) on Upwork or OnlineJobs.ph. Your Phase 3 SOPs are the job description and training manual. VA handles: content posting, basic client comms, data entry.',tags:['Upwork or OnlineJobs.ph','$500–800/mo']},
+          {id:'p6-5',title:'Build AI price increase signal',detail:'When a service hits 85%+ capacity and churn stays below 2% for 60 days, Claude flags it\'s time to raise prices and drafts a new pricing tier announcement for your approval. You never leave money on the table.',tags:['Claude API','Airtable','2 hrs','Fully automated']},
+          {id:'p6-6',title:'Build seasonal trend detection',detail:'After 12+ months of data, Claude spots recurring patterns — STR hosts churning in January (slow season), salons upgrading in September (back-to-school). Sends proactive recommendations before each pattern repeats.',tags:['Claude API','Airtable','2–3 hrs','Needs 12mo data']},
+          {id:'p6-7',title:'Build cross-sell scoring engine',detail:'Every client gets a monthly cross-sell score based on service type, tenure, and engagement. Claude ranks who\'s most ready for a second service and drafts the outreach email. Expansion MRR on autopilot.',tags:['Claude API','Airtable','3 hrs','Auto-scored']},
+          {id:'p6-8',title:'Build division unlock trigger + briefing',detail:'When Ops MRR hits $5K consistently for 3 months, Claude auto-generates a "You\'re ready to fund Starlite Properties" briefing with analysis, recommended first steps, and a budget breakdown. Automates your own strategic decisions.',tags:['Claude API','Airtable','2 hrs','Milestone triggered']},
+          {id:'p6-9',title:'Build VA daily task briefing automation',detail:'Every morning, Claude reads Airtable and generates your VA\'s task list: onboardings due, content to post, follow-ups to send, check-ins to action. VA clocks in and knows exactly what to do. No briefing calls needed.',tags:['Claude API','Airtable','2 hrs','VA management']},
+          {id:'p6-10',title:'Build competitive monitoring digest',detail:'Weekly automated web search across your 7 service niches. Claude surfaces new competitors, pricing changes, and emerging opportunities. Delivered in your Monday briefing. Keeps you informed without the scrolling.',tags:['Claude API','Web search','2 hrs','Weekly automation']},
+          {id:'p6-11',title:'Build holdings overview panel',detail:'As Starlite Properties and Capital come online, add a group-level panel to the command centre showing all division revenue in one view — not just Ops MRR but total Starlite Group income across all holdings.',tags:['Dashboard','Future division','Build when ready']},
         ]
       },
       {
