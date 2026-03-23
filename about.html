@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starlite Group — Building the Future of AI-Powered Business</title>
+<meta name="description" content="Starlite Group is a portfolio of AI-powered digital businesses built for the modern economy — from intelligent automation tools to investment holdings.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080810;
+    --bg2: #0e0e18;
+    --bg3: #141422;
+    --bg4: #1a1a2e;
+    --border: rgba(255,255,255,0.06);
+    --border2: rgba(255,255,255,0.11);
+    --gold: #c9a84c;
+    --gold2: #e8c97a;
+    --gold3: #f5e0a0;
+    --gold-dim: rgba(201,168,76,0.1);
+    --gold-border: rgba(201,168,76,0.22);
+    --text: #ede8e0;
+    --text2: #8a8799;
+    --text3: #3e3c4a;
+  }
+
+  *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── GRAIN OVERLAY ── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.35;
+  }
+
+  /* ── AURORA BACKGROUND ── */
+  .aurora {
+    position: fixed; inset: 0; z-index: 0;
+    overflow: hidden; pointer-events: none;
+  }
+  .aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.07;
+    animation: drift 20s ease-in-out infinite;
+  }
+  .aurora-blob:nth-child(1) {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #c9a84c, transparent);
+    top: -200px; left: -100px;
+    animation-delay: 0s;
+  }
+  .aurora-blob:nth-child(2) {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #818cf8, transparent);
+    bottom: -100px; right: -100px;
+    animation-delay: -7s;
+  }
+  .aurora-blob:nth-child(3) {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #2dd4bf, transparent);
+    top: 50%; left: 50%;
+    animation-delay: -14s;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.05); }
+    66% { transform: translate(-20px, 40px) scale(0.97); }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    padding: 0 40px;
+    background: rgba(8,8,16,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 500;
+    color: var(--gold); text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 6px; align-items: center; }
+  .nav-link {
+    font-size: 12px; font-weight: 400;
+    color: var(--text2); text-decoration: none;
+    padding: 6px 14px; border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.2s; white-space: nowrap;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .nav-link:hover { color: var(--text); border-color: var(--border2); }
+  .nav-link.active {
+    color: var(--gold);
+    border-color: var(--gold-border);
+    background: var(--gold-dim);
+  }
+  .nav-cta {
+    font-size: 12px; font-weight: 500;
+    color: var(--bg); background: var(--gold);
+    text-decoration: none; padding: 7px 18px;
+    border-radius: 20px; transition: all 0.2s;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+  .nav-cta:hover { background: var(--gold2); }
+
+  /* ── MAIN CONTENT ── */
+  .content { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 300; line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 28px;
+    max-width: 900px;
+    opacity: 0; animation: fadeUp 0.8s 0.4s ease forwards;
+  }
+  .hero h1 em {
+    font-style: italic; color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--text2);
+    max-width: 520px; line-height: 1.8;
+    margin-bottom: 48px;
+    opacity: 0; animation: fadeUp 0.8s 0.6s ease forwards;
+  }
+  .hero-actions {
+    display: flex; gap: 12px; justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.8s 0.8s ease forwards;
+  }
+  .btn-primary {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--bg); background: var(--gold);
+    text-decoration: none; padding: 12px 28px;
+    border-radius: 30px; transition: all 0.2s;
+    border: 1px solid var(--gold);
+  }
+  .btn-primary:hover { background: var(--gold2); border-color: var(--gold2); }
+  .btn-secondary {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--text2); background: transparent;
+    text-decoration: none; padding: 12px 28px;
+    border-radius: 30px; transition: all 0.2s;
+    border: 1px solid var(--border2);
+  }
+  .btn-secondary:hover { color: var(--text); border-color: var(--text2); }
+
+  .hero-scroll {
+    position: absolute; bottom: 40px;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0; animation: fadeUp 0.8s 1.2s ease forwards;
+  }
+  .hero-scroll span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text3);
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1100px; margin: 0 auto;
+    height: 1px; background: var(--border);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 40px; max-width: 1100px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-eyebrow::after {
+    content: ''; flex: 0 0 40px; height: 1px; background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300; line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-body {
+    font-size: 15px; color: var(--text2);
+    max-width: 560px; line-height: 1.8;
+  }
+
+  /* ── WHAT WE BUILD ── */
+  .what-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; margin-top: 60px;
+    align-items: start;
+  }
+  .what-left { }
+  .what-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .division-card {
+    padding: 20px 22px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .division-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .division-card:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .division-card:hover::before { opacity: 1; }
+  .dc-active::before { background: var(--gold); opacity: 1; }
+  .dc-ops { }
+  .dc-properties::before { background: #4ade80; }
+  .dc-capital::before { background: #818cf8; }
+  .dc-ventures::before { background: #f472b6; }
+  .dc-icon { font-size: 20px; margin-bottom: 10px; }
+  .dc-name {
+    font-size: 13px; font-weight: 500; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .dc-tagline { font-size: 11px; color: var(--text2); line-height: 1.5; }
+  .dc-status {
+    display: inline-block; margin-top: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 10px;
+    border: 1px solid;
+  }
+  .status-active { color: var(--gold); border-color: var(--gold-border); background: var(--gold-dim); }
+  .status-soon { color: var(--text3); border-color: rgba(255,255,255,0.06); background: transparent; }
+
+  /* ── SERVICES SECTION ── */
+  .services-intro {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: end; margin-bottom: 48px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+  .service-card {
+    padding: 22px 24px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    transition: all 0.25s;
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .service-card:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+    transform: translateY(-2px);
+  }
+  .sc-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+    background: var(--bg3); border: 1px solid var(--border2);
+  }
+  .sc-body { flex: 1; }
+  .sc-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .sc-desc { font-size: 12px; color: var(--text2); line-height: 1.6; margin-bottom: 8px; }
+  .sc-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px; color: var(--text2);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOUNDER SECTION ── */
+  .founder-section {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
+  .founder-left { }
+  .founder-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: 300; line-height: 1.4;
+    font-style: italic; color: var(--text);
+    margin-bottom: 28px;
+  }
+  .founder-quote em { color: var(--gold); font-style: normal; }
+  .founder-attr {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .founder-avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; color: var(--gold);
+    font-weight: 500;
+  }
+  .founder-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .founder-title { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .founder-right { display: flex; flex-direction: column; gap: 12px; }
+  .founder-stat {
+    padding: 18px 22px;
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .fs-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 400; color: var(--gold); line-height: 1;
+    flex-shrink: 0; min-width: 70px;
+  }
+  .fs-label { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  /* ── VISION SECTION ── */
+  .vision-wrap {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 60px;
+    position: relative; overflow: hidden;
+  }
+  .vision-wrap::before {
+    content: '✦';
+    position: absolute; right: 40px; top: 40px;
+    font-size: 80px; color: var(--gold);
+    opacity: 0.06;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .vision-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px; margin-top: 40px;
+  }
+  .vision-item { }
+  .vi-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--gold); letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  .vi-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400;
+    color: var(--text); margin-bottom: 8px; line-height: 1.2;
+  }
+  .vi-body { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+  /* ── CONTACT SECTION ── */
+  .contact-wrap {
+    text-align: center; padding: 100px 40px;
+    max-width: 700px; margin: 0 auto;
+  }
+  .contact-wrap .section-eyebrow { justify-content: center; }
+  .contact-wrap .section-eyebrow::after { display: none; }
+  .contact-wrap .section-eyebrow::before { content: ''; flex: 0 0 40px; height: 1px; background: var(--gold); }
+  .contact-wrap .section-title { text-align: center; }
+  .contact-wrap .section-body { text-align: center; margin: 0 auto 40px; }
+  .contact-email {
+    font-family: 'DM Mono', monospace;
+    font-size: 14px; color: var(--gold);
+    text-decoration: none; letter-spacing: 0.04em;
+    padding: 12px 28px; border-radius: 30px;
+    border: 1px solid var(--gold-border);
+    background: var(--gold-dim); display: inline-block;
+    transition: all 0.2s;
+  }
+  .contact-email:hover { background: rgba(201,168,76,0.2); border-color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    position: relative; z-index: 1;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px; font-weight: 400; color: var(--gold);
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text2);
+    text-decoration: none; letter-spacing: 0.06em;
+    transition: color 0.15s;
+  }
+  .footer-link:hover { color: var(--text); }
+  .footer-copy {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px; color: var(--text3);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    section { padding: 70px 20px; }
+    .what-grid { grid-template-columns: 1fr; }
+    .what-right { grid-template-columns: 1fr 1fr; }
+    .services-intro { grid-template-columns: 1fr; gap: 30px; }
+    .founder-section { grid-template-columns: 1fr; gap: 40px; }
+    .vision-grid { grid-template-columns: 1fr; gap: 28px; }
+    .vision-wrap { padding: 36px 28px; }
+    .nav-links .nav-link { display: none; }
+    footer { padding: 24px 20px; }
+    .footer-links { display: none; }
+    .hero { padding: 100px 24px 80px; }
+    .hero-scroll { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora">
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+  <div class="aurora-blob"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="about.html" class="nav-logo">Starlite Group ✦</a>
+    <div class="nav-links">
+      <a href="#what-we-build" class="nav-link">What we build</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#founder" class="nav-link">Founder</a>
+      <a href="#vision" class="nav-link">Vision</a>
+    </div>
+    <a href="mailto:hello@starlitegroup.io" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<div class="content">
+
+  <!-- HERO -->
+  <div class="hero" style="position:relative;">
+    <div class="hero-eyebrow">Starlite Group · Toronto, Canada</div>
+    <h1>Building <em>intelligent</em><br>businesses for the<br>modern economy</h1>
+    <p class="hero-sub">We design and operate AI-powered digital products — tools that work while you sleep, businesses that scale without adding headcount, and systems that compound over time.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Our services</a>
+      <a href="#founder" class="btn-secondary">About the founder</a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT WE BUILD -->
+  <section id="what-we-build">
+    <div class="what-grid">
+      <div class="what-left">
+        <div class="section-eyebrow reveal">The group</div>
+        <h2 class="section-title reveal reveal-delay-1">One holding company.<br><em>Four divisions.</em></h2>
+        <p class="section-body reveal reveal-delay-2">Starlite Group is the incorporated parent entity behind a portfolio of digital businesses. We started with AI-powered services and we're building toward a full holding company structure — one division at a time, funded by the last.</p>
+      </div>
+      <div class="what-right">
+        <div class="division-card dc-active reveal reveal-delay-1">
+          <div class="dc-icon">⚡</div>
+          <div class="dc-name">Starlite Ops</div>
+          <div class="dc-tagline">AI-powered digital services and SaaS tools for businesses and professionals</div>
+          <div class="dc-status status-active">Building now</div>
+        </div>
+        <div class="division-card reveal reveal-delay-2">
+          <div class="dc-icon">🏠</div>
+          <div class="dc-name">Starlite Properties</div>
+          <div class="dc-tagline">Real estate holdings and short-term rental portfolio</div>
+          <div class="dc-status status-soon">Coming soon</div>
+        </div>
+        <div class="division-card reveal reveal-delay-3">
+          <div class="dc-icon">📊</div>
+          <div class="dc-name">Starlite Capital</div>
+          <div class="dc-tagline">Investments, acquisitions, and financial portfolio management</div>
+          <div class="dc-status status-soon">Coming soon</div>
+        </div>
+        <div class="division-card reveal reveal-delay-4">
+          <div class="dc-icon">🚀</div>
+          <div class="dc-name">Starlite Ventures</div>
+          <div class="dc-tagline">Strategic partnerships, equity plays, and emerging opportunities</div>
+          <div class="dc-status status-soon">Coming soon</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-intro">
+      <div>
+        <div class="section-eyebrow reveal">Starlite Ops</div>
+        <h2 class="section-title reveal reveal-delay-1">AI services that<br><em>run themselves</em></h2>
+      </div>
+      <p class="section-body reveal reveal-delay-2">Seven AI-powered products designed for specific niches — each one built to deliver real value, operate with minimal ongoing input, and grow through referrals and reputation.</p>
+    </div>
+    <div class="services-grid" id="servicesGrid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOUNDER -->
+  <section id="founder">
+    <div class="founder-section">
+      <div class="founder-left reveal">
+        <div class="section-eyebrow">The founder</div>
+        <div class="founder-quote">
+          "I'm not building seven businesses. I'm building <em>one system</em> that runs seven income streams — and using AI to do the work I don't have time to do myself."
+        </div>
+        <div class="founder-attr">
+          <div class="founder-avatar">S</div>
+          <div>
+            <div class="founder-name">Shanese</div>
+            <div class="founder-title">Founder, Starlite Group · Toronto, ON</div>
+          </div>
+        </div>
+      </div>
+      <div class="founder-right">
+        <div class="founder-stat reveal reveal-delay-1">
+          <div class="fs-val">7</div>
+          <div class="fs-label">AI-powered service businesses being built simultaneously under Starlite Ops</div>
+        </div>
+        <div class="founder-stat reveal reveal-delay-2">
+          <div class="fs-val">4</div>
+          <div class="fs-label">Holding company divisions planned — Ops, Properties, Capital, Ventures</div>
+        </div>
+        <div class="founder-stat reveal reveal-delay-3">
+          <div class="fs-val">$28K</div>
+          <div class="fs-label">Target monthly recurring revenue across the full Starlite Ops portfolio</div>
+        </div>
+        <div class="founder-stat reveal reveal-delay-4">
+          <div class="fs-val">9 mo</div>
+          <div class="fs-label">Timeline to full portfolio — from first service to all 7 running on autopilot</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- VISION -->
+  <section id="vision" style="padding-bottom:60px;">
+    <div class="vision-wrap reveal">
+      <div class="section-eyebrow">The philosophy</div>
+      <h2 class="section-title">Built to <em>compound</em></h2>
+      <div class="vision-grid">
+        <div class="vision-item">
+          <div class="vi-num">01 —</div>
+          <div class="vi-title">Infrastructure first</div>
+          <div class="vi-body">Before building any product, we build the system that runs it — billing, client management, automations, and oversight. Every new service slots into an existing machine.</div>
+        </div>
+        <div class="vision-item">
+          <div class="vi-num">02 —</div>
+          <div class="vi-title">AI does the labour</div>
+          <div class="vi-body">Every Starlite Ops service is designed so AI handles the work. We engineer once, automate everything we can, and only spend human time on decisions that actually require one.</div>
+        </div>
+        <div class="vision-item">
+          <div class="vi-num">03 —</div>
+          <div class="vi-title">Profits fund the next layer</div>
+          <div class="vi-body">Starlite Ops funds Starlite Properties. Properties fund Starlite Capital. Capital enables Starlite Ventures. Each division is built on the cash flow of the one before it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="divider"></div>
+  <div class="contact-wrap reveal">
+    <div class="section-eyebrow">Get in touch</div>
+    <h2 class="section-title">Interested in<br><em>working together?</em></h2>
+    <p class="section-body">Whether you're looking for an AI service for your business, want to explore a partnership, or just want to follow the build — we'd love to hear from you.</p>
+    <a href="mailto:hello@starlitegroup.io" class="contact-email">hello@starlitegroup.io</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Starlite Group ✦</div>
+    <div class="footer-links">
+      <a href="#what-we-build" class="footer-link">What we build</a>
+      <a href="#services" class="footer-link">Services</a>
+      <a href="#founder" class="footer-link">Founder</a>
+      <a href="#vision" class="footer-link">Vision</a>
+    </div>
+    <div class="footer-copy">© 2026 Starlite Group · Toronto, Canada</div>
+  </div>
+</footer>
+
+<script>
+const services = [
+  { icon:'🤖', name:'Chatbot Agency',      desc:'Custom AI chatbots for salons, spas, and local service businesses — handling enquiries and bookings 24/7.',   tag:'$500 setup · $250/mo' },
+  { icon:'🏠', name:'Airbnb Assistant',    desc:'Automated guest messaging, listing optimisation, and check-in flows for short-term rental hosts.',              tag:'$199/mo · Self-serve' },
+  { icon:'📄', name:'Content Generator',  desc:'AI-powered caption and content creation built specifically for beauty and hair business owners.',                tag:'$49/mo · SaaS' },
+  { icon:'🧠', name:'Workflow Tool',       desc:'Purpose-built AI consultation and document generation tools for hair extension and beauty professionals.',        tag:'$29/mo · SaaS' },
+  { icon:'📧', name:'Email Automation',   desc:'Done-for-you AI email marketing — newsletters and sequences written, scheduled, and sent automatically.',        tag:'$800 setup · $400/mo' },
+  { icon:'💬', name:'Lead Gen / DM Auto', desc:'Automated Instagram DM outreach and qualification sequences for coaches, consultants, and service providers.',   tag:'$800 setup · $500/mo' },
+  { icon:'📈', name:'Trading Journal AI', desc:'Smart trading journal with weekly AI-powered performance debriefs and psychological pattern analysis for retail traders.', tag:'$29–39/mo · SaaS' },
+];
+
+const grid = document.getElementById('servicesGrid');
+services.forEach((s, i) => {
+  const card = document.createElement('div');
+  card.className = `service-card reveal reveal-delay-${(i % 4) + 1}`;
+  card.innerHTML = `
+    <div class="sc-icon">${s.icon}</div>
+    <div class="sc-body">
+      <div class="sc-name">${s.name}</div>
+      <div class="sc-desc">${s.desc}</div>
+      <div class="sc-tag">${s.tag}</div>
+    </div>`;
+  grid.appendChild(card);
+});
+
+/* ── SCROLL REVEAL ── */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── SMOOTH NAV HIGHLIGHT ── */
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks = document.querySelectorAll('nav .nav-link[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+</body>
+</html>
