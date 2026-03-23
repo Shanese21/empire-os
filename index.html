@@ -346,11 +346,35 @@
     .hero-stats { gap: 20px; }
     .milestones { grid-template-columns: 1fr; }
   }
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 24px;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+  .nav-logo{font-family:'Instrument Serif',serif;font-size:17px;color:#c9a84c;text-decoration:none;}
+  .nav-links{display:flex;gap:4px;}
+  .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);color:#9895a0;text-decoration:none;transition:all 0.15s;}
+  .nav-link:hover{background:rgba(255,255,255,0.05);color:#f0ede8;}
+  .nav-link.active{background:rgba(201,168,76,0.13);border-color:rgba(201,168,76,0.28);color:#c9a84c;}
+  @media(max-width:600px){.nav-link:not(.active){display:none;}}
+
 </style>
 </head>
 <body>
 
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+      <a href="index.html" class="nav-link active">🗺 Build Order</a>
+      <a href="phases.html" class="nav-link">✅ Phases</a>
+      <a href="marketing.html" class="nav-link">📣 Marketing</a>
+    </div>
+  </div>
+</nav>
+
 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+
 
 <div class="wrap">
 
@@ -438,36 +462,70 @@
           </div>
           <div class="phase-body">
             <div class="phase-body-inner">
+
+              <!-- HOLDING COMPANY STRUCTURE -->
+              <div style="background:var(--bg3);border:1px solid var(--gold-border);border-radius:12px;padding:16px 18px;margin-bottom:18px;">
+                <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Starlite Group — holding company structure</div>
+                <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+                  <div style="padding:10px 24px;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:10px;text-align:center;">
+                    <div style="font-size:13px;font-weight:700;color:var(--gold);">Starlite Group Inc.</div>
+                    <div style="font-size:10px;color:var(--text3);margin-top:2px;">Parent incorporated entity · StarliteGroup.io</div>
+                  </div>
+                  <div style="width:1px;height:16px;background:var(--gold-border);"></div>
+                  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;width:100%;">
+                    <div style="padding:10px 12px;background:var(--bg2);border:1px solid var(--border2);border-radius:8px;">
+                      <div style="font-size:12px;font-weight:700;color:var(--blue);">Starlite Ops</div>
+                      <div style="font-size:10px;color:var(--text2);margin-top:2px;">AI services division — 7 income streams. <span style="color:var(--green);font-weight:700;">Builds now.</span></div>
+                    </div>
+                    <div style="padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;opacity:0.5;">
+                      <div style="font-size:12px;font-weight:700;color:var(--text2);">Starlite Properties</div>
+                      <div style="font-size:10px;color:var(--text3);margin-top:2px;">Real estate holdings. Funded by Ops revenue.</div>
+                    </div>
+                    <div style="padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;opacity:0.5;">
+                      <div style="font-size:12px;font-weight:700;color:var(--text2);">Starlite Capital</div>
+                      <div style="font-size:10px;color:var(--text3);margin-top:2px;">Investments & acquisitions. Activates with scale.</div>
+                    </div>
+                    <div style="padding:10px 12px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;opacity:0.5;">
+                      <div style="font-size:12px;font-weight:700;color:var(--text2);">Starlite Ventures</div>
+                      <div style="font-size:10px;color:var(--text3);margin-top:2px;">New ventures & partnerships. Long-term play.</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top:12px;padding:10px 12px;background:var(--bg2);border-radius:8px;border:1px solid var(--border);font-size:11px;color:var(--text2);line-height:1.6;">
+                  Register <strong style="color:var(--text);">Starlite Group Inc.</strong> once as an Ontario Business Corporation or Federal Corp. All four divisions operate under this single entity now — they become formal subsidiaries later when activity justifies it. Properties, Capital, and Ventures are internal divisions today, legal entities tomorrow.
+                </div>
+              </div>
+
               <div class="steps">
                 <div class="step">
                   <div class="step-icon">🏛️</div>
                   <div class="step-content">
-                    <div class="step-title">Register your business</div>
-                    <div class="step-detail">Sole proprietorship in Ontario via ServiceOntario. Pick a name broad enough to cover all future services — not service-specific.</div>
-                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 1 · ~$60 · 1 hr</span>
+                    <div class="step-title">Incorporate Starlite Group Inc.</div>
+                    <div class="step-detail">Incorporate (not sole prop) from day one — the holding company structure you've outlined requires it. Ontario Business Corporation via Ontario Business Registry, or Federal Corp via Corporations Canada for broader flexibility. Gives you cleaner subsidiary structure later, liability protection, and credibility with future partners and clients. All four divisions and all 7 services operate under this single entity.</div>
+                    <span class="step-tag" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold)">Week 1 · $300–500 · Use a service like Ownr or a corporate lawyer</span>
                   </div>
                 </div>
                 <div class="step">
-                  <div class="step-icon">💳</div>
+                  <div class="step-icon">🏦</div>
                   <div class="step-content">
-                    <div class="step-title">Stripe + business bank account</div>
-                    <div class="step-detail">One Stripe account handles billing for all 7 services. Separate bank account keeps finances clean for taxes. Stripe handles recurring billing, failed payments, and cancellations automatically.</div>
-                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 1 · Free (2.9% per txn) · 2 hrs</span>
+                    <div class="step-title">Corporate bank account + Stripe under the corp</div>
+                    <div class="step-detail">Open a business chequing account under Starlite Group Inc. — not your personal name. TD, RBC, and Scotiabank all have business accounts for corporations. Set up Stripe under the same corporate entity. All 7 services bill through one Stripe account, all revenue flows to one bank account, all under the corporate structure. Clean from day one.</div>
+                    <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 1 · Free account · 2–3 hrs</span>
                   </div>
                 </div>
                 <div class="step">
-                  <div class="step-icon">📋</div>
+                  <div class="step-icon">⚖️</div>
                   <div class="step-content">
-                    <div class="step-title">One-page service contract</div>
-                    <div class="step-detail">Covers scope, monthly fee, cancellation terms, and that you own the underlying system. Protects you especially for the chatbot agency where you're building on client sites.</div>
-                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 1 · $0–150 · 2 hrs</span>
+                    <div class="step-title">Corporate service agreement template</div>
+                    <div class="step-detail">One contract template issued by Starlite Group Inc. (or Starlite Ops as the operating division). Covers scope, monthly fee, cancellation, IP ownership, and limitation of liability. All client contracts are between the client and the corporation — not you personally. This is the liability protection incorporation gives you.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 1 · $150–300 via UpCounsel or corporate lawyer</span>
                   </div>
                 </div>
                 <div class="step">
                   <div class="step-icon">📊</div>
                   <div class="step-content">
                     <div class="step-title">Build client database (Google Sheets → Airtable)</div>
-                    <div class="step-detail">Start with Google Sheets (free). Track clients, pipeline, services, and revenue. Upgrade to Airtable when you hit 20+ clients. The OS spreadsheet you have is your template.</div>
+                    <div class="step-detail">Start with Google Sheets (free). Track clients, pipeline, services, and revenue across all of Starlite Ops. Upgrade to Airtable when you hit 20+ clients. The OS spreadsheet you already have is your template — it's already structured for the full portfolio.</div>
                     <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 2 · Free to start · 4–6 hrs</span>
                   </div>
                 </div>
@@ -475,27 +533,32 @@
                   <div class="step-icon">⚡</div>
                   <div class="step-content">
                     <div class="step-title">Make.com automations (set and forget)</div>
-                    <div class="step-detail">Stripe payment → client record auto-created. Failed payment → alert to you. New client → welcome email auto-sent. 2-week check-in → auto-email. Weekly MRR digest every Monday. Built once, runs forever.</div>
+                    <div class="step-detail">Stripe payment → client record auto-created. Failed payment → alert to you. New client → welcome email auto-sent. 2-week check-in → auto-email. Weekly MRR digest every Monday. Built once under Starlite Ops, scales to all 7 services without rebuilding.</div>
                     <span class="step-tag" style="background:var(--green-dim);border-color:var(--green-border);color:var(--green)">Week 3 · Free tier · 3–4 hrs</span>
                   </div>
                 </div>
                 <div class="step">
                   <div class="step-icon">🌐</div>
                   <div class="step-content">
-                    <div class="step-title">Self-serve funnel — no discovery calls</div>
-                    <div class="step-detail">Domain + Carrd one-page site per service. Clear pricing page does the selling. Stripe checkout handles payment. Typeform intake form replaces the discovery call. Professional Gmail (yourname@yourbusiness.com). Client goes: website → pays → fills form → you deliver. Zero calls needed.</div>
-                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 4 · ~$40/yr · 6–8 hrs</span>
+                    <div class="step-title">StarliteGroup.io + self-serve funnels</div>
+                    <div class="step-detail">Register StarliteGroup.io as the parent domain — this is your authority hub and the face of the holding company. Each Starlite Ops service gets its own domain and Carrd one-page site. Clear pricing, Stripe checkout, Typeform intake. Footer on every service site reads "A Starlite Group company." No booking links — client goes: finds site → pays → fills form → you deliver.</div>
+                    <span class="step-tag" style="background:var(--amber-dim);border-color:var(--amber-border);color:var(--amber)">Week 4 · ~$60/yr for domains · 6–8 hrs</span>
                   </div>
                 </div>
               </div>
+
               <div class="milestones">
                 <div class="milestone">
                   <div class="milestone-title">End of Phase 1</div>
-                  <div class="milestone-val">You can legally take money. Infrastructure runs itself. Self-serve funnel is ready. No AI service built yet — and that's the point.</div>
+                  <div class="milestone-val">Starlite Group Inc. is a real corporation. The holding structure is in place. Infrastructure runs itself. No AI service built yet — and that's the point.</div>
                 </div>
                 <div class="milestone">
                   <div class="milestone-title">Total cost</div>
-                  <div class="milestone-val"><strong>$100–250</strong> one-time<br><strong>~$40/mo</strong> ongoing</div>
+                  <div class="milestone-val"><strong>$500–900</strong> one-time<br><strong>~$40/mo</strong> ongoing</div>
+                </div>
+                <div class="milestone">
+                  <div class="milestone-title">Why incorporate now</div>
+                  <div class="milestone-val">Properties, Capital, and Ventures all need a clean parent entity to flow from. Starting as a sole prop and converting later costs more and creates legal complexity. Do it once, do it right.</div>
                 </div>
               </div>
             </div>
