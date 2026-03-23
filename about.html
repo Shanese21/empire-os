@@ -482,6 +482,21 @@
     .hero { padding: 100px 24px 80px; }
     .hero-scroll { display: none; }
   }
+
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;background:transparent;}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--text2);transition:all 0.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .about-mobile-menu{
+    display:none;position:fixed;top:60px;left:0;right:0;z-index:49;
+    background:rgba(8,8,16,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    flex-direction:column;padding:8px 24px 16px;gap:4px;
+  }
+  .about-mobile-menu.open{display:flex;}
+  .about-mobile-menu a{padding:12px 14px;border-radius:8px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);text-decoration:none;letter-spacing:0.04em;transition:all 0.15s;}
+  .about-mobile-menu a:hover{background:rgba(255,255,255,0.05);color:var(--text);}
 </style>
 </head>
 <body>
@@ -502,9 +517,19 @@
       <a href="#founder" class="nav-link">Founder</a>
       <a href="#vision" class="nav-link">Vision</a>
     </div>
-    <a href="mailto:hello@starlitegroup.io" class="nav-cta">Get in touch</a>
+    <a href="mailto:hello@starlitegroup.io" class="nav-cta" style="display:none;" id="navCta">Get in touch</a>
+    <button class="hamburger" id="hamburger" onclick="toggleAboutMenu()" aria-label="Menu" style="display:none;">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+<div class="about-mobile-menu" id="aboutMobileMenu">
+  <a href="#what-we-build">What we build</a>
+  <a href="#services">Services</a>
+  <a href="#founder">Founder</a>
+  <a href="#vision">Vision</a>
+  <a href="mailto:hello@starlitegroup.io" style="color:var(--gold);">Get in touch</a>
+</div>
 
 <div class="content">
 
@@ -716,6 +741,36 @@ window.addEventListener('scroll', () => {
     l.classList.toggle('active', l.getAttribute('href') === '#' + current);
   });
 });
+</script>
+
+<script>
+function toggleAboutMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('aboutMobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('aboutMobileMenu');
+  if(h&&m&&!h.contains(e.target)&&!m.contains(e.target)){
+    h.classList.remove('open');
+    m.classList.remove('open');
+  }
+});
+// Show hamburger + hide CTA on mobile
+function checkMobile(){
+  const isMobile=window.innerWidth<=768;
+  const h=document.getElementById('hamburger');
+  const cta=document.getElementById('navCta');
+  if(h)h.style.display=isMobile?'flex':'none';
+  if(cta)cta.style.display=isMobile?'none':'block';
+  // Also show/hide desktop nav links
+  const nl=document.querySelector('.nav-links');
+  if(nl)nl.style.display=isMobile?'none':'flex';
+}
+checkMobile();
+window.addEventListener('resize',checkMobile);
 </script>
 </body>
 </html>

@@ -131,13 +131,33 @@
   .footer{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
   .footer-logo{font-family:'Instrument Serif',serif;font-size:17px;color:var(--gold);}
   .footer-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
-  @media(max-width:700px){.kpi-strip{grid-template-columns:repeat(2,1fr);}.div-grid{grid-template-columns:1fr;}.thinking-grid{grid-template-columns:1fr;}.milestone-grid{grid-template-columns:1fr 1fr;}.svc-th-row,.svc-r{grid-template-columns:26px 1fr 100px 70px;}.svc-th-row>:nth-child(n+5),.svc-r>:nth-child(n+5){display:none;}.nav-link:not(.active){display:none;}.tl-month,.tl-mrr{display:none;}}
+  @media(max-width:700px){.kpi-strip{grid-template-columns:repeat(2,1fr);}.div-grid{grid-template-columns:1fr;}.thinking-grid{grid-template-columns:1fr;}.milestone-grid{grid-template-columns:1fr 1fr;}.svc-th-row,.svc-r{grid-template-columns:26px 1fr 100px 70px;}.svc-th-row>:nth-child(n+5),.svc-r>:nth-child(n+5){display:none;}.tl-month,.tl-mrr{display:none;}}
+
+  /* ── MOBILE NAV ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);border-radius:8px;background:transparent;}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--text2);transition:all 0.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-menu{
+    display:none;position:absolute;top:52px;left:0;right:0;
+    background:rgba(10,10,12,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    flex-direction:column;padding:8px 16px 16px;gap:4px;z-index:49;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu .nav-link{display:block;padding:10px 14px;border-radius:8px;font-size:13px;}
+  @media(max-width:700px){
+    .nav-links{display:none !important;}
+    .hamburger{display:flex;}
+    nav{position:sticky;}
+  }
 </style>
 </head>
 <body>
 <div class="progress-bar"><div class="progress-fill" id="pf"></div></div>
-<nav>
-  <div class="nav-inner">
+<nav style="position:sticky;position:-webkit-sticky;">
+  <div class="nav-inner" style="position:relative;">
     <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
     <div class="nav-links">
       <a href="about.html" class="nav-link">✦ About</a>
@@ -145,8 +165,19 @@
       <a href="index.html" class="nav-link">🗺 Build Order</a>
       <a href="phases.html" class="nav-link">✅ Phases</a>
       <a href="marketing.html" class="nav-link">📣 Marketing</a>
-      <a href="founder.html" class="nav-link active">👤 Founder View</a>
+      <a href="founder.html" class="nav-link  active">👤 Founder View</a>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html" class="nav-link">✦ About</a>
+    <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+    <a href="index.html" class="nav-link">🗺 Build Order</a>
+    <a href="phases.html" class="nav-link">✅ Phases</a>
+    <a href="marketing.html" class="nav-link">📣 Marketing</a>
+    <a href="founder.html" class="nav-link  active">👤 Founder View</a>
   </div>
 </nav>
 
@@ -392,6 +423,23 @@ function saveNotes(){
   setTimeout(()=>{saveBtn.textContent='Save';saveBtn.classList.remove('notes-saved');},2000);
 }
 notesArea.addEventListener('input',()=>{saveBtn.textContent='Save';saveBtn.classList.remove('notes-saved');});
+</script>
+
+<script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  if(h && m && !h.contains(e.target) && !m.contains(e.target)){
+    h.classList.remove('open');
+    m.classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>

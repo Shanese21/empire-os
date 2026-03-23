@@ -354,21 +354,54 @@
   .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);color:#9895a0;text-decoration:none;transition:all 0.15s;}
   .nav-link:hover{background:rgba(255,255,255,0.05);color:#f0ede8;}
   .nav-link.active{background:rgba(201,168,76,0.13);border-color:rgba(201,168,76,0.28);color:#c9a84c;}
-  @media(max-width:600px){.nav-link:not(.active){display:none;}}
+  @media(max-width:600px){}
 
+
+  /* ── MOBILE NAV ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);border-radius:8px;background:transparent;}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--text2);transition:all 0.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-menu{
+    display:none;position:absolute;top:52px;left:0;right:0;
+    background:rgba(10,10,12,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    flex-direction:column;padding:8px 16px 16px;gap:4px;z-index:49;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu .nav-link{display:block;padding:10px 14px;border-radius:8px;font-size:13px;}
+  @media(max-width:700px){
+    .nav-links{display:none !important;}
+    .hamburger{display:flex;}
+    nav{position:sticky;}
+  }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
+<nav style="position:sticky;position:-webkit-sticky;">
+  <div class="nav-inner" style="position:relative;">
     <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
     <div class="nav-links">
+      <a href="about.html" class="nav-link">✦ About</a>
       <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
       <a href="index.html" class="nav-link active">🗺 Build Order</a>
       <a href="phases.html" class="nav-link">✅ Phases</a>
       <a href="marketing.html" class="nav-link">📣 Marketing</a>
+      <a href="founder.html" class="nav-link">👤 Founder View</a>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html" class="nav-link">✦ About</a>
+    <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+    <a href="index.html" class="nav-link active">🗺 Build Order</a>
+    <a href="phases.html" class="nav-link">✅ Phases</a>
+    <a href="marketing.html" class="nav-link">📣 Marketing</a>
+    <a href="founder.html" class="nav-link">👤 Founder View</a>
   </div>
 </nav>
 
@@ -887,6 +920,23 @@
     const progress = (scrollTop / scrollHeight) * 100;
     document.getElementById('progressFill').style.width = progress + '%';
   });
+</script>
+
+<script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  if(h && m && !h.contains(e.target) && !m.contains(e.target)){
+    h.classList.remove('open');
+    m.classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>

@@ -3,128 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Starlite Group — Phase Breakdown</title>
+<title>Shanese AI Empire — Marketing Framework</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:#0a0a0c; --bg2:#111116; --bg3:#18181f; --bg4:#1e1e28;
-    --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.13);
-    --gold:#c9a84c; --gold2:#e8c97a;
-    --gold-dim:rgba(201,168,76,0.13); --gold-border:rgba(201,168,76,0.28);
-    --text:#f0ede8; --text2:#9895a0; --text3:#4a4858;
-    --green:#4ade80; --green-dim:rgba(74,222,128,0.11); --green-b:rgba(74,222,128,0.22);
-    --red:#f87171; --red-dim:rgba(248,113,113,0.11); --red-b:rgba(248,113,113,0.22);
-    --blue:#818cf8; --blue-dim:rgba(129,140,248,0.11); --blue-b:rgba(129,140,248,0.22);
-    --amber:#fb923c; --amber-dim:rgba(251,146,60,0.11); --amber-b:rgba(251,146,60,0.22);
-    --pink:#f472b6; --pink-dim:rgba(244,114,182,0.11); --pink-b:rgba(244,114,182,0.22);
-    --teal:#2dd4bf; --teal-dim:rgba(45,212,191,0.11); --teal-b:rgba(45,212,191,0.22);
+    --bg: #0a0a0c; --bg2: #111116; --bg3: #18181f; --bg4: #1e1e28;
+    --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.13);
+    --gold: #c9a84c; --gold2: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.13); --gold-border: rgba(201,168,76,0.28);
+    --text: #f0ede8; --text2: #9895a0; --text3: #4a4858;
+    --green: #4ade80; --green-dim: rgba(74,222,128,0.11); --green-b: rgba(74,222,128,0.22);
+    --red: #f87171; --red-dim: rgba(248,113,113,0.11); --red-b: rgba(248,113,113,0.22);
+    --blue: #818cf8; --blue-dim: rgba(129,140,248,0.11); --blue-b: rgba(129,140,248,0.22);
+    --amber: #fb923c; --amber-dim: rgba(251,146,60,0.11); --amber-b: rgba(251,146,60,0.22);
+    --pink: #f472b6; --pink-dim: rgba(244,114,182,0.11); --pink-b: rgba(244,114,182,0.22);
+    --teal: #2dd4bf; --teal-dim: rgba(45,212,191,0.11); --teal-b: rgba(45,212,191,0.22);
   }
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
   body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;}
   body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.013) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.013) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
 
-  .progress-bar{position:fixed;top:0;left:0;right:0;height:2px;background:var(--bg3);z-index:100;}
-  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width 0.1s;}
-
-  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;}
-  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
-  .nav-logo{font-family:'Instrument Serif',serif;font-size:17px;color:var(--gold);text-decoration:none;}
-  .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
-  .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text2);text-decoration:none;transition:all 0.15s;white-space:nowrap;}
-  .nav-link:hover{background:rgba(255,255,255,0.05);color:var(--text);}
-  .nav-link.active{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);}
+  /* NAV */
 
   .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px;}
 
   /* HERO */
-  .hero{padding:52px 0 36px;border-bottom:1px solid var(--border);margin-bottom:40px;}
+  .hero{padding:52px 0 36px;border-bottom:1px solid var(--border);margin-bottom:36px;}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
   .eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
-  .hero h1{font-family:'Instrument Serif',serif;font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;margin-bottom:12px;}
+  .hero h1{font-family:'Instrument Serif',serif;font-size:clamp(32px,5vw,50px);font-weight:400;line-height:1.1;margin-bottom:12px;}
   .hero h1 em{font-style:italic;color:var(--gold);}
-  .hero p{font-size:14px;color:var(--text2);max-width:540px;line-height:1.7;margin-bottom:24px;}
+  .hero p{font-size:14px;color:var(--text2);max-width:560px;line-height:1.7;}
 
-  /* OVERALL PROGRESS */
-  .overall-progress{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px 22px;margin-bottom:32px;}
-  .op-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-  .op-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);}
-  .op-pct{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);}
-  .op-bar{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:14px;}
-  .op-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 0.5s ease;}
-  .op-phases{display:flex;gap:6px;flex-wrap:wrap;}
-  .op-phase-chip{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid;font-family:'DM Mono',monospace;cursor:pointer;text-decoration:none;transition:all 0.15s;}
-  .op-phase-chip:hover{opacity:0.85;}
+  /* TABS */
+  .tab-bar{display:flex;gap:4px;margin-bottom:28px;border-bottom:1px solid var(--border);padding-bottom:0;}
+  .tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text2);background:transparent;border:none;border-bottom:2px solid transparent;cursor:pointer;transition:all 0.18s;margin-bottom:-1px;font-family:'Syne',sans-serif;}
+  .tab-btn:hover{color:var(--text);}
+  .tab-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
 
-  /* PHASE SECTIONS */
-  .phase-section{margin-bottom:16px;}
-  .phase-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:border-color 0.2s;}
-  .phase-card:hover{border-color:var(--border2);}
+  /* SHARED COMPONENTS */
+  .card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .card-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg3);}
+  .card-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);}
+  .badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;border:1px solid;}
 
-  .phase-head{display:flex;align-items:center;gap:14px;padding:18px 22px;cursor:pointer;user-select:none;}
-  .phase-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;border:1px solid;flex-shrink:0;transition:transform 0.2s;}
-  .phase-card:hover .phase-dot{transform:scale(1.06);}
-  .phase-head-text{flex:1;}
-  .phase-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:3px;}
-  .phase-sub{font-size:12px;color:var(--text2);}
-  .phase-head-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
-  .phase-progress-mini{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
-  .phase-pct-label{font-family:'DM Mono',monospace;font-size:11px;}
-  .phase-bar-mini{width:80px;height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;}
-  .phase-bar-mini-fill{height:100%;border-radius:2px;transition:width 0.4s ease;}
-  .phase-chevron{color:var(--text3);font-size:11px;transition:transform 0.25s;width:20px;text-align:center;}
-  .phase-card.open .phase-chevron{transform:rotate(180deg);}
+  /* ── TAB 1: SERVICES ── */
+  .svc-
+  .svc-pill{padding:7px 16px;border-radius:20px;border:1px solid var(--border2);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;background:var(--bg2);transition:all 0.15s;font-family:'Syne',sans-serif;-webkit-appearance:none;appearance:none;outline:none;}
+  .svc-pill:hover{border-color:var(--border2);color:var(--text);background:var(--bg3);}
+  .svc-pill.active{font-weight:700;}
 
-  .phase-body{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
-  .phase-card.open .phase-body{max-height:6000px;}
-  .phase-body-inner{padding:0 22px 24px;}
+  .svc-panel{display:none;}
+  .svc-panel.active{display:block;}
 
-  /* WEEK SECTIONS */
-  .week-block{margin-bottom:20px;}
-  .week-block:last-of-type{margin-bottom:0;}
-  .week-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-  .week-label{font-family:'DM Mono',monospace;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);}
-  .week-header::after{content:'';flex:1;height:1px;background:var(--border);}
-  .week-progress{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+  .svc-block{background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .svc-block-head{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--bg3);}
+  .svc-block-title{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);}
+  .svc-block-body{padding:14px 16px;}
 
-  /* TASK ITEMS */
-  .task-list{display:flex;flex-direction:column;gap:6px;}
-  .task-item{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.15s;user-select:none;}
-  .task-item:hover{border-color:var(--border2);background:var(--bg4);}
-  .task-item.done{opacity:0.55;}
-  .task-item.done .task-title{text-decoration:line-through;color:var(--text3);}
+  .kpi-row-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .kpi-mini{padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+  .kpi-mini-label{font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;}
+  .kpi-mini-val{font-family:'DM Mono',monospace;font-size:13px;color:var(--gold);}
 
-  .task-checkbox{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all 0.15s;background:transparent;}
-  .task-item.done .task-checkbox{background:var(--green);border-color:var(--green);}
-  .task-check-icon{color:#0a0a0c;font-size:11px;font-weight:700;display:none;}
-  .task-item.done .task-check-icon{display:block;}
+  .risk-box{padding:12px 14px;border-radius:8px;border-left:3px solid;margin-top:0;}
+  .risk-title{font-size:11px;font-weight:700;margin-bottom:3px;}
+  .risk-body{font-size:11px;color:var(--text2);line-height:1.5;}
 
-  .task-content{flex:1;}
-  .task-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;line-height:1.4;}
-  .task-detail{font-size:11px;color:var(--text2);line-height:1.6;margin-bottom:5px;}
-  .task-tags{display:flex;gap:5px;flex-wrap:wrap;}
-  .task-tag{font-size:10px;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;border:1px solid var(--border2);color:var(--text3);}
+  .channel-list{display:flex;flex-direction:column;gap:6px;}
+  .channel-item{display:flex;align-items:flex-start;gap:10px;padding:9px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+  .ch-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;font-family:'DM Mono',monospace;}
+  .ch-text{flex:1;}
+  .ch-name{font-size:12px;font-weight:700;color:var(--text);}
+  .ch-detail{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.5;}
 
-  /* STACK SECTION */
-  .stack-section{margin-top:16px;}
-  .stack-header{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
-  .stack-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;}
-  .stack-card{padding:11px 13px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;}
-  .stack-layer{font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:3px;}
-  .stack-tool{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;}
-  .stack-role{font-size:11px;color:var(--text2);line-height:1.4;}
-  .stack-cost{font-size:10px;margin-top:5px;font-family:'DM Mono',monospace;}
+  .auto-list{display:flex;flex-direction:column;gap:6px;}
+  .auto-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+  .auto-icon{font-size:13px;flex-shrink:0;margin-top:1px;}
+  .auto-name{font-size:12px;font-weight:700;color:var(--text);}
+  .auto-detail{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.5;}
 
-  /* MILESTONE ROW */
-  .milestone-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:16px;}
-  .milestone-card{padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;}
-  .mc-label{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:5px;}
-  .mc-val{font-size:12px;color:var(--text2);line-height:1.5;}
-  .mc-val strong{color:var(--text);font-weight:700;}
-  .mc-val .gold{color:var(--gold);}
+  .target-block{display:flex;flex-direction:column;gap:6px;}
+  .target-item{display:flex;gap:10px;align-items:center;padding:8px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+  .target-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+  .target-text{font-size:12px;color:var(--text2);}
 
-  /* RESET BUTTON */
-  .reset-btn{font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;}
-  .reset-btn:hover{border-color:var(--red-b);color:var(--red);}
+  /* ── TAB 2: MARKETING PLAN ── */
+  .chart-wrap{padding:20px;}
+  .chart-bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+  .chart-label{font-size:12px;color:var(--text2);width:140px;flex-shrink:0;text-align:right;}
+  .chart-bar-bg{flex:1;height:28px;background:var(--bg3);border-radius:6px;overflow:hidden;position:relative;}
+  .chart-bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding:0 10px;font-size:11px;font-weight:700;transition:width 1s ease;white-space:nowrap;}
+  .chart-timing{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);width:80px;flex-shrink:0;}
+
+  .phase-timeline{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+  .phase-row{display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:start;}
+  .phase-month{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);padding-top:3px;}
+  .phase-items{display:flex;flex-wrap:wrap;gap:6px;}
+  .phase-chip{font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;border:1px solid;}
+
+  .channel-detail-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:20px;}
+  .channel-detail-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .cd-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+  .cd-name{font-size:13px;font-weight:700;color:var(--text);}
+  .cd-body{font-size:11px;color:var(--text2);line-height:1.6;}
+  .cd-metric{margin-top:8px;padding-top:8px;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);}
+
+  /* ── TAB 3: OVERSIGHT ── */
+  .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
+  .tier-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .tier-head{padding:16px 18px;border-bottom:1px solid var(--border);}
+  .tier-time{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);line-height:1;}
+  .tier-label{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-top:4px;}
+  .tier-body{padding:14px 18px;}
+  .tier-tasks{display:flex;flex-direction:column;gap:6px;}
+  .tier-task{display:flex;gap:8px;align-items:flex-start;padding:8px 10px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+  .tier-task-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+  .tier-task-text{font-size:12px;color:var(--text2);line-height:1.5;}
+  .tier-task-text strong{color:var(--text);font-weight:700;}
+
+  .automation-upgrade{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .au-head{padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg3);}
+  .au-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);}
+  .au-body{padding:16px 18px;}
+  .au-grid{display:grid;grid-template-columns:1fr 40px 1fr;gap:12px;align-items:center;}
+  .au-col-head{font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+  .au-arrow{text-align:center;color:var(--text3);font-size:18px;}
+  .au-item{display:flex;gap:8px;align-items:flex-start;padding:7px 10px;border-radius:8px;margin-bottom:5px;font-size:11px;line-height:1.5;}
+  .au-item.before{background:var(--amber-dim);border:1px solid var(--amber-b);color:var(--amber);}
+  .au-item.after{background:var(--green-dim);border:1px solid var(--green-b);color:var(--green);}
+
+  /* ── TAB 4: HANDS-OFF ROADMAP ── */
+  .roadmap-phases{display:flex;flex-direction:column;gap:12px;}
+  .roadmap-phase{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .rp-head{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;}
+  .rp-num{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:1px solid;flex-shrink:0;}
+  .rp-meta{flex:1;}
+  .rp-title{font-size:14px;font-weight:700;color:var(--text);}
+  .rp-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+  .rp-hours{font-family:'DM Mono',monospace;font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid;white-space:nowrap;}
+  .rp-chevron{color:var(--text3);font-size:11px;transition:transform 0.2s;flex-shrink:0;}
+  .rp-body{display:none;padding:0 20px 18px;}
+  .rp-body.open{display:block;}
+  .rp-chevron.open{transform:rotate(180deg);}
+
+  .rp-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+  .rp-col-title{font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+  .rp-item{padding:8px 11px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);font-size:12px;color:var(--text2);margin-bottom:5px;line-height:1.5;}
+  .rp-item strong{color:var(--text);}
+  .rp-unlock{margin-top:12px;padding:11px 14px;border-radius:8px;border-left:3px solid var(--gold);background:var(--gold-dim);font-size:12px;color:var(--text2);line-height:1.5;}
+  .rp-unlock strong{color:var(--gold);}
+
+  .hours-tracker{display:flex;align-items:center;gap:16px;margin-top:20px;padding:16px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:14px;}
+  .ht-label{font-size:12px;color:var(--text2);width:80px;flex-shrink:0;}
+  .ht-bar-wrap{flex:1;height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+  .ht-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+  .ht-val{font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);width:70px;text-align:right;}
 
   /* FOOTER */
   .footer{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
@@ -132,518 +169,700 @@
   .footer-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-  .phase-section{animation:fadeUp 0.4s ease both;}
-  .phase-section:nth-child(1){animation-delay:0.05s;}
-  .phase-section:nth-child(2){animation-delay:0.1s;}
-  .phase-section:nth-child(3){animation-delay:0.15s;}
-  .phase-section:nth-child(4){animation-delay:0.2s;}
-  .phase-section:nth-child(5){animation-delay:0.25s;}
-  .phase-section:nth-child(6){animation-delay:0.3s;}
+  .tab-panel.active{animation:fadeUp 0.3s ease both;}
 
-  @media(max-width:650px){
-    .stack-grid{grid-template-columns:1fr 1fr;}
-    .milestone-row{grid-template-columns:1fr;}
-    .phase-bar-mini{width:50px;}
-    .nav-link:not(.active){display:none;}
+  @media(max-width:700px){
+    .svc-grid{grid-template-columns:1fr;}
+    .tier-grid{grid-template-columns:1fr;}
+    .rp-content-grid{grid-template-columns:1fr;}
+    .au-grid{grid-template-columns:1fr;}
+    .au-arrow{display:none;}
+    .kpi-row-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links 
+  }
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 24px;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+  .nav-logo{font-family:'Instrument Serif',serif;font-size:17px;color:#c9a84c;text-decoration:none;}
+  .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text2);text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+  .nav-link:hover{background:rgba(255,255,255,0.05);color:#f0ede8;}
+  .nav-link.active{background:rgba(201,168,76,0.13);border-color:rgba(201,168,76,0.28);color:#c9a84c;}
+  @media(max-width:600px){}
+
+
+  /* ── MOBILE NAV ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);border-radius:8px;background:transparent;}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--text2);transition:all 0.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-menu{
+    display:none;position:absolute;top:52px;left:0;right:0;
+    background:rgba(10,10,12,0.98);backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+    flex-direction:column;padding:8px 16px 16px;gap:4px;z-index:49;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu .nav-link{display:block;padding:10px 14px;border-radius:8px;font-size:13px;}
+  @media(max-width:700px){
+    .nav-links{display:none !important;}
+    .hamburger{display:flex;}
+    nav{position:sticky;}
   }
 </style>
 </head>
 <body>
 
-<div class="progress-bar"><div class="progress-fill" id="scrollProgress"></div></div>
-
-<nav>
-  <div class="nav-inner">
+<nav style="position:sticky;position:-webkit-sticky;">
+  <div class="nav-inner" style="position:relative;">
     <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
     <div class="nav-links">
       <a href="about.html" class="nav-link">✦ About</a>
       <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
       <a href="index.html" class="nav-link">🗺 Build Order</a>
-      <a href="phases.html" class="nav-link active">✅ Phases</a>
-      <a href="marketing.html" class="nav-link">📣 Marketing</a>
+      <a href="phases.html" class="nav-link">✅ Phases</a>
+      <a href="marketing.html" class="nav-link active">📣 Marketing</a>
       <a href="founder.html" class="nav-link">👤 Founder View</a>
     </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html" class="nav-link">✦ About</a>
+    <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+    <a href="index.html" class="nav-link">🗺 Build Order</a>
+    <a href="phases.html" class="nav-link">✅ Phases</a>
+    <a href="marketing.html" class="nav-link active">📣 Marketing</a>
+    <a href="founder.html" class="nav-link">👤 Founder View</a>
   </div>
 </nav>
+
+
 
 <div class="wrap">
 
   <div class="hero">
-    <div class="eyebrow">Starlite Ops</div>
-    <h1>Phase <em>Breakdown</em><br>& Checklists</h1>
-    <p>Every task across all 6 phases — with checkboxes. Your progress saves automatically in your browser. Work through each phase in order and tick off as you go.</p>
-    <button class="reset-btn" onclick="resetAll()">Reset all progress</button>
+    <div class="eyebrow">Starlite Group</div>
+    <h1>The <em>Marketing</em><br>Framework</h1>
+    <p>How to get clients, keep them, and eventually run the whole system without actively doing much — built holistically across all 7 services and individually per niche.</p>
   </div>
 
-  <div class="overall-progress" id="overallProgress"></div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('services',this)">Services</button>
+    <button class="tab-btn" onclick="switchTab('marketing',this)">Marketing plan</button>
+    <button class="tab-btn" onclick="switchTab('oversight',this)">Oversight model</button>
+    <button class="tab-btn" onclick="switchTab('roadmap',this)">Hands-off roadmap</button>
+  </div>
 
-  <div id="phasesContainer"></div>
+  <!-- ══════════ TAB 1: SERVICES ══════════ -->
+  <div class="tab-panel active" id="tab-services">
+
+    <div class="svc-nav" id="svcNav"></div>
+    <div id="svcPanels"></div>
+
+  </div>
+
+  <!-- ══════════ TAB 2: MARKETING PLAN ══════════ -->
+  <div class="tab-panel" id="tab-marketing">
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-head">
+        <div class="card-title">Channel priority — when to use each</div>
+        <div class="badge" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);">Build before you buy</div>
+      </div>
+      <div class="chart-wrap">
+        <div style="display:grid;grid-template-columns:140px 1fr 80px;gap:12px;margin-bottom:14px;padding:0 0 8px;border-bottom:1px solid var(--border);">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);">Channel</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);">Priority</div>
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);">Start</div>
+        </div>
+        <div id="channelChart"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-head"><div class="card-title">Month-by-month activation</div></div>
+      <div style="padding:18px 20px;">
+        <div class="phase-timeline" id="phaseTimeline"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-title">Channel playbooks — what to actually do</div></div>
+      <div style="padding:16px 18px;">
+        <div class="channel-detail-grid" id="channelDetails"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 3: OVERSIGHT ══════════ -->
+  <div class="tab-panel" id="tab-oversight">
+
+    <div class="tier-grid" id="tierGrid"></div>
+
+    <div class="automation-upgrade">
+      <div class="au-head"><div class="au-title">How each oversight task becomes automated</div></div>
+      <div class="au-body">
+        <div class="au-grid" id="auGrid"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════ TAB 4: HANDS-OFF ROADMAP ══════════ -->
+  <div class="tab-panel" id="tab-roadmap">
+
+    <div id="hoursTracker" style="margin-bottom:20px;"></div>
+    <div class="roadmap-phases" id="roadmapPhases"></div>
+
+  </div>
 
   <div class="footer">
     <div class="footer-logo">Starlite Group ✦</div>
-    <div class="footer-note">Phase Checklists · Progress auto-saved</div>
+    <div class="footer-note">Marketing Framework · StarliteGroup.io</div>
   </div>
 
 </div>
 
 <script>
+/* ── TAB SWITCHING ── */
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
 /* ══════════ DATA ══════════ */
 
-const phases = [
+const services = [
   {
-    id:'p1',
-    num:'1', icon:'🏛️',
-    title:'Foundation',
-    sub:'Month 1 — Incorporate Starlite Group and build the infrastructure everything runs on',
-    color:'var(--blue)', colorDim:'var(--blue-dim)', colorB:'var(--blue-b)',
-    timeline:'Weeks 1–4',
-    milestones:[
-      {label:'Total cost',val:'<strong>$450–600</strong> one-time + <strong>~$40/mo</strong>'},
-      {label:'End state',val:'Starlite Group is a legal company with a bank account, Stripe, client DB, automations, and a professional web presence'},
-      {label:'Time needed',val:'~<strong>20–25 hrs</strong> spread across 4 weeks'},
+    id: 'chatbot', icon: '🤖', name: 'Chatbot Agency',
+    tagline: 'Salons, spas, local service businesses',
+    mrr: '$250/mo', setup: '$500', delivery: '5 days', hands_off: 75,
+    color: '--blue', colorDim: '--blue-dim', colorB: '--blue-b',
+    targets: ['Hair salons with 1–3 locations','Beauty spas and lash studios','Local wellness and massage businesses','Any local service business missing after-hours leads'],
+    channels: [
+      {n:1,name:'Direct outreach to your network',detail:'Start with every salon/spa owner you already know or follow on Instagram. A personal DM with a short demo video converts extremely high.',col:'var(--green)'},
+      {n:2,name:'Facebook & local business groups',detail:'Alignable, local Facebook business groups, and BNI chapters are full of small business owners with exactly this pain point. Be helpful first, sell second.',col:'var(--blue)'},
+      {n:3,name:'Instagram demo reels',detail:'"Watch this chatbot answer 10 questions in real time" — short screen recording on a real salon website. Highly shareable in the beauty niche.',col:'var(--amber)'},
+      {n:4,name:'Referral from clients',detail:'Every delivery email includes a referral offer. One happy salon owner knows 10 other salon owners. Your best growth channel after month 2.',col:'var(--gold)'},
     ],
-    weeks:[
-      {
-        label:'Week 1 — legal & money',
-        tasks:[
-          {id:'p1-1',title:'Incorporate Starlite Group',detail:'Go to ontario.ca/businessregistry. Incorporate a numbered company (e.g. 1234567 Ontario Inc.) for $300. Takes 1–5 business days. This is your legal entity.',tags:['ontario.ca/businessregistry','$300','1–2 hrs']},
-          {id:'p1-2',title:'Register "Starlite Group" as trade name',detail:'Under your numbered company, file a business name registration for "Starlite Group" at the same Ontario Business Registry portal.',tags:['Ontario Business Registry','$60','30 min']},
-          {id:'p1-3',title:'Run NUANS name search (optional)',detail:'If you want to eventually incorporate as "Starlite Group Inc." directly, do a NUANS search now to confirm no conflicts. Not required for trade name registration.',tags:['nuans.com','~$30','Optional']},
-          {id:'p1-4',title:'Open business bank account',detail:'Walk into TD, RBC, or Scotiabank with your Certificate of Incorporation + ID. Open a business chequing account. Most have no monthly fee for year one. Never mix with personal funds.',tags:['TD / RBC / Scotiabank','Free','In person']},
-          {id:'p1-5',title:'Create Stripe account',detail:'Go to stripe.com. Business name: Starlite Group. Connect your new business bank account. Enable Subscriptions in the dashboard — this powers all 7 recurring services.',tags:['stripe.com','Free','1 hr']},
-          {id:'p1-6',title:'Get service contract template',detail:'Go to Docracy for a free Canada service agreement template, or UpCounsel for a lawyer-reviewed version (~$150). Must cover: scope, fees, cancellation (30-day notice), IP ownership, Ontario governing law.',tags:['docracy.com or upcounsel.com','$0–150','1–2 hrs']},
-        ]
-      },
-      {
-        label:'Week 2 — client database',
-        tasks:[
-          {id:'p1-7',title:'Register StarliteGroup.io domain',detail:'Go to Namecheap.com. Search and register StarliteGroup.io (or .ca for Ontario credibility). This becomes your parent brand domain.',tags:['namecheap.com','~$15–30/yr','15 min']},
-          {id:'p1-8',title:'Build Google Sheets client OS',detail:'Create the master OS spreadsheet using the template already built. Tabs: Clients, Pipeline, Services & Pricing, Revenue Dashboard, Onboarding Checklists, Self-Serve Funnel, Phase 1 Costs.',tags:['Google Sheets','Free','4–6 hrs']},
-          {id:'p1-9',title:'Set up Google Workspace email',detail:'Go to workspace.google.com. Connect StarliteGroup.io domain. Create you@starlitegroup.io — this goes on every contract, email, and invoice going forward.',tags:['workspace.google.com','$7/mo','1 hr']},
-        ]
-      },
-      {
-        label:'Week 3 — automations',
-        tasks:[
-          {id:'p1-10',title:'Create Make.com account',detail:'Go to make.com and create a free account. This is the automation glue that connects Stripe, Sheets, and Gmail.',tags:['make.com','Free to start','15 min']},
-          {id:'p1-11',title:'Build Flow 1 — Stripe payment → Sheets row',detail:'When a new Stripe subscription is created, automatically add a row to your Clients sheet with their name, email, service, amount, and date. Zero manual data entry.',tags:['Make.com','Stripe + Sheets','1–2 hrs']},
-          {id:'p1-12',title:'Build Flow 2 — Stripe cancel → status updated',detail:'When a subscription is cancelled in Stripe, automatically update the client\'s status to "Churned" in your Sheets. You always know who left and when.',tags:['Make.com','30 min']},
-          {id:'p1-13',title:'Build Flow 3 — New lead → Gmail draft',detail:'When you add a new row to the Pipeline tab in Sheets, Make.com creates a draft email in Gmail ready for you to personalise and send. Removes the blank-page friction.',tags:['Make.com','Gmail','1 hr']},
-          {id:'p1-14',title:'Build Flow 4 — Failed payment → alert email',detail:'If a Stripe payment fails, Make.com immediately sends you an email alert. You know within minutes, not weeks. Protects your MRR.',tags:['Make.com','Stripe','30 min']},
-        ]
-      },
-      {
-        label:'Week 4 — web presence & funnel tools',
-        tasks:[
-          {id:'p1-15',title:'Build Starlite Group one-page site on Carrd',detail:'Clean holding company page at StarliteGroup.io. Says: "We build AI-powered digital tools." Links to service pages once live. No booking link — no calls.',tags:['carrd.co','$19/yr','2–3 hrs']},
-          {id:'p1-16',title:'Create Typeform account',detail:'Go to typeform.com and create a free account. You\'ll build the actual intake forms per service in Phase 2 — just get the account set up and connected to Make.com now.',tags:['typeform.com','Free tier','15 min']},
-          {id:'p1-17',title:'Create UptimeRobot account',detail:'Go to uptimerobot.com and create a free account. You\'ll add your service URLs to monitor in Phase 2. Takes 2 minutes per URL — alerts you if anything goes down.',tags:['uptimerobot.com','Free','15 min']},
-          {id:'p1-18',title:'Set up Calendly (optional — for high-ticket only)',detail:'If you ever want to offer optional discovery calls for premium clients ($400+/mo), set up Calendly now. Keep it off your main funnel — the default is no calls.',tags:['calendly.com','Free tier','Optional']},
-        ]
-      },
+    kpis: [
+      {label:'Target MRR', val:'$3,750/mo'},
+      {label:'Clients needed', val:'15 active'},
+      {label:'Churn target', val:'< 3%/mo'},
+    ],
+    automations: [
+      {icon:'⚡',name:'New client onboarding',detail:'Stripe payment → Typeform link sent → Airtable record created → welcome email sent. Zero manual steps.'},
+      {icon:'📧',name:'2-week check-in',detail:'Auto-email at day 14 asking how the bot is performing. Catches issues before they churn.'},
+      {icon:'🔔',name:'Uptime monitoring',detail:'UptimeRobot alerts you the moment a client bot goes down — before they notice.'},
+      {icon:'💰',name:'Renewal reminders',detail:'Make.com sends renewal email 14 days before annual clients. Zero manual tracking.'},
+    ],
+    risk: {title:'Key risk: Client changes their website platform',body:'If a Squarespace client moves to Wix, the embed code needs updating. Build a "platform update" Typeform and charge $75 for re-embedding. Turn it into a product.'},
+  },
+  {
+    id: 'airbnb', icon: '🏠', name: 'Airbnb Assistant',
+    tagline: 'Short-term rental hosts with 1–10 properties',
+    mrr: '$199/mo', setup: 'None', delivery: '5 days', hands_off: 90,
+    color: '--green', colorDim: '--green-dim', colorB: '--green-b',
+    targets: ['Airbnb and VRBO hosts with 2+ properties','STR hosts who manage remotely or across time zones','New STR investors who need systems from day one','Co-hosts managing properties on behalf of owners'],
+    channels: [
+      {n:1,name:'STR Facebook groups',detail:'Airbnb Hosts Community (100K+ members), VRBO Owners Group, BiggerPockets STR forum. Share a genuine "how I automated my guest messaging" post with a CTA.',col:'var(--green)'},
+      {n:2,name:'Reddit communities',detail:'r/airbnb, r/ShortTermRentals, r/realestateinvesting. Answer real questions about guest communication, drop your tool naturally. No spam.',col:'var(--blue)'},
+      {n:3,name:'YouTube STR creators',detail:'Reach out to STR YouTube channels for a mention or affiliate deal. Their audience is exactly your buyer.',col:'var(--amber)'},
+      {n:4,name:'Referral program',detail:'Hosts know hosts. "Get one month free for every host you refer" in every delivery email. Automated via Make.com.',col:'var(--gold)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$3,980/mo'},
+      {label:'Clients needed', val:'20 active'},
+      {label:'Churn target', val:'< 2%/mo'},
+    ],
+    automations: [
+      {icon:'⚡',name:'Full self-serve purchase flow',detail:'Client pays Stripe → redirected to Typeform → you notified with completed intake → Airtable record created. No calls, no manual steps.'},
+      {icon:'📦',name:'Delivery package sent',detail:'Templated delivery email with their full message library + listing description auto-sends on day 5. Triggered by Airtable status change.'},
+      {icon:'📅',name:'Seasonal update prompts',detail:'Auto-email every 3 months: "Summer season coming — want to update your templates?" Drives renewals and reduces churn.'},
+      {icon:'📈',name:'Upsell to multi-property tier',detail:'When a client adds a second property, Make.com detects the Typeform resubmission and sends an upgrade offer automatically.'},
+    ],
+    risk: {title:'Key risk: Airbnb API policy changes',body:'If Airbnb tightens third-party integrations, the Hospitable connection could break. Position the core product as message templates (not integration) so it works regardless of platform changes.'},
+  },
+  {
+    id: 'content', icon: '📄', name: 'Content Generator',
+    tagline: 'Beauty and hair business owners',
+    mrr: '$49/mo', setup: 'None', delivery: 'Instant', hands_off: 98,
+    color: '--pink', colorDim: '--pink-dim', colorB: '--pink-b',
+    targets: ['Hair extension and salon business owners','Beauty product brand founders','Lash, brow, and nail technicians','Any beauty professional who hates writing captions'],
+    channels: [
+      {n:1,name:'Instagram and TikTok reels',detail:'"I generated 30 days of captions in 5 minutes" — screen recording of the tool working in real time. Highly shareable. Post weekly.',col:'var(--pink)'},
+      {n:2,name:'Muse Hair Lab audience',detail:'Your existing followers are the exact target buyer. A "I built this for my own business" launch post is your most credible first campaign.',col:'var(--gold)'},
+      {n:3,name:'Free lead magnet',detail:'"30 free hair salon Instagram captions" downloadable — captures emails, funnels warm leads into a trial of the full tool.',col:'var(--blue)'},
+      {n:4,name:'Facebook beauty groups',detail:'Beauty entrepreneur Facebook groups. Share a free tip about content strategy, include a link to the free caption pack as the CTA.',col:'var(--amber)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$3,120/mo'},
+      {label:'Users needed', val:'80 active'},
+      {label:'Free → paid', val:'> 15% conv.'},
+    ],
+    automations: [
+      {icon:'🆓',name:'Free trial onboarding',detail:'Stripe free trial → auto-welcome email → 3-day check-in → day 6 upgrade nudge → day 7 auto-convert or cancel. Zero manual involvement.'},
+      {icon:'📊',name:'Usage-based churn detection',detail:'If a user hasn\'t generated content in 10 days, Make.com triggers a "need help?" email with 3 example prompts.'},
+      {icon:'🎁',name:'Referral credit system',detail:'Refer a friend, get $10 credit. Automated tracking, automatic credit applied. Drives viral growth in tight-knit beauty communities.'},
+      {icon:'📣',name:'Monthly feature email',detail:'Auto-email on the 1st of each month showing new prompt templates. Keeps users engaged and reduces passive churn.'},
+    ],
+    risk: {title:'Key risk: Users generate once and cancel',body:'The product needs to stay fresh. Add 5 new prompt templates per month (1 hr/mo work) and show users new ways to use it. Monthly email reduces passive churn significantly.'},
+  },
+  {
+    id: 'workflow', icon: '🧠', name: 'Workflow Tool',
+    tagline: 'Hair extension and beauty professionals',
+    mrr: '$29/mo', setup: 'None', delivery: 'Instant', hands_off: 98,
+    color: '--teal', colorDim: '--teal-dim', colorB: '--teal-b',
+    targets: ['Hair extension specialists','Salon owners doing client consultations','Beauty educators building student resources','Stylists who want to look more professional to clients'],
+    channels: [
+      {n:1,name:'Muse Hair Lab brand extension',detail:'Launch to your existing Muse audience first. "I built a tool I use in my own salon" is the most credible launch message you can give.',col:'var(--teal)'},
+      {n:2,name:'Beauty educator partnerships',detail:'Reach out to hair extension educators on Instagram and YouTube. A tool mention in their content reaches thousands of exactly the right people.',col:'var(--gold)'},
+      {n:3,name:'Lifetime deal launch',detail:'Offer a $97 lifetime deal at launch to build cash and early users. Creates urgency and funds your other builds. AppSumo-style even without AppSumo.',col:'var(--amber)'},
+      {n:4,name:'SEO content on StarliteGroup.io',detail:'"Hair extension consultation template" and similar keywords have low competition and high buyer intent. One blog post can drive signups for years.',col:'var(--blue)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$2,900/mo'},
+      {label:'Users needed', val:'100 active'},
+      {label:'Lifetime deals', val:'50 at launch'},
+    ],
+    automations: [
+      {icon:'⚡',name:'Instant access on payment',detail:'Stripe payment → account created → welcome email with login → onboarding checklist email on day 3. Instant delivery.'},
+      {icon:'📋',name:'Template update emails',detail:'When you add new workflow templates, Make.com auto-emails all users. Drives logins, reduces churn, requires 0 manual outreach.'},
+      {icon:'💬',name:'Feedback collection',detail:'30-day auto-email asking what templates they wish existed. Fuels your product roadmap and makes users feel heard.'},
+      {icon:'🔄',name:'Annual renewal campaign',detail:'60 days before annual plans renew, auto-send a "here\'s everything we added this year" email. Dramatically reduces non-renewals.'},
+    ],
+    risk: {title:'Key risk: Niche is too small to scale',body:'At $29/mo you need 100+ users for meaningful revenue. Expand to adjacent niches (lash technicians, nail techs, brow artists) after hitting 50 hair extension users. Same tool, slightly different positioning.'},
+  },
+  {
+    id: 'email', icon: '📧', name: 'Email Automation',
+    tagline: 'Small business owners with email lists',
+    mrr: '$400/mo', setup: '$800', delivery: '1 week', hands_off: 70,
+    color: '--amber', colorDim: '--amber-dim', colorB: '--amber-b',
+    targets: ['Coaches and course creators with a list','E-commerce brands under $1M revenue','Local service businesses with a customer database','Any business sending fewer than 2 emails per month'],
+    channels: [
+      {n:1,name:'Bundle with Chatbot Agency',detail:'Offer chatbot + email automation as a combined package at $650/mo. Clients already trust you, upsell is natural. Higher value, lower acquisition cost.',col:'var(--amber)'},
+      {n:2,name:'LinkedIn outreach',detail:'Coaches and consultants who need this service are active on LinkedIn. A personalised connection note referencing their business converts well.',col:'var(--blue)'},
+      {n:3,name:'Email ROI case studies',detail:'Share one real result: "This client\'s AI email sequence generated $4,200 in 30 days." Numbers convert this audience. Post on LinkedIn and StarliteGroup.io.',col:'var(--gold)'},
+      {n:4,name:'Local business referrals',detail:'Every chatbot client is a potential email automation client. Include a one-liner about the service in every chatbot delivery email.',col:'var(--green)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$4,000/mo'},
+      {label:'Clients needed', val:'10 active'},
+      {label:'Avg open rate', val:'> 35%'},
+    ],
+    automations: [
+      {icon:'📝',name:'Monthly content brief',detail:'Client fills a 5-question Typeform each month (upcoming promos, news, themes). Claude API generates the full email sequence from their answers.'},
+      {icon:'📊',name:'Monthly performance report',detail:'Make.com pulls Klaviyo stats and Claude API writes a plain-English summary. Auto-sent to client every month. Zero manual reporting.'},
+      {icon:'🚨',name:'Low open rate alert',detail:'If a campaign open rate drops below 25%, Make.com flags it in Airtable and drafts a subject line split test for your review.'},
+      {icon:'🔄',name:'Quarterly strategy refresh',detail:'Auto-email to client every 90 days: "Time for a strategy refresh — here\'s a 3-question form." Keeps the relationship active and justifies the retainer.'},
+    ],
+    risk: {title:'Key risk: Client blames poor sales on your emails',body:'Set clear expectations upfront — you deliver opens and clicks, not sales. Include a disclaimer in your contract. Track email metrics, not business revenue, as your KPI.'},
+  },
+  {
+    id: 'leadgen', icon: '💬', name: 'Lead Gen / DM Auto',
+    tagline: 'Coaches, consultants, online service providers',
+    mrr: '$500/mo', setup: '$800', delivery: '1 week', hands_off: 65,
+    color: '--red', colorDim: '--red-dim', colorB: '--red-b',
+    targets: ['Online coaches with Instagram presence','Consultants doing high-ticket B2B outreach','Course creators wanting more discovery calls booked','Real estate agents with social media audiences'],
+    channels: [
+      {n:1,name:'Coach and consultant Facebook groups',detail:'High-ticket coaching communities are full of people talking about DM outreach problems. Be genuinely helpful, share a result, include a CTA.',col:'var(--red)'},
+      {n:2,name:'Podcast guest appearances',detail:'Entrepreneur and coaching podcasts reach exactly your buyer. Pitch yourself as "I automate lead generation for coaches." 1–2 podcasts per month.',col:'var(--gold)'},
+      {n:3,name:'Cold email to coaches',detail:'Find coaches and consultants via Instagram or LinkedIn. Short cold email with one specific result: "I helped a coach book 12 calls in 30 days automatically."',col:'var(--blue)'},
+      {n:4,name:'Affiliate with marketing educators',detail:'Marketing educators who teach coaches about Instagram growth. Affiliate deal: they mention your tool, you pay $100 per signup.',col:'var(--amber)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$6,000/mo'},
+      {label:'Clients needed', val:'12 active'},
+      {label:'Leads per client', val:'20+/mo'},
+    ],
+    automations: [
+      {icon:'📊',name:'Weekly results report',detail:'Make.com pulls ManyChat stats and Claude API writes a plain-English summary: sequences sent, responses, hot leads flagged. Auto-sent every Monday.'},
+      {icon:'🚨',name:'Hot lead notification',detail:'When a lead scores above a threshold in the qualification flow, Make.com sends client an immediate SMS/email with context. They only see the ready buyers.'},
+      {icon:'🔄',name:'Monthly sequence refresh',detail:'Sequences go stale after 4–6 weeks. Typeform reminder to client asking for new hooks and offers. Claude rewrites the sequence from their answers.'},
+      {icon:'⚙️',name:'Compliance monitoring',detail:'Make.com watches for ManyChat policy update emails and flags them in Airtable. You review once a week — 5 minutes. Keeps clients safe.'},
+    ],
+    risk: {title:'Key risk: Platform rule changes (highest risk service)',body:'Meta and Instagram change DM automation rules periodically. Always use ManyChat-compliant opt-in flows (never cold DMs without consent triggers). Stay inside the rules. This is non-negotiable.'},
+  },
+  {
+    id: 'trading', icon: '📈', name: 'Trading Journal AI',
+    tagline: 'Retail futures and options traders',
+    mrr: '$34/mo', setup: 'None', delivery: 'Instant', hands_off: 97,
+    color: '--gold', colorDim: '--gold-dim', colorB: '--gold-border',
+    targets: ['Retail futures traders (ES, NQ, CL)','Options traders tracking win rates and patterns','Prop firm students needing performance data','Traders who journal but never analyse their data'],
+    channels: [
+      {n:1,name:'Trading Discord communities',detail:'You\'re already in one. Post a genuine "I built this for myself" message with a free trial link. Traders who journal will immediately get it.',col:'var(--gold)'},
+      {n:2,name:'Twitter/X trading accounts',detail:'The trading community on X is massive and tight-knit. Post your own journal entries publicly, show the AI analysis. Builds trust through transparency.',col:'var(--blue)'},
+      {n:3,name:'Freemium model',detail:'Free tier: manual journal, basic stats. Paid tier: AI debrief, pattern recognition, psychology coaching. Free users become your marketing engine.',col:'var(--green)'},
+      {n:4,name:'YouTube trading channels',detail:'Reach out to trading educators for a tool review. Their subscribers are your exact buyer. One honest review from a respected educator can drive 100+ signups.',col:'var(--amber)'},
+    ],
+    kpis: [
+      {label:'Target MRR', val:'$4,350/mo'},
+      {label:'Users needed', val:'150 active'},
+      {label:'Free → paid', val:'> 12% conv.'},
+    ],
+    automations: [
+      {icon:'📊',name:'Weekly AI performance debrief',detail:'Every Sunday, Claude API analyses the week\'s logged trades and emails each user a personalised debrief. Fully automated. This is the core product value.'},
+      {icon:'📉',name:'Streak break alert',detail:'If a user hasn\'t logged a trade in 5 days, auto-email: "You\'re on a streak — don\'t break it." Gamification drives retention.'},
+      {icon:'🎯',name:'Monthly pattern report',detail:'On the 1st, every user gets an AI-generated monthly pattern analysis: best setups, worst mistakes, psychological tendencies. Makes the subscription feel essential.'},
+      {icon:'💬',name:'Community digest',detail:'Weekly digest of anonymised community stats: "This week\'s top performing setup was X." Builds community without a Discord to manage.'},
+    ],
+    risk: {title:'Key risk: Traders quit trading and cancel',body:'Trader retention is tied to their trading activity, not your product. Offer a "pause" feature (pause billing for 30 days) rather than cancellation. Most traders come back. Pauses cost you nothing.'},
+  },
+];
+
+/* ── BUILD SERVICE TAB ── */
+const svcNav = document.getElementById('svcNav');
+const svcPanels = document.getElementById('svcPanels');
+
+services.forEach((s, i) => {
+  const pill = document.createElement('button');
+  pill.className = 'svc-pill' + (i === 0 ? ' active' : '');
+  pill.textContent = s.icon + ' ' + s.name;
+
+  function applyPillColor(btn, svc, isActive) {
+    if (isActive) {
+      btn.style.background = 'var(' + svc.colorDim + ')';
+      btn.style.borderColor = 'var(' + svc.colorB + ')';
+      btn.style.color = 'var(' + svc.color + ')';
+    } else {
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  }
+
+  applyPillColor(pill, s, i === 0);
+
+  pill.onclick = () => {
+    document.querySelectorAll('.svc-pill').forEach((p, pi) => {
+      p.classList.remove('active');
+      applyPillColor(p, services[pi], false);
+    });
+    document.querySelectorAll('.svc-panel').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    applyPillColor(pill, s, true);
+    document.getElementById('svc-' + s.id).classList.add('active');
+  };
+  svcNav.appendChild(pill);
+
+  const panel = document.createElement('div');
+  panel.className = 'svc-panel' + (i === 0 ? ' active' : '');
+  panel.id = 'svc-' + s.id;
+
+  const colorStyle = `background:var(${s.colorDim});border-color:var(${s.colorB});color:var(${s.color})`;
+
+  panel.innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+      <div style="font-size:32px;">${s.icon}</div>
+      <div>
+        <div style="font-size:20px;font-weight:700;color:var(--text);">${s.name}</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:2px;">${s.tagline}</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="badge" style="${colorStyle}">${s.mrr}</span>
+        <span class="badge" style="background:var(--bg3);border-color:var(--border2);color:var(--text2);">Delivery: ${s.delivery}</span>
+        <span class="badge" style="background:var(--green-dim);border-color:var(--green-b);color:var(--green);">${s.hands_off}% hands-off</span>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+
+      <div class="svc-block">
+        <div class="svc-block-head"><div class="svc-block-title">Who to target</div></div>
+        <div class="svc-block-body">
+          <div class="target-block">
+            ${s.targets.map(t => `<div class="target-item"><div class="target-dot" style="background:var(${s.color})"></div><div class="target-text">${t}</div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-block">
+        <div class="svc-block-head"><div class="svc-block-title">KPIs to watch</div></div>
+        <div class="svc-block-body">
+          <div class="kpi-row-grid">
+            ${s.kpis.map(k => `<div class="kpi-mini"><div class="kpi-mini-label">${k.label}</div><div class="kpi-mini-val">${k.val}</div></div>`).join('')}
+          </div>
+          <div style="margin-top:10px;padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);">
+            <div style="font-size:10px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Hands-off level</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden;"><div style="height:100%;width:${s.hands_off}%;border-radius:3px;background:var(${s.color});"></div></div>
+              <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(${s.color});">${s.hands_off}%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-block">
+        <div class="svc-block-head"><div class="svc-block-title">How to get clients</div></div>
+        <div class="svc-block-body">
+          <div class="channel-list">
+            ${s.channels.map(c => `<div class="channel-item"><div class="ch-num" style="background:rgba(255,255,255,0.05);color:${c.col};border:1px solid rgba(255,255,255,0.1);">${c.n}</div><div class="ch-text"><div class="ch-name">${c.name}</div><div class="ch-detail">${c.detail}</div></div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-block">
+        <div class="svc-block-head"><div class="svc-block-title">How to automate it</div></div>
+        <div class="svc-block-body">
+          <div class="auto-list">
+            ${s.automations.map(a => `<div class="auto-item"><div class="auto-icon">${a.icon}</div><div><div class="auto-name">${a.name}</div><div class="auto-detail">${a.detail}</div></div></div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="risk-box" style="background:var(${s.colorDim});border-color:var(${s.color});"><div class="risk-title" style="color:var(${s.color});">⚠ Key risk — ${s.risk.title}</div><div class="risk-body">${s.risk.body}</div></div>
+  `;
+  svcPanels.appendChild(panel);
+});
+
+/* ── MARKETING PLAN DATA ── */
+const channels = [
+  {name:'Direct outreach', priority:95, timing:'Month 1', color:'var(--green)'},
+  {name:'Referral program', priority:88, timing:'Month 1', color:'var(--gold)'},
+  {name:'Content (social)', priority:80, timing:'Month 1', color:'var(--blue)'},
+  {name:'Community posts', priority:75, timing:'Month 1', color:'var(--teal)'},
+  {name:'Lead magnets', priority:65, timing:'Month 2', color:'var(--amber)'},
+  {name:'Email newsletter', priority:60, timing:'Month 2', color:'var(--pink)'},
+  {name:'SEO / blog', priority:45, timing:'Month 3+', color:'var(--text2)'},
+  {name:'Paid ads', priority:30, timing:'Month 4+', color:'var(--red)'},
+  {name:'Affiliates', priority:25, timing:'Month 5+', color:'var(--text3)'},
+];
+
+const chartEl = document.getElementById('channelChart');
+channels.forEach(c => {
+  chartEl.innerHTML += `
+    <div class="chart-bar-row">
+      <div class="chart-label">${c.name}</div>
+      <div class="chart-bar-bg">
+        <div class="chart-bar-fill" style="width:${c.priority}%;background:${c.color};color:rgba(0,0,0,0.7);">${c.priority}%</div>
+      </div>
+      <div class="chart-timing">${c.timing}</div>
+    </div>`;
+});
+
+const phaseData = [
+  {month:'Month 1', items:[{l:'Direct outreach',c:'var(--green)'},{l:'Referral system',c:'var(--gold)'},{l:'Intake funnel live',c:'var(--blue)'}]},
+  {month:'Month 2', items:[{l:'Content posting',c:'var(--blue)'},{l:'Lead magnets',c:'var(--amber)'},{l:'Email list building',c:'var(--pink)'}]},
+  {month:'Month 3', items:[{l:'SEO content starts',c:'var(--text2)'},{l:'Community presence',c:'var(--teal)'},{l:'Case studies',c:'var(--gold)'}]},
+  {month:'Month 4', items:[{l:'Paid ads test',c:'var(--red)'},{l:'Affiliate outreach',c:'var(--amber)'},{l:'Bundle offers',c:'var(--green)'}]},
+  {month:'Month 6+', items:[{l:'Fully automated',c:'var(--green)'},{l:'VA manages content',c:'var(--blue)'},{l:'Ads scaled',c:'var(--red)'}]},
+];
+
+const ptEl = document.getElementById('phaseTimeline');
+phaseData.forEach(p => {
+  ptEl.innerHTML += `<div class="phase-row"><div class="phase-month">${p.month}</div><div class="phase-items">${p.items.map(i=>`<span class="phase-chip" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:${i.c};">${i.l}</span>`).join('')}</div></div>`;
+});
+
+const channelPlaybooks = [
+  {name:'Direct outreach', badge:'Start day 1', badgeC:'var(--green)', body:'Identify 20 target businesses per service. Send a personalised DM or email with a 60-second demo video. Follow up once. Track in Airtable pipeline. Goal: 3 replies per 20 outreach.', metric:'Target: 3 clients from first 20 outreach'},
+  {name:'Referral program', badge:'Build in week 1', badgeC:'var(--gold)', body:'Every delivery email includes: "Know someone who\'d love this? Share your link — you both get one month free." Make.com tracks the link, applies credit automatically. No manual work.', metric:'Goal: 1 referral per 3 clients by month 3'},
+  {name:'Content posting', badge:'Month 1', badgeC:'var(--blue)', body:'1 post per week per service showing a real result. Screen recordings, before/afters, client wins (anonymised if needed). Repurpose one piece of content across Instagram, TikTok, and LinkedIn.', metric:'Consistency over virality — 52 posts/yr compounds'},
+  {name:'Lead magnets', badge:'Month 2', badgeC:'var(--amber)', body:'One free resource per service: "30 Free Salon Captions," "Guest Messaging Checklist," "Trading Journal Template." Lives on a Carrd page, captures email, auto-sends resource, enters nurture sequence.', metric:'Target: 50+ downloads/mo per magnet'},
+  {name:'SEO content', badge:'Month 3+', badgeC:'var(--text2)', body:'One blog post per month on StarliteGroup.io targeting low-competition keywords: "AI chatbot for hair salons," "Airbnb guest message automation." 6-month lag before results — start early.', metric:'Target: 500 organic visitors/mo by month 9'},
+  {name:'Paid ads', badge:'Month 4+', badgeC:'var(--red)', body:'Only run ads once you have 5+ testimonials and a proven conversion rate. Start with $200/mo Meta ads per service. If cost per acquisition is under $150, scale. Cut anything over $200 CPA.', metric:'Max CPA: $150 per paying client'},
+];
+
+const cdEl = document.getElementById('channelDetails');
+channelPlaybooks.forEach(c => {
+  cdEl.innerHTML += `<div class="channel-detail-card"><div class="cd-head"><div class="cd-name">${c.name}</div><span class="badge" style="background:var(--bg3);border-color:var(--border2);color:${c.badgeC};">${c.badge}</span></div><div class="cd-body">${c.body}</div><div class="cd-metric">${c.metric}</div></div>`;
+});
+
+/* ── OVERSIGHT TIERS ── */
+const tiers = [
+  {
+    time:'5 min', label:'Daily check-in', color:'var(--green)',
+    tasks:[
+      {col:'var(--green)',text:'<strong>Glance at command centre dashboard</strong> — MRR, new clients, any red alerts'},
+      {col:'var(--green)',text:'<strong>Check UptimeRobot email</strong> — if no email, everything is up'},
+      {col:'var(--green)',text:'<strong>Scan Stripe notifications</strong> — new payments, failed cards'},
+      {col:'var(--amber)',text:'<strong>Reply to any client messages</strong> — aim for same-day response'},
     ]
   },
   {
-    id:'p2',
-    num:'2', icon:'🚀',
-    title:'First two services live',
-    sub:'Months 1–2 — Build Airbnb Assistant and Chatbot Agency under Starlite Ops',
-    color:'var(--green)', colorDim:'var(--green-dim)', colorB:'var(--green-b)',
-    timeline:'Weeks 2–8',
-    stack:[
-      {layer:'Frontend',tool:'Carrd',role:'One-page sales site per service. Clear pricing, Stripe button, no booking link.',cost:'$19/yr'},
-      {layer:'Payments',tool:'Stripe',role:'Recurring subscriptions. Setup fees as one-time charges. All billing automated.',cost:'2.9%+$0.30'},
-      {layer:'Intake',tool:'Typeform',role:'Replaces discovery call. Collects everything needed to build without speaking to client.',cost:'Free tier'},
-      {layer:'Bot builder',tool:'Voiceflow',role:'Visual chatbot builder. Build master template once, clone per client.',cost:'Free tier'},
-      {layer:'AI engine',tool:'Claude API',role:'Powers chatbot responses, guest messages, listing descriptions, and FAQ handling.',cost:'~$15–20/mo'},
-      {layer:'STR integration',tool:'Hospitable',role:'Optional — connects to Airbnb/VRBO for automated message sending.',cost:'Client pays $40/mo'},
-      {layer:'Monitoring',tool:'UptimeRobot',role:'Pings each client service URL every 5 min. Emails you instantly if anything breaks.',cost:'Free'},
-      {layer:'Automation',tool:'Make.com',role:'Stripe → Sheets → welcome email → onboarding checklist. All automated.',cost:'Already set up'},
-    ],
-    milestones:[
-      {label:'MRR target',val:'6 clients × ~$225 avg = <span class="gold">~$1,350/mo</span>'},
-      {label:'Your time per client',val:'<strong>~2–4 hrs</strong> to build and deliver. Then automated.'},
-      {label:'Hands-off level',val:'Airbnb: <strong>90%</strong> · Chatbot: <strong>75%</strong>'},
-    ],
-    weeks:[
-      {
-        label:'Week 2–3 — build Airbnb Assistant',
-        tasks:[
-          {id:'p2-1',title:'Build master guest message template library',detail:'Write 15–20 Claude-powered templates covering: check-in, late arrival, noise complaint, early checkout, amenity questions, review request, emergency. These are the core product.',tags:['Claude API','3–4 hrs','Do once']},
-          {id:'p2-2',title:'Build Airbnb Typeform intake — 12 questions',detail:'Property name, location, check-in/out times, house rules, WiFi, parking, local recs, host tone (formal/casual), pet policy, problem escalation contact. Replaces every discovery call.',tags:['Typeform','1–2 hrs','Do once']},
-          {id:'p2-3',title:'Set up Airbnb Carrd sales page',detail:'Headline, what\'s included (message library + listing description + check-in flow), $199/mo price, Stripe button. No booking link. Payment goes straight to Typeform.',tags:['Carrd','Stripe','2–3 hrs']},
-          {id:'p2-4',title:'Wire Make.com — Airbnb client flow',detail:'Stripe paid → Typeform link emailed to client → Airtable record created → you notified when form submitted. Set up once, runs for every client forever.',tags:['Make.com','1–2 hrs','Runs forever']},
-          {id:'p2-5',title:'Write all Airbnb email templates',detail:'Welcome email (on purchase), delivery email (on day 5), 2-week check-in, seasonal update prompt (every 3 months), renewal reminder. Written once, automated forever.',tags:['Gmail + Make.com','2–3 hrs','Do once']},
-        ]
-      },
-      {
-        label:'Week 3–4 — build Chatbot Agency',
-        tasks:[
-          {id:'p2-6',title:'Build master Voiceflow bot template',detail:'One base bot handling: greeting, FAQ answering, booking redirect, price enquiry, out-of-hours message, and "speak to a human" escalation. Every client bot is a clone of this.',tags:['Voiceflow','Claude API','4–6 hrs','Do once']},
-          {id:'p2-7',title:'Build Chatbot Typeform intake — 15 questions',detail:'Business name, website URL, top 10 FAQs + answers, services + prices, booking link, tone, hours, out-of-hours message, escalation email. Everything needed to build without a call.',tags:['Typeform','1–2 hrs','Do once']},
-          {id:'p2-8',title:'Set up Chatbot Carrd sales page',detail:'Niche-specific (hair salons first). $500 setup fee + $250/mo. What\'s included, how it works (3 steps), Stripe button. No calls needed — page does the selling.',tags:['Carrd','Stripe','2–3 hrs']},
-          {id:'p2-9',title:'Write self-install embed instructions doc',detail:'One-page guide showing how to paste the Voiceflow embed code into Squarespace, Wix, and WordPress. Clients self-install — reduces your delivery time significantly.',tags:['Google Docs','1 hr','Do once']},
-          {id:'p2-10',title:'Wire Make.com — Chatbot client flow',detail:'Setup fee paid → Typeform link sent → Airtable record created → you notified with intake link. Monthly retainer charged automatically by Stripe.',tags:['Make.com','1 hr','Runs forever']},
-        ]
-      },
-      {
-        label:'Weeks 4–8 — land first clients',
-        tasks:[
-          {id:'p2-11',title:'Identify 20 target STR hosts for outreach',detail:'Find Airbnb hosts in Facebook STR groups, Reddit r/airbnb, BiggerPockets. Note hosts mentioning stress about guest messages — they\'re already pre-sold on the pain.',tags:['Week 4','2 hrs research']},
-          {id:'p2-12',title:'Identify 20 target salons/spas for chatbot outreach',detail:'Your existing beauty network first. Then Instagram search for hair salons in your city with active accounts. Look for businesses responding slowly to DMs — they need you.',tags:['Week 4','2 hrs research']},
-          {id:'p2-13',title:'Send first 20 outreach messages — Airbnb',detail:'Personalised DM or email. Reference a specific pain point from their posts. Keep it under 5 sentences. Include a link to a 60-second Loom demo of the product working.',tags:['Week 5','Goal: 3 replies']},
-          {id:'p2-14',title:'Send first 20 outreach messages — Chatbot',detail:'DM beauty business owners directly on Instagram. "I noticed you reply to every comment manually — I built something that handles that automatically." Direct, specific, short.',tags:['Week 5','Goal: 3 replies']},
-          {id:'p2-15',title:'Close and onboard first 3 clients',detail:'When someone says yes: send Stripe payment link, then sit back. Typeform intake comes in automatically. You build from the form answers. Deliver in 5 days.',tags:['Weeks 5–7','$1,350+ MRR unlocked']},
-          {id:'p2-16',title:'Add first clients to UptimeRobot monitoring',detail:'Once each client\'s service is live, add their URL to UptimeRobot. Takes 2 minutes. You\'ll know if something breaks before they do.',tags:['Per client','2 min each']},
-          {id:'p2-17',title:'Collect first testimonials',detail:'At the 2-week check-in email, include a line: "Would you be willing to leave a quick testimonial?" One genuine result quote is your most powerful future marketing asset.',tags:['Week 7–8','Critical for Phase 4 ads']},
-          {id:'p2-18',title:'Build AI launch readiness score',detail:'Before each new service goes live, Claude checks 8 criteria: Carrd page live, Stripe product created, Typeform intake complete, welcome email written, delivery email written, Make.com flows wired, UptimeRobot monitoring set, SOP documented. Must score 8/8 before launch. Prevents half-baked launches.',tags:['Claude API','Make.com','2 hrs','Do once — reuse per service']},
-        ]
-      },
+    time:'30 min', label:'Weekly review', color:'var(--gold)',
+    tasks:[
+      {col:'var(--gold)',text:'<strong>Read your AI Chief of Staff briefing</strong> — what changed, what needs attention'},
+      {col:'var(--gold)',text:'<strong>Review at-risk clients</strong> — approve re-engagement emails drafted by AI'},
+      {col:'var(--gold)',text:'<strong>Check pipeline</strong> — follow up with any leads gone quiet'},
+      {col:'var(--gold)',text:'<strong>Review one piece of content</strong> — approve or post the week\'s content'},
+      {col:'var(--amber)',text:'<strong>Process new client onboardings</strong> — build service from their Typeform intake'},
     ]
   },
   {
-    id:'p3',
-    num:'3', icon:'⚙️',
-    title:'Command Centre OS',
-    sub:'Month 2–3 — Systematize everything before adding more services',
-    color:'var(--amber)', colorDim:'var(--amber-dim)', colorB:'var(--amber-b)',
-    timeline:'Weeks 6–12',
-    milestones:[
-      {label:'Why before Phase 4',val:'Each new service slots into a working system. Without this phase, 5 services = 5× chaos. With it, 5 services = 5× clean revenue.'},
-      {label:'Time investment',val:'~<strong>25–35 hrs</strong> total — most of it automated setup you do once'},
-      {label:'What you gain',val:'Live financials via Wave, tax tracking, AI-drafted content, client health scores, MRR forecast, and the full AI Chief of Staff intelligence layer'},
-      {label:'Ongoing after',val:'~<strong>30 min/week</strong> reviewing dashboards and approving automated actions'},
-    ],
-    weeks:[
-      {
-        label:'Month 2 — upgrade and expand',
-        tasks:[
-          {id:'p3-1',title:'Upgrade Google Sheets to Airtable',detail:'Once you have 10+ clients the upgrade is worth it. Import your Sheets data into Airtable. Set up linked tables: Clients ↔ Services ↔ Pipeline ↔ Invoices.',tags:['airtable.com','$20/mo','2–3 hrs to migrate']},
-          {id:'p3-2',title:'Build full Make.com automation suite',detail:'Add: weekly MRR digest email every Monday, at-risk alert when a client is inactive 3+ weeks, renewal reminder 14 days out, pipeline follow-up sequences for cold leads.',tags:['Make.com Core','$11/mo','3–4 hrs']},
-          {id:'p3-3',title:'Set up AI Chief of Staff briefing',detail:'Connect Airtable to Claude API. Build a weekly briefing that summarises: new clients, MRR change, at-risk accounts, pipeline status, and top priority action. Emailed to you every Monday.',tags:['Claude API','Make.com','3–4 hrs']},
-          {id:'p3-4',title:'Connect GitHub dashboard to live Airtable data',detail:'Update your command centre dashboard to pull real data from Airtable via API. MRR figures, client counts, pipeline — all live instead of mock data.',tags:['Airtable API','2–3 hrs']},
-        ]
-      },
-      {
-        label:'Month 3 — document and systemise',
-        tasks:[
-          {id:'p3-5',title:'Write SOP for Airbnb Assistant onboarding',detail:'Step-by-step written process: receive Typeform → customise templates → write listing description → QA → send delivery email → add to UptimeRobot. Someone else could follow this.',tags:['Google Docs','2 hrs']},
-          {id:'p3-6',title:'Write SOP for Chatbot Agency onboarding',detail:'Step-by-step: receive Typeform → clone Voiceflow template → customise → run 20 QA scenarios → send embed code + instructions → add to UptimeRobot. Fully documented.',tags:['Google Docs','2 hrs']},
-          {id:'p3-7',title:'Record Loom walkthroughs of each SOP',detail:'Screen record yourself doing each onboarding process once. These become training videos for your future VA. 15–20 min per service. Store in Google Drive.',tags:['Loom','Free tier','1 hr per service']},
-          {id:'p3-8',title:'Build cross-sell trigger automations',detail:'When a Chatbot Agency client hits their 60-day mark, Make.com sends them an email about Email Automation. When an Airbnb client adds a second property, they get an upgrade offer.',tags:['Make.com','1–2 hrs','Expansion MRR']},
-          {id:'p3-9',title:'Review and optimise all Claude API prompts',detail:'Look at the AI outputs from your first 6 clients. What worked perfectly? What needed manual fixing? Update your prompts. 1 hour now saves 10 hours over the next 6 months.',tags:['Claude API','1–2 hrs','Monthly recurring']},
-          {id:'p3-10',title:'Set up Wave accounting — connect bank + Stripe',detail:'Go to waveapps.com and create a free account. Connect your Starlite Group business bank account via Plaid and connect Stripe. Wave auto-imports every transaction. Categorise once, it remembers forever. Free, built for Canadian small businesses, no QuickBooks needed yet.',tags:['waveapps.com','Free','1–2 hrs','Canadian-friendly']},
-          {id:'p3-11',title:'Build Wave → command centre expense sync',detail:'Wave API pulls categorised expenses into your dashboard automatically. Every tool subscription, Stripe fee, and Claude API charge shows up without manual entry. True profit (not just MRR) visible at a glance.',tags:['Wave API','Make.com','2–3 hrs','Replaces manual entry']},
-          {id:'p3-12',title:'Add cashflow & profit panel to command centre',detail:'New dashboard panel showing: gross revenue, total expenses (auto from Wave), net profit, and profit margin per service. The number that actually matters — not MRR but what you keep.',tags:['Dashboard','Wave API','2 hrs']},
-          {id:'p3-13',title:'Build tax set-aside tracker',detail:'Auto-calculates 25–30% of every Stripe deposit and shows running total to transfer to a separate tax savings account. Prevents the end-of-year CRA shock. Simple formula on top of Wave data.',tags:['Wave API','Dashboard','1 hr','Critical for Canada']},
-          {id:'p3-14',title:'Set up CRA quarterly installment reminders',detail:'Once income exceeds ~$3K net, CRA requires quarterly tax installments (March, June, September, December). Make.com sends you a reminder 2 weeks before each deadline with estimated amount based on Wave data.',tags:['Make.com','CRA deadlines','30 min','Auto-reminder']},
-          {id:'p3-15',title:'Build MRR forecast + $28K goal tracker',detail:'Dashboard panel projecting MRR trajectory based on current growth rate. Shows a progress bar toward the $28K target with estimated month of arrival. Updates automatically as new clients come in.',tags:['Dashboard','Airtable','2 hrs','Auto-calculated']},
-          {id:'p3-16',title:'Build division funding milestone tracker',detail:'Tracks MRR against the threshold that unlocks each Starlite division. "Properties unlocks at $5K MRR consistently for 3 months — you\'re 62% there." Auto-triggers a briefing when each threshold is hit.',tags:['Dashboard','Claude API','2 hrs','Starlite Group vision']},
-          {id:'p3-17',title:'Build client LTV tracker per service',detail:'Average months a client stays × monthly rate = lifetime value. Tells you which service is actually most valuable beyond just MRR. Updates automatically from Airtable subscription data.',tags:['Airtable','Dashboard','1–2 hrs','Auto-calculated']},
-          {id:'p3-18',title:'Build referral tracking panel',detail:'Tracks who referred who, referral count per client, and which service drives the most organic referrals. Shows referral ROI. Auto-populated when Make.com captures referral source at signup.',tags:['Airtable','Make.com','2 hrs','Auto-tracked']},
-          {id:'p3-19',title:'Build client NPS collection + satisfaction panel',detail:'After each 90-day check-in email, auto-collect a single satisfaction score (1–10). Results feed a per-service satisfaction trend panel on the dashboard. Early warning before churn happens.',tags:['Typeform','Make.com','Airtable','2 hrs','Auto-collected']},
-          {id:'p3-20',title:'Set up AI client anniversary emails',detail:'At 3, 6, and 12 months with you, Claude drafts a personalised "thank you + here\'s what you\'ve achieved" email per client. Retention gold — most businesses never do this. Fully automated.',tags:['Claude API','Make.com','1–2 hrs','Auto-drafted']},
-          {id:'p3-21',title:'Build AI content brief generation',detail:'Every Monday, Claude generates a weekly content brief for each service brand: topic, hook, platform, format, CTA. Outputs a draft post ready for your review. Never stare at a blank content calendar again.',tags:['Claude API','Make.com','2 hrs','Weekly automation']},
-          {id:'p3-22',title:'Build client feedback synthesis — Voice of Client report',detail:'Claude pulls all 2-week check-in replies, NPS scores, and support emails monthly. Synthesises into a "Voice of the Client" report: what they love, what they\'d change, what they\'d pay more for. Auto-sent to you on the 1st.',tags:['Claude API','Make.com','2–3 hrs','Monthly auto-report']},
-          {id:'p3-23',title:'Build capacity alert per service',detail:'Each service has a max profitable client count. When you\'re approaching 80% capacity, AI alerts you to raise prices, pause acquisition, or hire help. Prevents overcommitting before you can deliver.',tags:['Airtable','Claude API','1 hr','Auto-alert']},
-          {id:'p3-24',title:'Build AI prompt performance tracker',detail:'Log which Claude API prompts across your services generate the most positive client outcomes vs. the ones requiring manual correction. Monthly review tells you exactly where to spend optimisation time.',tags:['Airtable','1–2 hrs','Manual review monthly']},
-        ]
-      },
-    ]
-  },
-  {
-    id:'p4',
-    num:'4', icon:'📦',
-    title:'Services 3, 4 + 5',
-    sub:'Months 3–6 — Content Generator, Niche Workflow Tool, Email Automation',
-    color:'var(--red)', colorDim:'var(--red-dim)', colorB:'var(--red-b)',
-    timeline:'Weeks 10–24',
-    milestones:[
-      {label:'MRR target end of phase',val:'All 5 services running = <span class="gold">~$17,750/mo</span>'},
-      {label:'Build approach',val:'Each service slots into your existing OS — same Stripe, same Airtable, same Make.com. New service = new Carrd page + new Typeform + new AI prompts.'},
-      {label:'Time per new service',val:'<strong>1–2 weeks</strong> to build and launch each one'},
-    ],
-    weeks:[
-      {
-        label:'Month 3 — Content Generator',
-        tasks:[
-          {id:'p4-1',title:'Design the content generation prompt system',detail:'Engineer the core Claude API prompts that generate captions, emails, and posts. Inputs: business name, niche, tone, platform, topic. Output: 5–10 pieces of content. Test with 20+ variations.',tags:['Claude API','3–4 hrs']},
-          {id:'p4-2',title:'Build the web app frontend',detail:'Simple React or HTML app hosted on Vercel. User logs in (Clerk for auth), fills a short form, gets AI-generated content. Stripe paywall on the generate button.',tags:['Vercel','Clerk','Stripe','4–6 hrs']},
-          {id:'p4-3',title:'Set up free trial flow',detail:'7-day free trial via Stripe. Day 3 check-in email. Day 6 upgrade nudge. Day 7 auto-converts or cancels. All automated via Make.com. Zero manual involvement.',tags:['Stripe','Make.com','1–2 hrs']},
-          {id:'p4-4',title:'Launch to Muse Hair Lab audience first',detail:'"I built this for my own business and now I\'m opening it to other stylists." Your most credible launch message. Post to existing followers before any paid promotion.',tags:['Instagram','Week of launch']},
-          {id:'p4-5',title:'Build "30 free captions" lead magnet',detail:'Canva PDF of 30 pre-written hair/beauty captions. Lives on a Carrd landing page. Captures email → enters nurture sequence → pitches the full tool on day 5.',tags:['Carrd','Typeform','2 hrs']},
-        ]
-      },
-      {
-        label:'Month 4 — Niche Workflow Tool',
-        tasks:[
-          {id:'p4-6',title:'Define the core workflow templates',detail:'Start with 5 templates: client consultation generator, care guide builder, onboarding packet, appointment follow-up, and referral request. These cover 90% of what stylists need daily.',tags:['3–4 hrs planning']},
-          {id:'p4-7',title:'Build the workflow tool web app',detail:'Same stack as Content Generator — Vercel, Clerk, Stripe. Simpler UI: pick a template, fill in client details, get the document. Download as PDF or copy to clipboard.',tags:['Vercel','Clerk','Stripe','3–4 hrs']},
-          {id:'p4-8',title:'Run lifetime deal launch at $97',detail:'Offer a $97 lifetime deal for the first 50 users. Creates launch urgency, generates cash, and gives you 50 real users whose feedback improves the product before you scale.',tags:['Stripe one-time charge','50 × $97 = $4,850']},
-          {id:'p4-9',title:'Reach out to 5 hair extension educators',detail:'Find hair extension educators on Instagram and YouTube with 5K+ followers. Pitch a free lifetime account in exchange for an honest mention to their audience.',tags:['Instagram outreach','Week of launch']},
-        ]
-      },
-      {
-        label:'Month 5–6 — Email Automation',
-        tasks:[
-          {id:'p4-10',title:'Choose email platform and build master flow library',detail:'Pick Klaviyo or MailerLite as the sending platform. Build a library of 10 flow templates: welcome sequence, weekly newsletter, promo announcement, re-engagement, review request.',tags:['Klaviyo or MailerLite','4–5 hrs']},
-          {id:'p4-11',title:'Build the monthly content brief Typeform',detail:'5 questions clients fill monthly: upcoming promos, key dates, anything new, tone this month, any content to avoid. Claude API writes the full email sequence from these answers.',tags:['Typeform','Claude API','2 hrs']},
-          {id:'p4-12',title:'Build auto monthly performance report',detail:'Make.com pulls open rate, click rate, and revenue data from Klaviyo/MailerLite. Claude API writes a plain-English summary. Auto-sent to each client on the 1st of every month.',tags:['Make.com','Claude API','2–3 hrs']},
-          {id:'p4-13',title:'Create bundle offer with Chatbot Agency',detail:'Chatbot + Email Automation = $650/mo (saves $100). Email all existing chatbot clients about the bundle. This is your highest-value upsell — same relationship, more revenue.',tags:['Email campaign','Existing clients first']},
-        ]
-      },
-    ]
-  },
-  {
-    id:'p5',
-    num:'5', icon:'💎',
-    title:'Final two services',
-    sub:'Months 6–9 — Lead Gen / DM Automation + Trading Journal AI',
-    color:'var(--text2)', colorDim:'rgba(152,149,160,0.1)', colorB:'rgba(152,149,160,0.2)',
-    timeline:'Weeks 24–36',
-    milestones:[
-      {label:'Why last',val:'Lead Gen has compliance nuances. Trading Journal benefits from more trading history and a live community to launch into.'},
-      {label:'Combined MRR target',val:'Lead Gen 12 × $500 = <strong>$6K</strong> · Trading Journal 150 × $34 = <strong>$5.1K</strong>'},
-      {label:'Total portfolio MRR',val:'All 7 services = <span class="gold">~$28,100/mo</span>'},
-    ],
-    weeks:[
-      {
-        label:'Month 6–7 — Lead Gen / DM Automation',
-        tasks:[
-          {id:'p5-1',title:'Get certified in ManyChat',detail:'Complete ManyChat\'s free training. Understand exactly what\'s compliant on Instagram and Facebook. This service carries the most platform risk — you must know the rules cold before selling it.',tags:['manychat.com','Free training','3–4 hrs']},
-          {id:'p5-2',title:'Build master ManyChat sequence templates',detail:'Build 3 core sequence templates: cold story reply → DM opener → 3-message qualification flow → hot lead handoff. Each template customised per client niche.',tags:['ManyChat','4–5 hrs']},
-          {id:'p5-3',title:'Build weekly results report automation',detail:'Make.com pulls ManyChat stats (sequences sent, replies, qualified leads). Claude API writes a plain-English Monday report per client. Auto-sent. Client always knows their ROI.',tags:['Make.com','Claude API','2 hrs']},
-          {id:'p5-4',title:'Set up hot lead SMS/email notification',detail:'When a lead scores as "hot" in the qualification flow, Make.com immediately texts and emails the client with lead context. They only deal with ready buyers.',tags:['Make.com','Twilio (SMS)','1–2 hrs']},
-          {id:'p5-5',title:'Onboard first 3 Lead Gen clients',detail:'Start with coaches and consultants you already know or follow on Instagram. Offer a 30-day results guarantee on first clients — reduces their risk, gives you proof.',tags:['Month 7','$500/mo × 3 = $1,500 MRR']},
-        ]
-      },
-      {
-        label:'Month 8–9 — Trading Journal AI',
-        tasks:[
-          {id:'p5-6',title:'Build the trade logging interface',detail:'Simple web app where traders log: date, instrument, entry, exit, setup type, emotional state (1–5), rule compliance (yes/no), notes. Clean and fast — traders won\'t use slow tools.',tags:['Vercel','Clerk','Stripe','5–6 hrs']},
-          {id:'p5-7',title:'Engineer the weekly debrief prompt system',detail:'Claude API analyses a week of trades and generates: win rate, best setup, worst mistake, rule compliance score, psychological pattern identified, 3 specific improvements. This is the core product value.',tags:['Claude API','3–4 hrs','Most important step']},
-          {id:'p5-8',title:'Build weekly Sunday auto-debrief',detail:'Every Sunday at 8pm, Make.com triggers Claude API to analyse each user\'s week and email them their personalised debrief. Fully automated. This alone justifies the $34/mo.',tags:['Make.com','Claude API','2 hrs']},
-          {id:'p5-9',title:'Build free tier with limited features',detail:'Free: manual logging + basic stats. Paid: weekly AI debrief + pattern analysis + psychology coaching. Free users see what the paid debrief looks like — best conversion tool you have.',tags:['Stripe free tier','Freemium model']},
-          {id:'p5-10',title:'Launch to trading community — soft launch',detail:'Post in trading Discords and on Twitter/X: "I\'ve been building this for my own trading — opening it to 50 beta users free for 30 days." Real traders, real feedback, real testimonials.',tags:['Discord','Twitter/X','Beta launch']},
-        ]
-      },
-    ]
-  },
-  {
-    id:'p6',
-    num:'✦', icon:'👑',
-    title:'AI Chief of Staff layer',
-    sub:'Month 9+ — Claude manages your empire. You review, approve, and collect.',
-    color:'var(--gold)', colorDim:'var(--gold-dim)', colorB:'var(--gold-border)',
-    timeline:'Month 9+',
-    milestones:[
-      {label:'Full portfolio MRR',val:'All 7 services at target = <span class="gold">$28,100/mo</span>'},
-      {label:'Your weekly time',val:'~<strong>3–5 hrs</strong> reviewing briefings, approving emails, light decisions'},
-      {label:'AI Chief of Staff manages',val:'Briefings, churn prevention, upsells, price signals, seasonal trends, VA tasks, competitive monitoring, and division unlock triggers'},
-      {label:'The goal',val:'The business earns. Claude manages it. You check in.'},
-    ],
-    weeks:[
-      {
-        label:'Month 9 — intelligence layer',
-        tasks:[
-          {id:'p6-1',title:'Build Claude-powered Monday morning briefing',detail:'Claude API reads your entire Airtable portfolio every Monday — new clients, MRR movement, at-risk accounts, pipeline status, what needs your attention this week. One email. 15 minutes to review.',tags:['Claude API','Airtable API','3–4 hrs']},
-          {id:'p6-2',title:'Build automated churn intervention system',detail:'When a client goes inactive (3+ weeks), Claude drafts a re-engagement email personalised to their service and usage pattern. You approve or skip in one click. Churn prevention on autopilot.',tags:['Claude API','Make.com','2–3 hrs']},
-          {id:'p6-3',title:'Build automated upsell identification',detail:'System reviews each client\'s service, tenure, and usage monthly. Claude flags clients ready for an upsell and drafts the offer email. You approve. Expansion MRR with zero acquisition cost.',tags:['Claude API','Make.com','2 hrs']},
-          {id:'p6-4',title:'Hire first VA using your Phase 3 SOPs',detail:'Post a part-time VA role ($500–800/mo) on Upwork or OnlineJobs.ph. Your Phase 3 SOPs are the job description and training manual. VA handles: content posting, basic client comms, data entry.',tags:['Upwork or OnlineJobs.ph','$500–800/mo']},
-          {id:'p6-5',title:'Build AI price increase signal',detail:'When a service hits 85%+ capacity and churn stays below 2% for 60 days, Claude flags it\'s time to raise prices and drafts a new pricing tier announcement for your approval. You never leave money on the table.',tags:['Claude API','Airtable','2 hrs','Fully automated']},
-          {id:'p6-6',title:'Build seasonal trend detection',detail:'After 12+ months of data, Claude spots recurring patterns — STR hosts churning in January (slow season), salons upgrading in September (back-to-school). Sends proactive recommendations before each pattern repeats.',tags:['Claude API','Airtable','2–3 hrs','Needs 12mo data']},
-          {id:'p6-7',title:'Build cross-sell scoring engine',detail:'Every client gets a monthly cross-sell score based on service type, tenure, and engagement. Claude ranks who\'s most ready for a second service and drafts the outreach email. Expansion MRR on autopilot.',tags:['Claude API','Airtable','3 hrs','Auto-scored']},
-          {id:'p6-8',title:'Build division unlock trigger + briefing',detail:'When Ops MRR hits $5K consistently for 3 months, Claude auto-generates a "You\'re ready to fund Starlite Properties" briefing with analysis, recommended first steps, and a budget breakdown. Automates your own strategic decisions.',tags:['Claude API','Airtable','2 hrs','Milestone triggered']},
-          {id:'p6-9',title:'Build VA daily task briefing automation',detail:'Every morning, Claude reads Airtable and generates your VA\'s task list: onboardings due, content to post, follow-ups to send, check-ins to action. VA clocks in and knows exactly what to do. No briefing calls needed.',tags:['Claude API','Airtable','2 hrs','VA management']},
-          {id:'p6-10',title:'Build competitive monitoring digest',detail:'Weekly automated web search across your 7 service niches. Claude surfaces new competitors, pricing changes, and emerging opportunities. Delivered in your Monday briefing. Keeps you informed without the scrolling.',tags:['Claude API','Web search','2 hrs','Weekly automation']},
-          {id:'p6-11',title:'Build holdings overview panel',detail:'As Starlite Properties and Capital come online, add a group-level panel to the command centre showing all division revenue in one view — not just Ops MRR but total Starlite Group income across all holdings.',tags:['Dashboard','Future division','Build when ready']},
-        ]
-      },
-      {
-        label:'Month 10+ — empire mode maintenance',
-        tasks:[
-          {id:'p6-5',title:'Weekly Monday review routine (20 min)',detail:'Read AI briefing. Approve or skip any drafted emails. Check for anything flagged as urgent. That\'s your main weekly input into a business generating $28K+/mo.',tags:['Every Monday','20 min']},
-          {id:'p6-6',title:'Monthly deep-dive (2 hrs)',detail:'MRR review, churn analysis, channel performance, prompt tuning, finances, plan next month. One focused session per month. Everything else is automated or handled by VA.',tags:['First Monday of month','2 hrs']},
-          {id:'p6-7',title:'Quarterly strategy review',detail:'Zoom out. Which services are growing fastest? Which to cut or hand off? Any new service ideas? Build the next layer of the holding company — Starlite Properties or Capital — if ready.',tags:['Every 3 months','Half day']},
-          {id:'p6-8',title:'Build StarliteGroup.io company page properly',detail:'Now that Starlite Ops is generating real revenue, build a proper company page. Case studies, the team (you + VA), the holding company structure, Starlite Properties/Capital/Ventures vision.',tags:['Month 10','Credibility for future ventures']},
-        ]
-      },
+    time:'2 hrs', label:'Monthly deep-dive', color:'var(--blue)',
+    tasks:[
+      {col:'var(--blue)',text:'<strong>MRR review</strong> — which services grew, which stalled, why'},
+      {col:'var(--blue)',text:'<strong>Churn analysis</strong> — who cancelled, what\'s the pattern, what to fix'},
+      {col:'var(--blue)',text:'<strong>Channel performance</strong> — which acquisition channels are converting'},
+      {col:'var(--blue)',text:'<strong>Prompt tuning</strong> — review AI outputs across services, improve if needed'},
+      {col:'var(--blue)',text:'<strong>Plan next month</strong> — any launches, upsells, or new service prep'},
+      {col:'var(--amber)',text:'<strong>Finances</strong> — revenue, expenses, tax set-aside'},
     ]
   },
 ];
 
-/* ══════════ STORAGE ══════════ */
-function getChecked() {
-  try { return JSON.parse(localStorage.getItem('sg_checked') || '{}'); } catch { return {}; }
-}
-function saveChecked(obj) {
-  try { localStorage.setItem('sg_checked', JSON.stringify(obj)); } catch {}
-}
-
-/* ══════════ BUILD UI ══════════ */
-function countTasks(phase) {
-  let total = 0;
-  phase.weeks.forEach(w => total += w.tasks.length);
-  return total;
-}
-
-function countDone(phase, checked) {
-  let done = 0;
-  phase.weeks.forEach(w => w.tasks.forEach(t => { if (checked[t.id]) done++; }));
-  return done;
-}
-
-function buildPhases() {
-  const checked = getChecked();
-  const container = document.getElementById('phasesContainer');
-  container.innerHTML = '';
-
-  phases.forEach((phase, pi) => {
-    const total = countTasks(phase);
-    const done = countDone(phase, checked);
-    const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-    const section = document.createElement('div');
-    section.className = 'phase-section';
-    section.id = 'phase-' + phase.id;
-
-    const isOpen = pi === 0;
-
-    let stackHTML = '';
-    if (phase.stack) {
-      stackHTML = `<div class="stack-section">
-        <div class="stack-header">Tech stack — built once, runs forever</div>
-        <div class="stack-grid">
-          ${phase.stack.map(s => `<div class="stack-card">
-            <div class="stack-layer">${s.layer}</div>
-            <div class="stack-tool">${s.tool}</div>
-            <div class="stack-role">${s.role}</div>
-            <div class="stack-cost" style="color:${s.cost.includes('Already') ? 'var(--green)' : s.cost.includes('Free') ? 'var(--green)' : 'var(--amber)'}">${s.cost}</div>
-          </div>`).join('')}
+const tierGrid = document.getElementById('tierGrid');
+tiers.forEach(t => {
+  tierGrid.innerHTML += `
+    <div class="tier-card">
+      <div class="tier-head">
+        <div class="tier-time" style="color:${t.color}">${t.time}</div>
+        <div class="tier-label">${t.label}</div>
+      </div>
+      <div class="tier-body">
+        <div class="tier-tasks">
+          ${t.tasks.map(task => `<div class="tier-task"><div class="tier-task-dot" style="background:${task.col}"></div><div class="tier-task-text">${task.text}</div></div>`).join('')}
         </div>
-      </div>`;
-    }
-
-    const weeksHTML = phase.weeks.map(week => {
-      const wTotal = week.tasks.length;
-      const wDone = week.tasks.filter(t => checked[t.id]).length;
-      return `<div class="week-block">
-        <div class="week-header">
-          <span class="week-label">${week.label}</span>
-          <span class="week-progress">${wDone}/${wTotal}</span>
-        </div>
-        <div class="task-list">
-          ${week.tasks.map(task => {
-            const isDone = !!checked[task.id];
-            return `<div class="task-item ${isDone ? 'done' : ''}" onclick="toggleTask('${task.id}')">
-              <div class="task-checkbox">
-                <span class="task-check-icon">✓</span>
-              </div>
-              <div class="task-content">
-                <div class="task-title">${task.title}</div>
-                <div class="task-detail">${task.detail}</div>
-                <div class="task-tags">${task.tags.map(t => `<span class="task-tag">${t}</span>`).join('')}</div>
-              </div>
-            </div>`;
-          }).join('')}
-        </div>
-      </div>`;
-    }).join('');
-
-    const milestonesHTML = `<div class="milestone-row">
-      ${phase.milestones.map(m => `<div class="milestone-card"><div class="mc-label">${m.label}</div><div class="mc-val">${m.val}</div></div>`).join('')}
+      </div>
     </div>`;
-
-    section.innerHTML = `
-      <div class="phase-card ${isOpen ? 'open' : ''}" id="card-${phase.id}">
-        <div class="phase-head" onclick="togglePhase('${phase.id}')">
-          <div class="phase-dot" style="background:${phase.colorDim};border-color:${phase.colorB};color:${phase.color};">${phase.num}</div>
-          <div class="phase-head-text">
-            <div class="phase-title">${phase.icon} ${phase.title}</div>
-            <div class="phase-sub">${phase.sub}</div>
-          </div>
-          <div class="phase-head-right">
-            <div class="phase-progress-mini">
-              <span class="phase-pct-label" style="color:${phase.color};">${pct}% · ${done}/${total}</span>
-              <div class="phase-bar-mini"><div class="phase-bar-mini-fill" style="width:${pct}%;background:${phase.color};"></div></div>
-              <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);">${phase.timeline}</span>
-            </div>
-            <div class="phase-chevron ${isOpen ? 'open' : ''}">▼</div>
-          </div>
-        </div>
-        <div class="phase-body">
-          <div class="phase-body-inner">
-            ${stackHTML}
-            ${stackHTML ? '<div style="height:16px;"></div>' : ''}
-            ${weeksHTML}
-            ${milestonesHTML}
-          </div>
-        </div>
-      </div>`;
-    container.appendChild(section);
-  });
-
-  updateOverall();
-}
-
-function updateOverall() {
-  const checked = getChecked();
-  let totalAll = 0, doneAll = 0;
-  phases.forEach(p => {
-    const t = countTasks(p);
-    const d = countDone(p, checked);
-    totalAll += t;
-    doneAll += d;
-  });
-  const pct = totalAll > 0 ? Math.round((doneAll / totalAll) * 100) : 0;
-
-  const el = document.getElementById('overallProgress');
-  el.innerHTML = `
-    <div class="op-head">
-      <div class="op-title">Overall progress — ${doneAll} of ${totalAll} tasks complete</div>
-      <div class="op-pct">${pct}%</div>
-    </div>
-    <div class="op-bar"><div class="op-fill" style="width:${pct}%"></div></div>
-    <div class="op-phases">
-      ${phases.map(p => {
-        const t = countTasks(p);
-        const d = countDone(p, checked);
-        const pp = t > 0 ? Math.round((d/t)*100) : 0;
-        return `<a href="#phase-${p.id}" class="op-phase-chip" style="background:${pp===100?p.colorDim:'var(--bg3)'};border-color:${pp===100?p.colorB:'var(--border2)'};color:${pp===100?p.color:'var(--text2)'};">${p.icon} Phase ${p.num} · ${pp}%</a>`;
-      }).join('')}
-    </div>`;
-}
-
-function toggleTask(taskId) {
-  const checked = getChecked();
-  checked[taskId] = !checked[taskId];
-  if (!checked[taskId]) delete checked[taskId];
-  saveChecked(checked);
-  buildPhases();
-}
-
-function togglePhase(phaseId) {
-  const card = document.getElementById('card-' + phaseId);
-  const chev = card.querySelector('.phase-chevron');
-  card.classList.toggle('open');
-  chev.classList.toggle('open');
-}
-
-function resetAll() {
-  if (confirm('Reset all checkbox progress? This cannot be undone.')) {
-    try { localStorage.removeItem('sg_checked'); } catch {}
-    buildPhases();
-  }
-}
-
-/* Scroll progress bar */
-window.addEventListener('scroll', () => {
-  const st = document.documentElement.scrollTop;
-  const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  document.getElementById('scrollProgress').style.width = (st / sh * 100) + '%';
 });
 
-buildPhases();
+const auItems = [
+  {before:'You manually check if clients are active',after:'Airtable flags inactive clients automatically'},
+  {before:'You write re-engagement emails from scratch',after:'AI drafts them — you approve in 30 seconds'},
+  {before:'You track MRR in your head',after:'Dashboard shows it live, AI briefs you Monday'},
+  {before:'You notice churn when Stripe sends a cancel',after:'At-risk alert 3 weeks before they quit'},
+  {before:'You remember to follow up with leads',after:'Make.com sends follow-up on a schedule'},
+  {before:'You send renewal reminders manually',after:'Auto-sent 14 days before renewal date'},
+];
+
+const auGrid = document.getElementById('auGrid');
+auGrid.innerHTML = `
+  <div>
+    <div class="au-col-head">Now (manual)</div>
+    ${auItems.map(a => `<div class="au-item before">→ ${a.before}</div>`).join('')}
+  </div>
+  <div class="au-arrow">→</div>
+  <div>
+    <div class="au-col-head">Automated (month 3+)</div>
+    ${auItems.map(a => `<div class="au-item after">✓ ${a.after}</div>`).join('')}
+  </div>`;
+
+/* ── HANDS-OFF ROADMAP ── */
+const hoursData = [
+  {label:'Month 1', hrs:40, max:40},
+  {label:'Month 2', hrs:25, max:40},
+  {label:'Month 3', hrs:15, max:40},
+  {label:'Month 6', hrs:8, max:40},
+  {label:'Month 9', hrs:3, max:40},
+];
+
+const htEl = document.getElementById('hoursTracker');
+htEl.innerHTML = `
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+    <div class="card-head"><div class="card-title">Weekly hours — you working IN the business</div><div class="badge" style="background:var(--green-dim);border-color:var(--green-b);color:var(--green);">Goal: 3 hrs/week by month 9</div></div>
+    <div style="padding:18px 20px;display:flex;flex-direction:column;gap:10px;">
+      ${hoursData.map(h => `
+        <div style="display:flex;align-items:center;gap:14px;">
+          <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);width:60px;">${h.label}</div>
+          <div style="flex:1;height:22px;background:var(--bg3);border-radius:6px;overflow:hidden;">
+            <div style="height:100%;width:${(h.hrs/h.max)*100}%;background:${h.hrs > 20 ? 'var(--amber)' : h.hrs > 10 ? 'var(--gold)' : 'var(--green)'};border-radius:6px;display:flex;align-items:center;padding:0 8px;font-size:10px;font-weight:700;color:rgba(0,0,0,0.7);">${h.hrs > 8 ? h.hrs + ' hrs/wk' : ''}</div>
+          </div>
+          <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);width:60px;text-align:right;">${h.hrs} hrs/wk</div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+
+const roadmapPhases = [
+  {
+    num:'1', title:'You do everything', sub:'Month 1–2 · Building and doing all client work yourself', color:'var(--amber)', hrs:'30–40 hrs/wk',
+    doing:['Build Phase 1 infrastructure (Stripe, Sheets, Make.com)','Build Airbnb Assistant and Chatbot Agency','Find and onboard first 6 clients manually','Write all email templates and intake forms','Learn what clients actually need vs what you assumed'],
+    automating:['Stripe → Airtable auto-sync','Welcome email sequence','2-week check-in emails','Uptime monitoring'],
+    unlock:'Document every step as you do it — this is the raw material for your SOPs and future VA handoff. Most people skip this and can never delegate anything.'
+  },
+  {
+    num:'2', title:'Document as you go', sub:'Month 2–3 · Critical unlock — build your SOP library', color:'var(--amber)', hrs:'20–30 hrs/wk',
+    doing:['Turn every repeated task into a written SOP','Build onboarding checklist per service','Create Loom walkthroughs of every process','Refine Typeform intakes based on real client confusion','Launch content strategy — 1 post/week'],
+    automating:['Full Make.com automation suite built','At-risk client alerts','Pipeline follow-up sequences','Weekly MRR digest to yourself'],
+    unlock:'Your SOP library is what makes every other phase possible. Without it you can\'t hire a VA, you can\'t scale, and you\'re trapped doing everything forever.'
+  },
+  {
+    num:'3', title:'Add services 3, 4, 5', sub:'Month 3–6 · Each new service slots into your existing OS', color:'var(--blue)', hrs:'15–20 hrs/wk',
+    doing:['Build Content Generator, Workflow Tool, Email Automation','Each launch follows the same funnel playbook','Client work per service drops as templates mature','Referral program starts generating inbound leads','Review and improve your command centre dashboard'],
+    automating:['Cross-service upsell triggers','Monthly performance reports per client','Seasonal update prompts','Lead magnet email sequences'],
+    unlock:'By month 6 you have 5 revenue streams, an established OS, and proof that the model works. This is when the compound effect starts — referrals feed referrals, content builds SEO, clients upgrade.'
+  },
+  {
+    num:'4', title:'Hire first VA', sub:'Month 6–7 · First delegation — content and client delivery', color:'var(--green)', hrs:'10–15 hrs/wk',
+    doing:['Hire a part-time VA ($500–800/mo) using your SOPs','VA handles: content posting, Typeform review, basic client comms','You focus on: strategy, new service builds, relationship management','Launch final two services (Lead Gen + Trading Journal)','Scale paid ads on 2 best-performing services'],
+    automating:['VA uses your documented processes — no training from scratch','AI Chief of Staff briefing now includes VA task assignments','Automated content calendar with AI-drafted posts for VA to approve'],
+    unlock:'Your VA doesn\'t need to be smart — they need your SOPs to be good. If you documented in Phase 2, hiring is plug-and-play. If you didn\'t, this phase is painful.'
+  },
+  {
+    num:'5', title:'Full portfolio running', sub:'Month 7–9 · All 7 services live, systems mature', color:'var(--green)', hrs:'5–8 hrs/wk',
+    doing:['Review weekly AI briefing (20 min Monday)','Approve re-engagement and upsell emails drafted by AI','Strategic decisions only — pricing, new offers, partnerships','Quarterly service reviews — what to grow, what to cut','Build second income layer: course, community, or licensing your OS to other founders'],
+    automating:['Churn prediction and intervention fully automated','Upsell identification and outreach automated','Monthly reports auto-sent to all clients','Pipeline management mostly automated'],
+    unlock:'At this stage you\'re not running a business — you\'re reviewing reports and approving decisions. That\'s the goal. Protect this by never skipping your weekly review.'
+  },
+  {
+    num:'✦', title:'Empire mode', sub:'Month 9+ · ~3 hrs/week — the original vision fully realised', color:'var(--gold)', hrs:'~3 hrs/wk',
+    doing:['Monday: 20-min AI briefing review and email approvals','Wednesday: 30-min pipeline and strategy review','Friday: 30-min finances, VA check-in, any decisions needed','Everything else is automated, delegated, or doesn\'t need you'],
+    automating:['AI Chief of Staff manages the entire portfolio intelligence layer','VA executes all repeatable work from SOPs','Make.com handles all client lifecycle automation','Stripe handles all billing without exception'],
+    unlock:'You built 7 AI businesses that run without you by building the infrastructure before the services, automating before scaling, and documenting before delegating. That\'s the framework.'
+  },
+];
+
+const rpEl = document.getElementById('roadmapPhases');
+roadmapPhases.forEach((p, i) => {
+  const div = document.createElement('div');
+  div.className = 'roadmap-phase';
+  div.innerHTML = `
+    <div class="rp-head" onclick="toggleRP(this)">
+      <div class="rp-num" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:${p.color};">${p.num}</div>
+      <div class="rp-meta">
+        <div class="rp-title">${p.title}</div>
+        <div class="rp-sub">${p.sub}</div>
+      </div>
+      <div class="rp-hours" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:${p.color};">${p.hrs}</div>
+      <div class="rp-chevron ${i === 0 ? 'open' : ''}">▼</div>
+    </div>
+    <div class="rp-body ${i === 0 ? 'open' : ''}">
+      <div class="rp-content-grid">
+        <div>
+          <div class="rp-col-title">What you're doing</div>
+          ${p.doing.map(d => `<div class="rp-item">${d}</div>`).join('')}
+        </div>
+        <div>
+          <div class="rp-col-title">What's being automated</div>
+          ${p.automating.map(a => `<div class="rp-item" style="border-color:var(--green-b);background:var(--green-dim);color:var(--green);">${a}</div>`).join('')}
+        </div>
+      </div>
+      <div class="rp-unlock"><strong>Critical unlock:</strong> ${p.unlock}</div>
+    </div>`;
+  rpEl.appendChild(div);
+});
+
+function toggleRP(head) {
+  const body = head.nextElementSibling;
+  const chev = head.querySelector('.rp-chevron');
+  body.classList.toggle('open');
+  chev.classList.toggle('open');
+}
+</script>
+
+<script>
+function toggleMenu(){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+document.addEventListener('click',function(e){
+  const h=document.getElementById('hamburger');
+  const m=document.getElementById('mobileMenu');
+  if(h && m && !h.contains(e.target) && !m.contains(e.target)){
+    h.classList.remove('open');
+    m.classList.remove('open');
+  }
+});
 </script>
 </body>
 </html>
