@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shanese AI Empire — Command Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --bg2: #111116;
+    --bg3: #18181f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --gold: #c9a84c;
+    --gold2: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-glow: rgba(201,168,76,0.08);
+    --text: #f0ede8;
+    --text2: #9895a0;
+    --text3: #5c5a66;
+    --green: #4ade80;
+    --green-dim: rgba(74,222,128,0.12);
+    --red: #f87171;
+    --red-dim: rgba(248,113,113,0.12);
+    --blue: #818cf8;
+    --blue-dim: rgba(129,140,248,0.12);
+    --amber: #fb923c;
+    --amber-dim: rgba(251,146,60,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body::before {
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.015) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* NAV */
+
+  .app { position:relative; z-index:1; max-width:1400px; margin:0 auto; padding:24px; }
+
+  /* TOPBAR */
+  .topbar {
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:24px; border-bottom:1px solid var(--border);
+    margin-bottom:28px;
+    animation: fadeDown 0.5s ease both;
+  }
+  .topbar-left { }
+  .topbar-title { font-family:'Instrument Serif',serif; font-size:24px; color:var(--text); }
+  .topbar-sub { font-size:12px; color:var(--text2); margin-top:2px; }
+  .topbar-right { display:flex; gap:8px; align-items:center; }
+  .status-pill {
+    display:flex; align-items:center; gap:6px;
+    padding:6px 12px; border-radius:20px;
+    background:var(--green-dim); border:1px solid rgba(74,222,128,0.2);
+    font-size:11px; font-weight:600; color:var(--green); letter-spacing:0.06em;
+  }
+  .status-dot { width:6px; height:6px; border-radius:50%; background:var(--green); animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .date-chip {
+    padding:6px 12px; border-radius:20px;
+    background:var(--bg3); border:1px solid var(--border);
+    font-family:'DM Mono',monospace; font-size:11px; color:var(--text2);
+  }
+
+  /* KPI ROW */
+  .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+  .kpi-card {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:14px; padding:20px 22px;
+    animation: fadeUp 0.5s ease both;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor:default;
+  }
+  .kpi-card:hover { border-color:var(--gold); transform:translateY(-2px); }
+  .kpi-card:nth-child(1){animation-delay:0.05s}
+  .kpi-card:nth-child(2){animation-delay:0.1s}
+  .kpi-card:nth-child(3){animation-delay:0.15s}
+  .kpi-card:nth-child(4){animation-delay:0.2s}
+  .kpi-label { font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:8px; }
+  .kpi-value { font-family:'Instrument Serif',serif;font-size:32px;color:var(--text);line-height:1; }
+  .kpi-value span { color:var(--gold); }
+  .kpi-sub { margin-top:6px;font-size:11px;color:var(--green);font-family:'DM Mono',monospace; }
+  .kpi-sub.warn { color:var(--amber); }
+
+  /* MAIN GRID */
+  .main-grid { display:grid; grid-template-columns:1fr 320px; gap:20px; margin-bottom:20px; }
+
+  /* PANEL */
+  .panel {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:14px; overflow:hidden;
+    animation: fadeUp 0.5s ease both;
+  }
+  .panel-head {
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 20px;border-bottom:1px solid var(--border);
+  }
+  .panel-title { font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2); }
+  .panel-badge {
+    font-family:'DM Mono',monospace;font-size:11px;
+    padding:3px 8px;border-radius:6px;
+    background:var(--gold-dim);color:var(--gold);border:1px solid rgba(201,168,76,0.2);
+  }
+
+  /* SERVICE TABLE */
+  .service-list { padding:8px; }
+  .service-row {
+    display:grid;grid-template-columns:28px 1fr 80px 90px 80px 60px;
+    align-items:center;gap:12px;
+    padding:12px 12px;border-radius:10px;
+    transition:background 0.15s;cursor:pointer;
+  }
+  .service-row:hover { background:rgba(255,255,255,0.03); }
+  .svc-icon { font-size:16px;text-align:center; }
+  .svc-name { font-size:13px;font-weight:600;color:var(--text); }
+  .svc-sub { font-size:10px;color:var(--text3);margin-top:1px; }
+  .svc-mrr { font-family:'DM Mono',monospace;font-size:12px;color:var(--gold);font-weight:500;text-align:right; }
+  .svc-clients { font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);text-align:center; }
+  .svc-clients span { display:block;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em; }
+  .svc-growth { font-family:'DM Mono',monospace;font-size:11px;text-align:center; }
+  .svc-growth.up { color:var(--green); }
+  .health-bar { height:4px;border-radius:2px;background:var(--bg3);overflow:hidden; }
+  .health-fill { height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold2)); }
+  .divider { height:1px;background:var(--border);margin:4px 8px; }
+  .total-row {
+    display:grid;grid-template-columns:28px 1fr 80px 90px 80px 60px;
+    gap:12px;align-items:center;
+    padding:14px 12px;
+    border-top:1px solid var(--border);
+    background:var(--gold-glow);
+  }
+  .total-label { font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);grid-column:1/3; }
+  .total-mrr { font-family:'Instrument Serif',serif;font-size:20px;color:var(--gold);text-align:right; }
+
+  /* SIDEBAR */
+  .sidebar { display:flex;flex-direction:column;gap:16px; }
+  .pipeline-stages { padding:16px;display:flex;flex-direction:column;gap:10px; }
+  .stage-row { display:flex;align-items:center;gap:10px; }
+  .stage-label { font-size:11px;color:var(--text2);width:80px;flex-shrink:0; }
+  .stage-bar-wrap { flex:1;height:6px;background:var(--bg3);border-radius:3px;overflow:hidden; }
+  .stage-bar { height:100%;border-radius:3px; }
+  .bar-leads { background:var(--blue); }
+  .bar-active { background:var(--amber); }
+  .bar-clients { background:var(--green); }
+  .bar-churned { background:var(--red); }
+  .stage-count { font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);width:24px;text-align:right; }
+
+  /* ACTIVITY */
+  .activity-list { padding:12px;display:flex;flex-direction:column;gap:2px; }
+  .activity-item {
+    display:flex;gap:10px;align-items:flex-start;
+    padding:10px 8px;border-radius:8px;transition:background 0.15s;
+  }
+  .activity-item:hover { background:rgba(255,255,255,0.02); }
+  .act-dot { width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0; }
+  .act-text { font-size:12px;color:var(--text2);line-height:1.5; }
+  .act-text strong { color:var(--text);font-weight:600; }
+  .act-time { font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);margin-top:2px; }
+
+  /* BOTTOM ROW */
+  .bottom-row { display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px; }
+  .spark-area { padding:12px 16px 16px; }
+  .spark-labels { display:flex;justify-content:space-between;margin-bottom:8px; }
+  .spark-label { font-size:9px;color:var(--text3);font-family:'DM Mono',monospace; }
+  .sparkline { position:relative;height:60px; }
+  .sparkline svg { width:100%;height:100%; }
+
+  /* ALERTS */
+  .alert-list { padding:12px;display:flex;flex-direction:column;gap:8px; }
+  .alert-item {
+    padding:10px 12px;border-radius:8px;border-left:2px solid;
+    font-size:11px;line-height:1.5;
+  }
+  .alert-item.warn { background:var(--amber-dim);border-color:var(--amber);color:var(--amber); }
+  .alert-item.good { background:var(--green-dim);border-color:var(--green);color:var(--green); }
+  .alert-item.info { background:var(--blue-dim);border-color:var(--blue);color:var(--blue); }
+  .alert-title { font-weight:700;margin-bottom:2px; }
+  .alert-body { opacity:0.8; }
+
+  /* AI PANEL */
+  .ai-panel {
+    background:linear-gradient(135deg,#0f0e1a,#13101e);
+    border:1px solid rgba(201,168,76,0.25);border-radius:14px;
+    overflow:hidden;animation:fadeUp 0.5s 0.35s ease both;
+  }
+  .ai-head {
+    padding:14px 18px;border-bottom:1px solid rgba(201,168,76,0.12);
+    display:flex;align-items:center;gap:10px;
+  }
+  .ai-avatar {
+    width:28px;height:28px;border-radius:8px;
+    background:linear-gradient(135deg,var(--gold),#6b4f10);
+    display:flex;align-items:center;justify-content:center;font-size:12px;
+  }
+  .ai-name { font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold); }
+  .ai-sub { font-size:10px;color:var(--text3); }
+  .ai-body { padding:14px 18px; }
+  .ai-message { font-size:12px;color:var(--text2);line-height:1.7;font-family:'DM Mono',monospace; }
+  .ai-message .hi { color:var(--gold);font-weight:500; }
+  .ai-message .hl { color:var(--text); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+  .panel:nth-child(1){animation-delay:0.1s}
+  .panel:nth-child(2){animation-delay:0.2s}
+
+  @media(max-width:900px){
+    .main-grid{grid-template-columns:1fr}
+    .bottom-row{grid-template-columns:1fr}
+    .kpi-row{grid-template-columns:repeat(2,1fr)}
+    .service-row{grid-template-columns:28px 1fr 70px 60px}
+    .service-row>:nth-child(5),.service-row>:nth-child(6){display:none}
+    .total-row{grid-template-columns:28px 1fr 70px 60px}
+    .total-row>:nth-child(5),.total-row>:nth-child(6){display:none}
+  }
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.07);padding:0 24px;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+  .nav-logo{font-family:'Instrument Serif',serif;font-size:17px;color:#c9a84c;text-decoration:none;}
+  .nav-links{display:flex;gap:4px;}
+  .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid rgba(255,255,255,0.07);color:#9895a0;text-decoration:none;transition:all 0.15s;}
+  .nav-link:hover{background:rgba(255,255,255,0.05);color:#f0ede8;}
+  .nav-link.active{background:rgba(201,168,76,0.13);border-color:rgba(201,168,76,0.28);color:#c9a84c;}
+  @media(max-width:600px){.nav-link:not(.active){display:none;}}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
+    <div class="nav-links">
+      <a href="dashboard.html" class="nav-link active">📊 Command Centre</a>
+      <a href="index.html" class="nav-link">🗺 Build Order</a>
+      <a href="phases.html" class="nav-link">✅ Phases</a>
+      <a href="marketing.html" class="nav-link">📣 Marketing</a>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-title">Command Centre</div>
+      <div class="topbar-sub">Portfolio overview across all 7 AI services</div>
+    </div>
+    <div class="topbar-right">
+      <div class="status-pill"><div class="status-dot"></div>All Systems Live</div>
+      <div class="date-chip">MAR 22, 2026</div>
+    </div>
+  </div>
+
+  <!-- KPI ROW -->
+  <div class="kpi-row">
+    <div class="kpi-card">
+      <div class="kpi-label">Total MRR</div>
+      <div class="kpi-value"><span>$</span>28,100</div>
+      <div class="kpi-sub">↑ +$3,420 vs last month</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total Clients</div>
+      <div class="kpi-value">387</div>
+      <div class="kpi-sub">↑ +41 this month</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Active Services</div>
+      <div class="kpi-value">7 <span style="font-size:16px;color:var(--text2)">/7</span></div>
+      <div class="kpi-sub">● All running</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Churn Rate</div>
+      <div class="kpi-value">2<span style="font-size:18px">.3%</span></div>
+      <div class="kpi-sub warn">↑ +0.4% — watch Trading Journal</div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+
+    <!-- SERVICES TABLE -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Service Portfolio</div>
+        <div class="panel-badge">7 active streams</div>
+      </div>
+      <div style="display:grid;grid-template-columns:28px 1fr 80px 90px 80px 60px;gap:12px;padding:10px 20px 4px;align-items:center;">
+        <div></div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)">Service</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:right">MRR</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:center">Clients</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);text-align:center">Growth</div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)">Health</div>
+      </div>
+      <div class="service-list" id="serviceList"></div>
+      <div class="total-row">
+        <div class="total-label" style="grid-column:1/3">Portfolio Total</div>
+        <div class="total-mrr">$28,100</div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);text-align:center">387<span style="display:block;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em">clients</span></div>
+        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--green);text-align:center">+13.8%</div>
+        <div></div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Lead Pipeline</div>
+          <div class="panel-badge">74 active</div>
+        </div>
+        <div class="pipeline-stages">
+          <div class="stage-row"><div class="stage-label">New Leads</div><div class="stage-bar-wrap"><div class="stage-bar bar-leads" style="width:85%"></div></div><div class="stage-count">32</div></div>
+          <div class="stage-row"><div class="stage-label">In Talks</div><div class="stage-bar-wrap"><div class="stage-bar bar-active" style="width:55%"></div></div><div class="stage-count">21</div></div>
+          <div class="stage-row"><div class="stage-label">Onboarding</div><div class="stage-bar-wrap"><div class="stage-bar bar-clients" style="width:28%"></div></div><div class="stage-count">11</div></div>
+          <div class="stage-row"><div class="stage-label">At-Risk</div><div class="stage-bar-wrap"><div class="stage-bar bar-churned" style="width:26%"></div></div><div class="stage-count">10</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><div class="panel-title">Recent Activity</div></div>
+        <div class="activity-list" id="activityList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ROW -->
+  <div class="bottom-row">
+
+    <!-- MRR TREND -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">MRR Trend</div>
+        <div class="panel-badge">6 months</div>
+      </div>
+      <div class="spark-area">
+        <div class="spark-labels">
+          <span class="spark-label">OCT</span><span class="spark-label">NOV</span>
+          <span class="spark-label">DEC</span><span class="spark-label">JAN</span>
+          <span class="spark-label">FEB</span><span class="spark-label">MAR</span>
+        </div>
+        <div class="sparkline">
+          <svg viewBox="0 0 280 60" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.3"/>
+                <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0,52 L46,46 L93,38 L140,28 L186,18 L233,10 L280,4 L280,60 L0,60 Z" fill="url(#sg)"/>
+            <path d="M0,52 L46,46 L93,38 L140,28 L186,18 L233,10 L280,4" fill="none" stroke="#c9a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="280" cy="4" r="3" fill="#c9a84c"/>
+          </svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px;">
+          <div style="font-size:10px;color:var(--text3);font-family:'DM Mono',monospace">$9,200 start</div>
+          <div style="font-size:10px;color:var(--gold);font-family:'DM Mono',monospace">$28,100 now</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Alerts & Actions</div>
+        <div class="panel-badge" style="background:var(--amber-dim);color:var(--amber);border-color:rgba(251,146,60,0.2)">3 items</div>
+      </div>
+      <div class="alert-list">
+        <div class="alert-item warn">
+          <div class="alert-title">Churn Risk</div>
+          <div class="alert-body">10 clients inactive 3+ weeks. Review & reach out.</div>
+        </div>
+        <div class="alert-item good">
+          <div class="alert-title">Milestone Hit</div>
+          <div class="alert-body">Trading Journal crossed 150 users. Consider a price tier.</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">Renewal Due</div>
+          <div class="alert-body">7 annual chatbot clients renew in 14 days.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI CHIEF OF STAFF -->
+    <div class="ai-panel">
+      <div class="ai-head">
+        <div class="ai-avatar">✦</div>
+        <div>
+          <div class="ai-name">AI Chief of Staff</div>
+          <div class="ai-sub">Your portfolio intelligence layer</div>
+        </div>
+      </div>
+      <div class="ai-body">
+        <div class="ai-message">
+          <span class="hi">Good morning, Shanese.</span><br><br>
+          Your portfolio is up <span class="hl">+$3,420 MRR</span> this month. Strong momentum on Lead Gen and Airbnb — both growing faster than projections.<br><br>
+          <span class="hl">Top priority today:</span> 10 at-risk clients haven't engaged in 3 weeks. I've drafted re-engagement emails for your review.<br><br>
+          Trading Journal is approaching a natural <span class="hl">upsell moment</span> — 150 users on the base tier. Want me to draft a tier-2 offer?
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const services = [
+  { icon:'🤖', name:'Chatbot Agency',    sub:'Custom AI chatbots',       mrr:3750,  clients:15,  growth:'+8.2%',  health:88 },
+  { icon:'📄', name:'Content Generator', sub:'Niche SaaS tool',          mrr:3120,  clients:80,  growth:'+14.1%', health:95 },
+  { icon:'📧', name:'Email Automation',  sub:'AI marketing flows',       mrr:4000,  clients:10,  growth:'+5.0%',  health:80 },
+  { icon:'🧠', name:'Workflow Tool',     sub:'Beauty/hair niche',        mrr:2900,  clients:100, growth:'+19.3%', health:92 },
+  { icon:'🏠', name:'Airbnb Assistant',  sub:'STR host automation',      mrr:3980,  clients:20,  growth:'+22.1%', health:96 },
+  { icon:'💬', name:'Lead Gen / DM Auto',sub:'Outreach sequences',       mrr:6000,  clients:12,  growth:'+11.7%', health:85 },
+  { icon:'📈', name:'Trading Journal AI',sub:'Futures trader analytics', mrr:4350,  clients:150, growth:'+17.4%', health:78 },
+];
+
+const list = document.getElementById('serviceList');
+services.forEach((s, i) => {
+  const row = document.createElement('div');
+  row.className = 'service-row';
+  row.innerHTML = `
+    <div class="svc-icon">${s.icon}</div>
+    <div><div class="svc-name">${s.name}</div><div class="svc-sub">${s.sub}</div></div>
+    <div class="svc-mrr">$${s.mrr.toLocaleString()}</div>
+    <div class="svc-clients">${s.clients}<span>clients</span></div>
+    <div class="svc-growth up">${s.growth}</div>
+    <div class="health-bar"><div class="health-fill" style="width:${s.health}%"></div></div>
+  `;
+  list.appendChild(row);
+  if (i < services.length - 1) {
+    const div = document.createElement('div');
+    div.className = 'divider';
+    list.appendChild(div);
+  }
+});
+
+const activities = [
+  { dot:'#4ade80', text:'<strong>New client</strong> signed up for Airbnb Assistant', time:'2 min ago' },
+  { dot:'#c9a84c', text:'<strong>Trading Journal</strong> hit 150 users milestone',   time:'1 hr ago' },
+  { dot:'#818cf8', text:'<strong>Lead Gen</strong> — 3 new leads entered pipeline',   time:'3 hrs ago' },
+  { dot:'#fb923c', text:'<strong>Churn alert</strong> — 1 chatbot client cancelled',  time:'Yesterday' },
+  { dot:'#4ade80', text:'<strong>Stripe</strong> — $1,200 batch renewal processed',   time:'Yesterday' },
+];
+
+const actList = document.getElementById('activityList');
+activities.forEach(a => {
+  const item = document.createElement('div');
+  item.className = 'activity-item';
+  item.innerHTML = `
+    <div class="act-dot" style="background:${a.dot}"></div>
+    <div><div class="act-text">${a.text}</div><div class="act-time">${a.time}</div></div>
+  `;
+  actList.appendChild(item);
+});
+</script>
+
+<div style="max-width:1400px;margin:0 auto;padding:0 24px 40px;">
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:17px;color:var(--gold);">Starlite Group ✦</div>
+    <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);">Command Centre · StarliteGroup.io</div>
+  </div>
+</div>
+</body>
+</html>
