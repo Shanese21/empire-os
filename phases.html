@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -245,6 +246,7 @@ const phases = [
           {id:'p1-4',title:'Open business bank account',detail:'Walk into TD, RBC, or Scotiabank with your Certificate of Incorporation + ID. Open a business chequing account. Most have no monthly fee for year one. Never mix with personal funds.',tags:['TD / RBC / Scotiabank','Free','In person']},
           {id:'p1-5',title:'Create Stripe account',detail:'Go to stripe.com. Business name: Starlite Group. Connect your new business bank account. Enable Subscriptions in the dashboard — this powers all 7 recurring services.',tags:['stripe.com','Free','1 hr']},
           {id:'p1-6',title:'Get service contract template',detail:'Go to Docracy for a free Canada service agreement template, or UpCounsel for a lawyer-reviewed version (~$150). Must cover: scope, fees, cancellation (30-day notice), IP ownership, Ontario governing law.',tags:['docracy.com or upcounsel.com','$0–150','1–2 hrs']},
+          {id:'p1-6b',title:'Set up Bitwarden password manager',detail:'Go to bitwarden.com and create a free account. Install the browser extension and the mobile app. As you create each new account across the portfolio — Stripe, Wave, Airtable, Make.com, Typeform, Namecheap, Carrd, Voiceflow, Vercel, Clerk, and every service brand login — save it here immediately. With ~20 accounts across the full portfolio this is infrastructure, not optional. Takes 10 minutes now, saves enormous frustration forever. Log every account as you create it throughout all 6 phases.',tags:['bitwarden.com','Free','10 min','Do this before anything else']},
         ]
       },
       {
@@ -305,6 +307,7 @@ const phases = [
           {id:'p2-1',title:'Build master guest message template library',detail:'Write 15–20 Claude-powered templates covering: check-in, late arrival, noise complaint, early checkout, amenity questions, review request, emergency. These are the core product.',tags:['Claude API','3–4 hrs','Do once']},
           {id:'p2-2',title:'Build Airbnb Typeform intake — 12 questions',detail:'Property name, location, check-in/out times, house rules, WiFi, parking, local recs, host tone (formal/casual), pet policy, problem escalation contact. Replaces every discovery call.',tags:['Typeform','1–2 hrs','Do once']},
           {id:'p2-3',title:'Set up Airbnb Carrd sales page',detail:'Headline, what\'s included (message library + listing description + check-in flow), $199/mo price, Stripe button. No booking link. Payment goes straight to Typeform.',tags:['Carrd','Stripe','2–3 hrs']},
+          {id:'p2-3b',title:'Configure Stripe branding for Airbnb Assistant',detail:'In your Stripe dashboard, set the checkout page branding for this service — upload the service brand logo, set the brand colour, and customise the statement descriptor (what appears on the client\'s bank statement, e.g. "HOSTLY" or your chosen brand name, max 22 chars). Also customise the receipt email header so it shows the service brand name, not "Starlite Group." Clients should feel like they\'re buying from a brand built specifically for them — not a holding company.',tags:['Stripe dashboard','15 min per service','Do once per service']},
           {id:'p2-4',title:'Wire Make.com — Airbnb client flow',detail:'Stripe paid → Typeform link emailed to client → Airtable record created → you notified when form submitted. Set up once, runs for every client forever.',tags:['Make.com','1–2 hrs','Runs forever']},
           {id:'p2-5',title:'Write all Airbnb email templates',detail:'Welcome email (on purchase), delivery email (on day 5), 2-week check-in, seasonal update prompt (every 3 months), renewal reminder. Written once, automated forever.',tags:['Gmail + Make.com','2–3 hrs','Do once']},
         ]
@@ -315,6 +318,7 @@ const phases = [
           {id:'p2-6',title:'Build master Voiceflow bot template',detail:'One base bot handling: greeting, FAQ answering, booking redirect, price enquiry, out-of-hours message, and "speak to a human" escalation. Every client bot is a clone of this.',tags:['Voiceflow','Claude API','4–6 hrs','Do once']},
           {id:'p2-7',title:'Build Chatbot Typeform intake — 15 questions',detail:'Business name, website URL, top 10 FAQs + answers, services + prices, booking link, tone, hours, out-of-hours message, escalation email. Everything needed to build without a call.',tags:['Typeform','1–2 hrs','Do once']},
           {id:'p2-8',title:'Set up Chatbot Carrd sales page',detail:'Niche-specific (hair salons first). $500 setup fee + $250/mo. What\'s included, how it works (3 steps), Stripe button. No calls needed — page does the selling.',tags:['Carrd','Stripe','2–3 hrs']},
+          {id:'p2-8b',title:'Configure Stripe branding for Chatbot Agency',detail:'Same process as Airbnb Assistant — set the service brand logo, colour, statement descriptor, and receipt email header in Stripe for this service. Clients see the chatbot brand name on their card statement, not "Starlite Group." The contract says Starlite Group Inc. — everything client-facing says the service brand.',tags:['Stripe dashboard','15 min','Do once per service']},
           {id:'p2-9',title:'Write self-install embed instructions doc',detail:'One-page guide showing how to paste the Voiceflow embed code into Squarespace, Wix, and WordPress. Clients self-install — reduces your delivery time significantly.',tags:['Google Docs','1 hr','Do once']},
           {id:'p2-10',title:'Wire Make.com — Chatbot client flow',detail:'Setup fee paid → Typeform link sent → Airtable record created → you notified with intake link. Monthly retainer charged automatically by Stripe.',tags:['Make.com','1 hr','Runs forever']},
         ]
