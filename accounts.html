@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starlite Group — Accounts Map</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0a0c; --bg2:#111116; --bg3:#18181f; --bg4:#1e1e28;
+    --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.13);
+    --gold:#c9a84c; --gold2:#e8c97a;
+    --gold-dim:rgba(201,168,76,0.13); --gold-border:rgba(201,168,76,0.28);
+    --text:#f0ede8; --text2:#9895a0; --text3:#4a4858;
+    --green:#4ade80; --green-dim:rgba(74,222,128,0.11); --green-b:rgba(74,222,128,0.22);
+    --red:#f87171; --red-dim:rgba(248,113,113,0.11); --red-b:rgba(248,113,113,0.22);
+    --blue:#818cf8; --blue-dim:rgba(129,140,248,0.11); --blue-b:rgba(129,140,248,0.22);
+    --amber:#fb923c; --amber-dim:rgba(251,146,60,0.11); --amber-b:rgba(251,146,60,0.22);
+    --teal:#2dd4bf; --teal-dim:rgba(45,212,191,0.11);
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,0.013) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.013) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+
+  .progress-bar{position:fixed;top:0;left:0;right:0;height:2px;background:var(--bg3);z-index:100;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0%;transition:width 0.1s;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,12,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 24px;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+  .nav-logo{font-family:'Instrument Serif',serif;font-size:17px;color:var(--gold);text-decoration:none;}
+  .nav-links{display:flex;gap:4px;flex-wrap:wrap;}
+  .nav-link{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;border:1px solid var(--border);color:var(--text2);text-decoration:none;transition:all 0.15s;white-space:nowrap;}
+  .nav-link:hover{background:rgba(255,255,255,0.05);color:var(--text);}
+  .nav-link.active{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:1px solid var(--border);border-radius:8px;background:transparent;}
+  .hamburger span{display:block;width:18px;height:1.5px;background:var(--text2);transition:all 0.25s;}
+  .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .hamburger.open span:nth-child(2){opacity:0;}
+  .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .mobile-menu{display:none;position:absolute;top:52px;left:0;right:0;background:rgba(10,10,12,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);flex-direction:column;padding:8px 16px 16px;gap:4px;z-index:49;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu .nav-link{display:block;padding:10px 14px;border-radius:8px;font-size:13px;}
+  @media(max-width:700px){.nav-links{display:none !important;}.hamburger{display:flex;}}
+
+  .wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:0 24px 80px;}
+
+  /* HERO */
+  .hero{padding:52px 0 36px;border-bottom:1px solid var(--border);margin-bottom:40px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+  .hero h1{font-family:'Instrument Serif',serif;font-size:clamp(32px,5vw,50px);font-weight:400;line-height:1.1;margin-bottom:12px;}
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero-sub{font-size:14px;color:var(--text2);max-width:600px;line-height:1.7;}
+
+  /* COMPONENTS */
+  .am-wrap{display:flex;flex-direction:column;gap:20px;}
+
+  .managed-note{padding:14px 18px;background:var(--blue-dim);border:1px solid var(--blue-b);border-radius:12px;display:flex;gap:10px;align-items:flex-start;margin-bottom:4px;}
+  .mn-icon{font-size:16px;flex-shrink:0;}
+  .mn-text{font-size:12px;color:var(--blue);line-height:1.6;}
+  .mn-text strong{font-weight:700;color:var(--text);}
+
+  .layer{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s;}
+  .layer:hover{border-color:var(--border2);}
+  .layer-head{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--bg3);border-bottom:1px solid var(--border);}
+  .layer-num{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;border:1px solid;}
+  .layer-title{font-size:14px;font-weight:700;color:var(--text);flex:1;}
+  .layer-sub{font-size:11px;color:var(--text2);}
+  .layer-count{font-family:'DM Mono',monospace;font-size:10px;padding:3px 9px;border-radius:20px;border:1px solid var(--border2);color:var(--text2);white-space:nowrap;}
+
+  .account-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:0;}
+  .account{padding:12px 16px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background 0.15s;}
+  .account:hover{background:var(--bg3);}
+  .acc-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+  .acc-icon{font-size:14px;}
+  .acc-name{font-size:13px;font-weight:700;color:var(--text);}
+  .acc-detail{font-size:11px;color:var(--text2);line-height:1.5;margin-bottom:6px;}
+  .acc-tags{display:flex;gap:4px;flex-wrap:wrap;}
+  .acc-tag{font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid;white-space:nowrap;font-family:'DM Mono',monospace;}
+  .tag-one{background:var(--green-dim);border-color:var(--green-b);color:var(--green);}
+  .tag-free{background:var(--green-dim);border-color:var(--green-b);color:var(--green);}
+  .tag-paid{background:var(--amber-dim);border-color:var(--amber-b);color:var(--amber);}
+  .tag-phase{background:var(--blue-dim);border-color:var(--blue-b);color:var(--blue);}
+
+  .summary-note{padding:12px 16px;font-size:12px;color:var(--text2);line-height:1.6;border-top:1px solid var(--border);background:var(--bg3);}
+  .summary-note strong{color:var(--text);font-weight:700;}
+
+  /* TABLES */
+  table{width:100%;border-collapse:collapse;}
+  th{font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);padding:10px 16px;text-align:left;border-bottom:1px solid var(--border);background:var(--bg3);}
+  td{font-size:12px;padding:10px 16px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  tr:hover td{background:var(--bg3);}
+  .url{font-family:'DM Mono',monospace;font-size:11px;color:var(--blue);}
+  .email-addr{font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);}
+
+  /* PHASE COLORS */
+  .ph1{color:var(--green);}
+  .ph2{color:var(--blue);}
+  .ph4{color:var(--amber);}
+  .ph5{color:var(--red);}
+  .done{color:var(--green);}
+
+  /* TOTALS */
+  .totals-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .total-box{padding:18px;text-align:center;border-right:1px solid var(--border);}
+  .total-box:last-child{border-right:none;}
+  .total-val{font-family:'Instrument Serif',serif;font-size:32px;color:var(--text);line-height:1;margin-bottom:4px;}
+  .total-label{font-size:11px;color:var(--text2);line-height:1.4;}
+
+  /* FOOTER */
+  .footer{margin-top:60px;padding-top:28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .footer-logo{font-family:'Instrument Serif',serif;font-size:17px;color:var(--gold);}
+  .footer-note{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .am-wrap>*{animation:fadeUp 0.4s ease both;}
+  .am-wrap>*:nth-child(1){animation-delay:0.05s;}
+  .am-wrap>*:nth-child(2){animation-delay:0.1s;}
+  .am-wrap>*:nth-child(3){animation-delay:0.15s;}
+  .am-wrap>*:nth-child(4){animation-delay:0.2s;}
+  .am-wrap>*:nth-child(5){animation-delay:0.25s;}
+  .am-wrap>*:nth-child(6){animation-delay:0.3s;}
+  .am-wrap>*:nth-child(7){animation-delay:0.35s;}
+
+  @media(max-width:600px){
+    .account-grid{grid-template-columns:1fr;}
+    .totals-grid{grid-template-columns:repeat(2,1fr);}
+    table{font-size:11px;}
+    th,td{padding:8px 12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<nav>
+  <div class="nav-inner" style="position:relative;">
+    <a href="index.html" class="nav-logo">Shanese's Empire ✦</a>
+    <div class="nav-links">
+      <a href="about.html" class="nav-link">✦ About</a>
+      <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+      <a href="index.html" class="nav-link">🗺 Build Order</a>
+      <a href="phases.html" class="nav-link">✅ Phases</a>
+      <a href="marketing.html" class="nav-link">📣 Marketing</a>
+      <a href="founder.html" class="nav-link">👤 Founder View</a>
+      <a href="accounts.html" class="nav-link active">🗂 Accounts</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="about.html" class="nav-link">✦ About</a>
+    <a href="dashboard.html" class="nav-link">📊 Command Centre</a>
+    <a href="index.html" class="nav-link">🗺 Build Order</a>
+    <a href="phases.html" class="nav-link">✅ Phases</a>
+    <a href="marketing.html" class="nav-link">📣 Marketing</a>
+    <a href="founder.html" class="nav-link">👤 Founder View</a>
+    <a href="accounts.html" class="nav-link active">🗂 Accounts</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Starlite Group · Infrastructure</div>
+    <h1>Accounts <em>Map</em></h1>
+    <p class="hero-sub">Every account, website, email address, and tool across the full Starlite Group portfolio — organised by layer so you can see exactly what you're managing and what it costs.</p>
+  </div>
+
+  <div class="am-wrap">
+
+    <!-- PRINCIPLE NOTE -->
+    <div class="managed-note">
+      <div class="mn-icon">💡</div>
+      <div class="mn-text"><strong>The key principle:</strong> One legal entity, one bank, one Stripe, one email workspace, one GitHub, one Airtable. Everything multiplies at the service brand level — but you manage it all from a single login per tool. More accounts than it looks, less work than you'd think.</div>
+    </div>
+
+    <!-- LAYER 1: LEGAL & FINANCIAL -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--amber-dim);border-color:var(--amber-b);color:var(--amber);">1</div>
+        <div>
+          <div class="layer-title">Legal & Financial</div>
+          <div class="layer-sub">The foundation — one of each, forever</div>
+        </div>
+        <div class="layer-count">4 accounts</div>
+      </div>
+      <div class="account-grid">
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🏛️</div><div class="acc-name">Incorporated entity</div></div>
+          <div class="acc-detail">1234567 Ontario Inc. operating as Starlite Group. One company, all divisions and services flow through it. All client contracts signed under this entity.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One only · forever</span><span class="acc-tag tag-paid">$360 once</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🏦</div><div class="acc-name">Business bank account</div></div>
+          <div class="acc-detail">TD / RBC / Scotiabank. One account, all 7 services deposit here. One place to see all money in and out. Never mix with personal funds.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One only</span><span class="acc-tag tag-free">Free yr 1</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">💳</div><div class="acc-name">Stripe</div></div>
+          <div class="acc-detail">One account, 7+ Products inside it. All client billing, subscriptions, setup fees, and receipts from one dashboard. Clients see "Starlite Group" on every receipt regardless of service.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One only</span><span class="acc-tag tag-free">Free (2.9%+$0.30)</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">📊</div><div class="acc-name">Wave accounting</div></div>
+          <div class="acc-detail">Connected to bank + Stripe. Auto-imports every transaction. One view of all income and expenses across the entire group. Built for Canadian small businesses. Free.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One only</span><span class="acc-tag tag-free">Free forever</span></div>
+        </div>
+      </div>
+      <div class="summary-note">These four accounts are the legal and financial core of Starlite Group. <strong>You set them up once in Phase 1 and never create additional ones</strong> — every new service, every new client, every new dollar runs through these same four accounts.</div>
+    </div>
+
+    <!-- LAYER 2: OPERATIONS -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--blue-dim);border-color:var(--blue-b);color:var(--blue);">2</div>
+        <div>
+          <div class="layer-title">Operations</div>
+          <div class="layer-sub">One account each — manages everything across all services</div>
+        </div>
+        <div class="layer-count">7 accounts</div>
+      </div>
+      <div class="account-grid">
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">📧</div><div class="acc-name">Google Workspace</div></div>
+          <div class="acc-detail">One account, multiple email aliases inside it. you@starlitegroup.io for business. hello@starlitegroup.io for clients. All landing in one Gmail inbox.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-paid">$7/mo</span><span class="acc-tag tag-phase">Phase 1</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🗄️</div><div class="acc-name">Airtable</div></div>
+          <div class="acc-detail">One base, all 7 services tracked. Clients, pipeline, revenue, onboarding — linked tables. Start with Google Sheets (free), upgrade in Phase 3.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-paid">$20/mo (Phase 3)</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">⚡</div><div class="acc-name">Make.com</div></div>
+          <div class="acc-detail">One account, all automation flows inside it. Stripe → Airtable, welcome emails, check-ins, alerts — every automation across every service managed from one dashboard.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-paid">$11/mo (Phase 3)</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">📋</div><div class="acc-name">Typeform</div></div>
+          <div class="acc-detail">One account, multiple forms inside it. Each service has its own intake form — all responses flow into the same Make.com → Airtable pipeline.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free tier</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🔔</div><div class="acc-name">UptimeRobot</div></div>
+          <div class="acc-detail">One account, all service URLs monitored inside it. One place to see if anything across the portfolio is down. You know before clients do.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🧠</div><div class="acc-name">Claude API (Anthropic)</div></div>
+          <div class="acc-detail">One API key, used across all services and the AI Chief of Staff layer. One monthly bill, one usage dashboard showing consumption per service.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-paid">~$20–30/mo</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">💻</div><div class="acc-name">GitHub</div></div>
+          <div class="acc-detail">One account. Your OS already lives here. Service web apps get their own repos inside the same account. All deployments managed from one place. Already set up.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free</span><span class="acc-tag tag-phase">Already done ✓</span></div>
+        </div>
+      </div>
+      <div class="summary-note"><strong>7 operations accounts, all set up once, all manage everything indefinitely.</strong> The only one that multiplies is Typeform — each new service adds one form inside the same account. Everything else stays at exactly one login.</div>
+    </div>
+
+    <!-- LAYER 3: WEBSITES -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--green-dim);border-color:var(--green-b);color:var(--green);">3</div>
+        <div>
+          <div class="layer-title">Websites & Domains</div>
+          <div class="layer-sub">One per service brand — simple one-pagers, managed from 2 accounts</div>
+        </div>
+        <div class="layer-count">9 sites total</div>
+      </div>
+      <table>
+        <tr><th>URL</th><th>Purpose</th><th>Built on</th><th>Status</th></tr>
+        <tr>
+          <td><span class="url">starlitegroup.io</span></td>
+          <td>Public holding company about page — shareable with clients and collaborators</td>
+          <td>GitHub Pages (already built)</td>
+          <td class="done">Done ✓</td>
+        </tr>
+        <tr>
+          <td><span class="url">starlitegroup.io/empire-os</span></td>
+          <td>Internal founder OS — 7 pages, command centre, phases, marketing, founder view</td>
+          <td>GitHub Pages (already built)</td>
+          <td class="done">Done ✓</td>
+        </tr>
+        <tr>
+          <td><span class="url">[airbnb brand].io</span></td>
+          <td>Airbnb Assistant sales page — pricing, Stripe button, no booking link</td>
+          <td>Carrd ($19/yr)</td>
+          <td class="ph2">Phase 2</td>
+        </tr>
+        <tr>
+          <td><span class="url">[chatbot brand].io</span></td>
+          <td>Chatbot Agency sales page — niche-specific, setup fee + monthly</td>
+          <td>Carrd ($19/yr)</td>
+          <td class="ph2">Phase 2</td>
+        </tr>
+        <tr>
+          <td><span class="url">[content gen brand].io</span></td>
+          <td>Content Generator web app — user login, generate content, Stripe paywall</td>
+          <td>Vercel (free)</td>
+          <td class="ph4">Phase 4</td>
+        </tr>
+        <tr>
+          <td><span class="url">[workflow brand].io</span></td>
+          <td>Workflow Tool web app — pick template, fill details, download document</td>
+          <td>Vercel (free)</td>
+          <td class="ph4">Phase 4</td>
+        </tr>
+        <tr>
+          <td><span class="url">[email brand].io</span></td>
+          <td>Email Automation sales page — setup fee + monthly retainer</td>
+          <td>Carrd ($19/yr)</td>
+          <td class="ph4">Phase 4</td>
+        </tr>
+        <tr>
+          <td><span class="url">[lead gen brand].io</span></td>
+          <td>Lead Gen / DM Auto sales page — setup fee + monthly</td>
+          <td>Carrd ($19/yr)</td>
+          <td class="ph5">Phase 5</td>
+        </tr>
+        <tr>
+          <td><span class="url">[trading brand].io</span></td>
+          <td>Trading Journal AI web app — freemium, login, weekly debrief</td>
+          <td>Vercel (free)</td>
+          <td class="ph5">Phase 5</td>
+        </tr>
+      </table>
+      <div class="summary-note">All domains bought through <strong>one Namecheap account</strong>. All Carrd sites managed from <strong>one Carrd account</strong>. All Vercel apps from <strong>one Vercel account</strong>. Phase 2 = 2 new domains + 2 new Carrd pages. That's all. The complexity builds gradually, one service at a time.</div>
+    </div>
+
+    <!-- LAYER 4: EMAILS -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);">4</div>
+        <div>
+          <div class="layer-title">Email Addresses</div>
+          <div class="layer-sub">Multiple addresses, zero extra accounts — all land in one Gmail inbox</div>
+        </div>
+        <div class="layer-count">~10 addresses · 1 inbox</div>
+      </div>
+      <table>
+        <tr><th>Address</th><th>Used for</th><th>How it works</th></tr>
+        <tr>
+          <td><span class="email-addr">you@starlitegroup.io</span></td>
+          <td>Your main founder address — contracts, legal, banks, official correspondence</td>
+          <td>Primary Google Workspace address</td>
+        </tr>
+        <tr>
+          <td><span class="email-addr">hello@starlitegroup.io</span></td>
+          <td>General enquiries, public contact on About page, partnerships</td>
+          <td>Free alias in Google Workspace</td>
+        </tr>
+        <tr>
+          <td><span class="email-addr">clients@starlitegroup.io</span></td>
+          <td>All automated client emails sent via Make.com — welcome, delivery, check-ins</td>
+          <td>Free alias used by Make.com automations</td>
+        </tr>
+        <tr>
+          <td><span class="email-addr">hello@[airbnb brand].io</span></td>
+          <td>Airbnb Assistant client-facing contact and support</td>
+          <td>Free alias or domain forward → main inbox</td>
+        </tr>
+        <tr>
+          <td><span class="email-addr">hello@[chatbot brand].io</span></td>
+          <td>Chatbot Agency client-facing contact and support</td>
+          <td>Free alias or domain forward → main inbox</td>
+        </tr>
+        <tr>
+          <td><span class="email-addr">hello@[content gen].io</span></td>
+          <td>Content Generator support and onboarding</td>
+          <td>Free alias or domain forward → main inbox</td>
+        </tr>
+        <tr>
+          <td colspan="3" style="color:var(--text3);font-style:italic;font-size:11px;">...and so on for each service brand — same pattern throughout</td>
+        </tr>
+      </table>
+      <div class="summary-note"><strong>Everything lands in one Gmail inbox.</strong> Google Workspace aliases are free and unlimited on the Business Starter plan ($7/mo). You just see which address each email was sent to. No logging into 7 different email accounts — ever.</div>
+    </div>
+
+    <!-- LAYER 5: SERVICE TOOLS -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--red-dim);border-color:var(--red-b);color:var(--red);">5</div>
+        <div>
+          <div class="layer-title">Service-Specific Tools</div>
+          <div class="layer-sub">One account per tool — builds up gradually, one new tool per service type</div>
+        </div>
+        <div class="layer-count">5 tools total</div>
+      </div>
+      <div class="account-grid">
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🤖</div><div class="acc-name">Voiceflow</div></div>
+          <div class="acc-detail">One account. Build master chatbot template once, clone per client. All client bots managed from one dashboard. No separate accounts per client.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free tier</span><span class="acc-tag tag-phase">Phase 2</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🏠</div><div class="acc-name">Hospitable</div></div>
+          <div class="acc-detail">Client pays this directly — connects their own Airbnb account for automated message sending. You help configure it. Not your subscription to manage.</div>
+          <div class="acc-tags"><span class="acc-tag" style="background:var(--teal-dim);border-color:rgba(45,212,191,0.3);color:var(--teal);">Client pays</span><span class="acc-tag tag-phase">Phase 2</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🌐</div><div class="acc-name">Vercel</div></div>
+          <div class="acc-detail">One account. Content Generator, Workflow Tool, and Trading Journal all deployed here. Free tier handles all of them comfortably.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free</span><span class="acc-tag tag-phase">Phase 4</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">🔐</div><div class="acc-name">Clerk (user auth)</div></div>
+          <div class="acc-detail">One account handles login and signup for all SaaS web apps. Free up to 10,000 monthly active users — way beyond early-stage needs.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-free">Free tier</span><span class="acc-tag tag-phase">Phase 4</span></div>
+        </div>
+        <div class="account">
+          <div class="acc-head"><div class="acc-icon">💬</div><div class="acc-name">ManyChat</div></div>
+          <div class="acc-detail">One account for the Lead Gen / DM Automation service. Client social accounts get connected to yours. All sequences managed centrally from one dashboard.</div>
+          <div class="acc-tags"><span class="acc-tag tag-one">One account</span><span class="acc-tag tag-paid">$15/mo</span><span class="acc-tag tag-phase">Phase 5</span></div>
+        </div>
+      </div>
+      <div class="summary-note">Each of these tools comes in exactly when its service is being built. <strong>You're never setting up more than 1–2 new tools at once.</strong> By Phase 5 when the last tool is added, the Phase 2 tools are running fully on autopilot.</div>
+    </div>
+
+    <!-- TOTALS -->
+    <div class="layer">
+      <div class="layer-head">
+        <div class="layer-num" style="background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold);">∑</div>
+        <div>
+          <div class="layer-title">The full picture at Phase 6</div>
+          <div class="layer-sub">Everything built and running — what you're managing at scale</div>
+        </div>
+      </div>
+      <div class="totals-grid">
+        <div class="total-box">
+          <div class="total-val">~20</div>
+          <div class="total-label">Total accounts to manage across the full portfolio</div>
+        </div>
+        <div class="total-box" style="border-right:1px solid var(--border);">
+          <div class="total-val">9</div>
+          <div class="total-label">Websites and domains across all service brands</div>
+        </div>
+        <div class="total-box" style="border-right:1px solid var(--border);">
+          <div class="total-val" style="color:var(--green);">~$75</div>
+          <div class="total-label">Monthly cost for the entire infrastructure stack</div>
+        </div>
+        <div class="total-box">
+          <div class="total-val">1</div>
+          <div class="total-label">Password manager needed — get Bitwarden (free) now</div>
+        </div>
+      </div>
+      <div class="summary-note">
+        <strong>20 accounts sounds like a lot</strong> — but 7 are set up in Phase 1 and the rest arrive one at a time over 9 months. By the time you have all 20, the first 15 are running on autopilot and you barely touch them. The key: <strong>get Bitwarden (free password manager) at the start</strong> and log every account as you create it. Managing this is trivial with a password manager, chaotic without one.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">Starlite Group ✦</div>
+    <div class="footer-note">Accounts Map · Internal · StarliteGroup.io</div>
+  </div>
+
+</div>
+
+<script>
+window.addEventListener('scroll', () => {
+  const st = document.documentElement.scrollTop;
+  const sh = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  document.getElementById('progressFill').style.width = (st / sh * 100) + '%';
+});
+
+function toggleMenu() {
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobileMenu');
+  if (h && m && !h.contains(e.target) && !m.contains(e.target)) {
+    h.classList.remove('open');
+    m.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
